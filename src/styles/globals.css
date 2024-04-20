@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic styling for the entire body of the webpage */
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    /* Setting a white background for the body */
+    color: gray;
+    /* Default text color set to gray for better readability */
+}
+
+/* Styling for the footer element, which is fixed at the bottom */
+.footer {
+    background-color: gray;
+    /* Footer background color */
+    color: white;
+    /* Text color within the footer */
+    text-align: center;
+    /* Centers the text within the footer */
+    padding: 10px;
+    /* Padding inside the footer for spacing */
+    position: fixed;
+    /* Fix the footer at the bottom */
+    bottom: 0;
+    /* Align the footer at the bottom of the view */
+    width: 100%;
+    /* The footer stretches across the entire width */
+}
+
+/* Styling for the main content area */
+.mainContent {
+    text-align: center;
+    /* Centers the text in the main content area */
+    padding: 50px 20px;
+    /* Padding around the content for spacing */
+    background-color: teal;
+    /* Background color for the main content area */
+    color: white;
+    /* Text color for the main content area */
+}
+
+/* Header styling, applied to the <header> element */
+.header {
+    display: flex;
+    /* Flexbox layout for the header */
+    align-items: center;
+    /* Vertically center the items in the header */
+    background-color: white;
+    /* Background color of the header */
+    color: #333;
+    /* Dark grey color for text in the header for better readability */
+    padding: 1rem 2rem;
+    /* Padding around the header for spacing */
+}
+
+.header .logo {
+    flex-basis: 25%;
+    /* Logo takes up 1/4th of the header space */
+    max-width: 25%;
+    /* Ensure logo does not exceed the allocated space */
+    height: auto;
+    /* Keep the logo's aspect ratio */
+}
+
+.logo-container {
+    flex-basis: 25%;
+    /* Logo takes up 1/4th of the header space */
+    max-width: 25%;
+    /* Ensure logo does not exceed the allocated space */
+}
+
+/* Update for the logo class, which is now for the img tag */
+.logo {
+    height: auto;
+    /* Keep the logo's aspect ratio */
+    width: 100%;
+    /* Use up all available width of the logo-container */
+}
+
+/* Example of a navigation menu on the right side */
+.header .nav {
+    flex-grow: 1;
+    /* The navigation takes up the remaining space */
+    display: flex;
+    justify-content: flex-end;
+    /* Align nav items to the right */
+    list-style-type: none;
+    /* Removes default list styling */
+}
+
+.header .nav li {
+    padding: 0 1rem;
+    /* Space out the nav items */
+    display: inline;
+    /* Align items in a row */
+}
+
+.header .nav a {
+    text-decoration: none;
+    /* Removes underline from links */
+    color: #333;
+    /* Dark grey color for the links */
+    font-weight: bold;
+}
+
+.header .nav a:hover {
+    color: #0077cc;
+    /* Change color on hover */
+}
+
+/* Responsive adjustments can be made using media queries */
+@media (max-width: 768px) {
+
+    /* Adjust styles for smaller screens */
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header .nav {
+        justify-content: center;
+        padding-top: 1rem;
+    }
+}
