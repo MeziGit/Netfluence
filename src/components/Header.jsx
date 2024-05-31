@@ -1,12 +1,10 @@
 import React from 'react';
-import '../styles/globals.css'; // Make sure this path correctly points to your CSS file
+import '../styles/header.css';
 
 const Header = () => {
   return (
     <header className="header">
-      <div className="logo-container">
-        <img className="logo" src="/imgs/netfluence_logo.svg" alt="Netfluence Logo" />
-      </div>
+      <h3>Netfluence</h3>
       <ul className="nav">
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
