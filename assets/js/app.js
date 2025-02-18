@@ -54,7 +54,7 @@ if (isMobile) {
         //  Preloader
         // =======================
         preloader: function () {
-            setTimeout(function () { $('.preloader').hide('slow') }, 2000);
+            setTimeout(function () { $('.preloader').hide('slow') }, 0);
         },
         // =======================
         //  Process

@@ -282,7 +282,7 @@ body::-webkit-scrollbar-track {
 }
 body::-webkit-scrollbar-thumb {
   border-radius: 8px;
-  background: linear-gradient(180deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  background: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
 }
 @media (max-width: 991px) {
   body {
@@ -638,21 +638,21 @@ Helpers
 }
 
 .gradient-stroke-text {
-  background: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  background: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
   -webkit-background-clip: text;
   -webkit-text-stroke: 2px transparent;
   color: #141414;
 }
 
 .gradient-stroke-text-medium-black {
-  background: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  background: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
   -webkit-background-clip: text;
   -webkit-text-stroke: 2px transparent;
   color: #1e1f20;
 }
 
 .bg-gradient {
-  background: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  background: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
 }
 
 .light-shadow {
@@ -2093,7 +2093,7 @@ Elements
   bottom: 0;
   left: 0;
   z-index: -1;
-  background: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  background: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
   transform: translateX(-100%);
   box-sizing: border-box;
   transition: 0.5s ease-in-out;
@@ -2178,7 +2178,7 @@ Elements
   border: 1px solid;
   border-image-slice: 1;
   border-width: 1px;
-  border-image-source: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  border-image-source: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
   font-size: clamp(13px, 0.833vw, 22px);
 }
 @media (max-width: 991px) {
@@ -2243,7 +2243,7 @@ Elements
   border: 1px solid;
   border-image-slice: 1;
   border-width: 1px;
-  border-image-source: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  border-image-source: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
   border-radius: 0px;
   box-shadow: none;
 }
@@ -2262,7 +2262,7 @@ Elements
   border: 1px solid;
   border-image-slice: 1;
   border-width: 1px;
-  border-image-source: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  border-image-source: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
 }
 .form-group input[type=date]::placeholder,
 .form-group input[type=text]::placeholder,
@@ -2298,7 +2298,7 @@ Elements
   border: 1px solid;
   border-image-slice: 1;
   border-width: 1px;
-  border-image-source: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  border-image-source: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
   background: transparent;
 }
 .newsletter-field .cus-btn {
@@ -3021,7 +3021,7 @@ footer .top-block {
   border-bottom: 1px solid;
   border-image-slice: 1;
   border-width: 1px;
-  border-image-source: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  border-image-source: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
 }
 footer .footer-widget {
   position: relative;
@@ -3046,7 +3046,7 @@ footer .footer-widget ul li a:hover {
   transition: all 0.5s ease-in-out;
 }
 footer .footer-widget ul li a i {
-  background: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  background: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: clamp(16px, 1.25vw, 32px);
@@ -3138,7 +3138,7 @@ footer .footer-widget ul li a i {
   border: 1px solid;
   border-image-slice: 1;
   border-width: 1px;
-  border-image-source: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  border-image-source: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
   background: #1e1f20;
   padding: clamp(24px, 1.66vw, 42px) clamp(16px, 1.25vw, 32px);
 }
@@ -3174,7 +3174,7 @@ footer .footer-widget ul li a i {
   border-bottom: 1px solid;
   border-image-slice: 1;
   border-width: 1px;
-  border-image-source: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  border-image-source: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
 }
 .portfolio .nav-pills .nav-link {
   font-weight: 500;
@@ -3259,7 +3259,7 @@ footer .footer-widget ul li a i {
   border: 1px solid;
   border-image-slice: 1;
   border-width: 1px;
-  border-image-source: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  border-image-source: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
 }
 .feedback .feedback-card .rating {
   position: relative;
@@ -3315,7 +3315,7 @@ footer .footer-widget ul li a i {
   border: 1px solid;
   border-image-slice: 1;
   border-width: 1px;
-  border-image-source: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  border-image-source: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
   display: grid;
   justify-content: center;
   align-content: center;
@@ -3503,7 +3503,7 @@ footer .footer-widget ul li a i {
   border-bottom: 1px solid;
   border-image-slice: 1;
   border-width: 1px;
-  border-image-source: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  border-image-source: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
 }
 .blog-detail .top-row ul {
   display: flex;
@@ -3567,7 +3567,7 @@ footer .footer-widget ul li a i {
   border: 1px solid;
   border-image-slice: 1;
   border-width: 1px;
-  border-image-source: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  border-image-source: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
   padding: clamp(12px, 0.83vw, 20px);
 }
 .sidebar .blogs-list {
@@ -3602,7 +3602,7 @@ footer .footer-widget ul li a i {
   border: 1px solid;
   border-image-slice: 1;
   border-width: 1px;
-  border-image-source: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  border-image-source: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
   transition: all 0.5s ease-in-out;
 }
 .pricing .pricing-block .title {
@@ -3675,7 +3675,7 @@ footer .footer-widget ul li a i {
   border: 1px solid;
   border-image-slice: 1;
   border-width: 1px;
-  border-image-source: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+  border-image-source: linear-gradient(90deg, rgba(235, 231, 222, 0.95) 0%, rgba(63, 168, 103, 0.95) 100%);
 }
 .contact-area .form-block .bottom-row {
   display: flex;
