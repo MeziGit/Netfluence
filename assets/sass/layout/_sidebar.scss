@@ -1,0 +1,28 @@
+// --------------------------- //
+// ----- Flight Sidebar ------ //
+// --------------------------- //
+.sidebar {
+    border: 1px solid;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-image-source: $gradient;
+    padding: clamp(12px, 0.83vw, 20px);
+    .blogs-list{
+        display: flex;
+        flex-direction: column;
+        gap: clamp(16px, 1.25vw, 32px);
+        li{
+            a{
+                display: flex;
+                align-items: start;
+                gap: clamp(12px, 0.83vw, 20px);
+                img{
+                    width: clamp(56px, 4.043vw, 96px);
+                }
+                .fs-14{
+                    font-size: clamp(10px, 0.73vw, 17px);
+                }
+            }
+        }
+    }
+}

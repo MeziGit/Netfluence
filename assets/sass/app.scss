@@ -1,0 +1,118 @@
+/*---------------------------------------------"
+// Template Name: Nexus
+// Description:  Nexus - Digital Agency HTML Template
+// Version: 1.0.0
+
+===============================================   
+STYLE SHEET INDEXING
+|
+|___ Fonts
+|___ Variables
+|___ Responsive
+|___ Reset Styles
+|___ Spacing
+|___ Helper Classes
+|___ Buttons
+|___ Headings
+|___ Layout Styles
+|___ END STYLE SHEET INDEXING
+
+--------------------------------------------*/
+
+/*-------------------------
+    Fonts
+-------------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/*-------------------------
+    Variables
+-------------------------*/
+/* Fonts */
+$font-primary: "Poppins", sans-serif;
+$font-sec: "Jost", sans-serif;
+$font-awesome: "Font Awesome 5 Pro";
+
+/* Colors */
+$accent-1: #FDDC8B;
+$accent-2: #28D0E8;
+$accent-3: #AC1717;
+$white: #fafafa;
+$black: #141414;
+$medium-black: #1e1f20;
+$light-black: #141516;
+$dark-black: #0c0c0d;
+$lightest-gray: #eaeaec;
+$light-gray: #92949f;
+$dark-gray: #45474f;
+
+/* Transitions */
+$transition: all 0.5s ease-in-out;
+
+/* Gradient */
+$gradient: linear-gradient(90deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+$gradient-2: linear-gradient(180deg, rgba(253, 220, 139, 0.95) 0%, rgba(40, 208, 232, 0.95) 100%);
+
+/* Shadows */
+$shadow-1: 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
+$shadow-2: 0px 6px 12px 0px rgba(0, 0, 0, 0.12);
+$shadow-3: 0px 2px 10px 0px rgba(0, 0, 0, 0.12);
+
+/*-------------------------
+Responsive Styles
+-------------------------*/
+@import "helpers/mixin";
+
+/*-------------------------
+Reset Styles
+-------------------------*/
+@import "basic/basic";
+
+/*-------------------------
+Helpers
+-------------------------*/
+@import "helpers/classes";
+
+@import "helpers/spacing";
+
+/*-------------------------
+Elements
+-------------------------*/
+@import "elements/preloader";
+
+@import "elements/buttons";
+
+@import "elements/form";
+
+@import "elements/nice-select";
+
+@import "elements/pagination";
+
+/*-------------------------
+layouts
+-------------------------*/
+@import "layout/header";
+
+@import "layout/footer";
+
+@import "layout/hero-banner";
+
+@import "layout/portfolio";
+
+@import "layout/feedback";
+
+@import "layout/coming-soon";
+
+@import "layout/process";
+
+@import "layout/about";
+
+@import "layout/blog";
+
+@import "layout/title-banner";
+
+@import "layout/sidebar";
+
+@import "layout/pricing";
+
+@import "layout/contact-us";

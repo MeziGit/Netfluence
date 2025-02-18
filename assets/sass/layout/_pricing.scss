@@ -1,0 +1,82 @@
+.pricing {
+    .pricing-block {
+        position: relative;
+        padding: clamp(20px, 1.25vw, 32px) clamp(16px, 1.25vw, 32px);
+        background: $medium-black;
+        border: 1px solid;
+        border-image-slice: 1;
+        border-width: 1px;
+        border-image-source: linear-gradient(90deg, $medium-black 0%, $medium-black 100%);
+        transition: $transition;
+        margin: 1px;
+        
+        &:hover {
+            border: 1px solid;
+            border-image-slice: 1;
+            border-width: 1px;
+            border-image-source: $gradient;
+            transition: $transition;
+        }
+        .title {
+            border: 1px solid $white;
+            line-height: 120%;
+            padding: clamp(6px, 0.42vw, 10px) clamp(12px, 0.83vw, 20px);
+        }
+        .title-row {
+            span {
+                justify-content: space-between;
+                position: relative;
+                display: flex;
+                align-items: center;
+                gap: clamp(16px, 1.25vw, 32px);
+                &::before {
+                    content: "";
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 6px;
+                    background: $lightest-gray;
+                }
+                &::after {
+                    content: "";
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 6px;
+                    background: $lightest-gray;
+                }
+                p {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    gap: clamp(16px, 1.25vw, 32px);
+                    &::before {
+                        content: "";
+                        height: 1px;
+                        width: 35%;
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        background: $lightest-gray;
+                    }
+                    &::after {
+                        content: "";
+                        height: 1px;
+                        width: 35%;
+                        position: absolute;
+                        right: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        background: $lightest-gray;
+                    }
+                }
+            }
+        }
+        ul{
+            display: flex;
+            flex-direction: column;
+            gap: clamp(12px, 0.83vw, 20px);
+        }
+    }
+}

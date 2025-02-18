@@ -1,0 +1,13 @@
+// Title Banner
+.title-banner{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background: url('../media/backgrounds/title-banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+    @include media-query(575px) {
+        height: 160px;
+    }
+}
