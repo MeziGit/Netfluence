@@ -2063,6 +2063,7 @@ Elements
   font-size: clamp(13px, 0.833vw, 22px);
   font-weight: 600;
   box-sizing: border-box;
+  border-radius: 20px;
 }
 .cus-btn svg {
   width: clamp(16px, 1.042vw, 24px);
@@ -3713,4 +3714,26 @@ iframe {
   border-radius: clamp(16px, 1.25vw, 32px);
 }
 
+.brands-slider img {
+  display: block;
+  margin: 0 auto;
+  width: 150px;      /* Set desired width */
+  height: 150px;     /* Set desired height */
+  object-fit: contain; /* Keeps image aspect ratio without stretching */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .brands-slider img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brands-slider img {
+    width: 100px;
+    height: 100px;
+  }
+}
 /*# sourceMappingURL=app.css.map */
