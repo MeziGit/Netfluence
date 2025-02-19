@@ -50,7 +50,7 @@ ol.list-style {
 
 ul.list-style li::marker,
 ol.list-style li::marker {
-  color: #FDDC8B;
+  color: #82d16f;
 }
 
 .unstyled {
@@ -356,7 +356,7 @@ a {
   color: unset;
 }
 a:hover {
-  color: #FDDC8B;
+  color: #82d16f;
   transition: all 0.5s ease-in-out;
 }
 
@@ -550,19 +550,19 @@ h6,
 Helpers
 -------------------------*/
 .color-primary {
-  color: #FDDC8B !important;
+  color: #faf6ee !important;
 }
 
 .bg-primary {
-  background-color: #FDDC8B !important;
+  background-color: #faf6ee !important;
 }
 
 .color-sec {
-  color: #28D0E8 !important;
+  color: #7bc642 !important;
 }
 
 .bg-sec {
-  background-color: #28D0E8 !important;
+  background-color: #7bc642 !important;
 }
 
 .color-white {
@@ -715,7 +715,7 @@ Helpers
   transition: all 0.5s ease-in-out;
 }
 .social-icons li a:hover {
-  background-color: #FDDC8B;
+  background-color: #82d16f;
 }
 
 .social-icons-2 {
@@ -2017,7 +2017,7 @@ Elements
   font-family: "Font Awesome 5 Pro" !important;
   text-align: center;
   font-size: clamp(14.5px, 1.042vw, 32px);
-  color: #FDDC8B;
+  color: #82d16f;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -2029,7 +2029,7 @@ Elements
   transition: all 200ms linear;
 }
 .scroll-top .scroll-top__circle path {
-  stroke: #FDDC8B;
+  stroke: #82d16f;
   stroke-width: 4;
   fill: none;
   box-sizing: border-box;
@@ -2610,7 +2610,7 @@ Elements
 }
 .nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus {
   background: rgba(253, 220, 139, 0.2);
-  color: #FDDC8B;
+  color: #82d16f;
 }
 .nice-select .option.disabled {
   background-color: transparent;
@@ -2655,7 +2655,7 @@ Elements
   transition: all 0.5s ease-in-out;
 }
 .pagination li a.active, .pagination li a:hover {
-  background: #FDDC8B;
+  background: #82d16f;
   transition: all 0.5s ease-in-out;
 }
 
@@ -2826,10 +2826,10 @@ layouts
   }
 }
 .menu__block .menu-link .toggle-menu .toggle-link .links > li a.active {
-  color: #28D0E8;
+  color: #63cd40;
 }
 .menu__block .menu-link .toggle-menu .toggle-link .links > li a:hover {
-  color: #28D0E8;
+  color: #63cd40;
   transition: all 0.5s ease-in-out;
 }
 .menu__block .menu-link .toggle-menu .toggle-link .links > li.dropdown {
@@ -2842,7 +2842,7 @@ layouts
   justify-content: flex-end;
 }
 .menu__block .menu-link .toggle-menu .toggle-link .links > li.dropdown a:hover button {
-  color: #28D0E8;
+  color: #63cd40;
   transition: all 0.5s ease-in-out;
 }
 .menu__block .menu-link .toggle-menu .toggle-link .links > li.dropdown .toggle-menu-2 {
@@ -2946,15 +2946,15 @@ layouts
   }
 }
 .menu__block .menu-link .toggle-menu .toggle-link .links > li.dropdown .toggle-menu-2 .toggle-link-2 .links-2 li a.active {
-  color: #28D0E8;
+  color: #63cd40;
 }
 .menu__block .menu-link .toggle-menu .toggle-link .links > li.dropdown .toggle-menu-2 .toggle-link-2 .links-2 li a:hover {
-  color: #28D0E8;
+  color: #63cd40;
   transition: all 0.5s ease-in-out;
 }
 .menu__block .menu-link .toggle-menu .toggle-link .links > li.dropdown.dropdown-active > a {
   transition: all 0.5s ease-in-out;
-  color: #28D0E8;
+  color: #63cd40;
 }
 .menu__block .menu-link .toggle-menu .toggle-link .links > li.dropdown.dropdown-active .toggle-menu-2 {
   z-index: 150;
@@ -3056,14 +3056,14 @@ footer .footer-widget ul li a i {
   width: 100%;
 }
 .hero-banner .content {
-  background: url(../media/banner/banner-bg-vector.png) no-repeat;
+  background: url(../media/banner/banner-bg-vector.svg) no-repeat;
   background-position: center center;
-  background-size: 77.292vw;
+  background-size: 34.292vw;
 }
 @media (max-width: 992px) {
   .hero-banner .content {
-    background-position: right 116px;
-    background-size: 71.292vw;
+    background-position:  top left  185px;
+    background-size: 43.292vw;
     padding-top: 0 !important;
   }
 }
@@ -3104,7 +3104,7 @@ footer .footer-widget ul li a i {
   transition: all 0.5s ease-in-out;
 }
 .hero-banner .content .scroll-down:hover {
-  stroke: #FDDC8B;
+  stroke: #82d16f;
   transition: all 0.5s ease-in-out;
 }
 .hero-banner .content .reviews-block {
@@ -3122,7 +3122,7 @@ footer .footer-widget ul li a i {
   gap: 4px;
 }
 .hero-banner .content .reviews-block .rating i {
-  color: #FDDC8B;
+  color: #82d16f;
 }
 .hero-banner .content .reviews-block .slider {
   position: relative;
@@ -3352,12 +3352,12 @@ footer .footer-widget ul li a i {
   display: flex;
   flex-direction: column;
   gap: clamp(6px, 0.63vw, 16px);
-  border-left: 1px solid #FDDC8B;
+  border-left: 1px solid #82d16f;
   width: 100%;
   height: 100%;
 }
 .process .text-block .block {
-  border-left: 1px solid #FDDC8B;
+  border-left: 1px solid #82d16f;
   overflow: hidden;
   display: flex;
   padding: clamp(8px, 0.938vw, 24px) 0 0 clamp(16px, 2.083vw, 80px);
@@ -3474,15 +3474,15 @@ footer .footer-widget ul li a i {
   width: fit-content;
   font-size: clamp(13px, 0.833vw, 22px);
   font-weight: 600;
-  color: #FDDC8B;
+  color: #82d16f;
 }
 .blog-card .text-block .blog-btn svg {
   width: clamp(16px, 1.042vw, 24px);
   height: clamp(16px, 1.042vw, 24px);
 }
 .blog-card .text-block .blog-btn svg path {
-  fill: #FDDC8B;
-  stroke: #FDDC8B;
+  fill: #82d16f;
+  stroke: #82d16f;
   transition: 0.5s ease-in-out;
 }
 .blog-card .text-block .blog-btn:hover {
@@ -3544,7 +3544,7 @@ footer .footer-widget ul li a i {
   transition: all 0.5s ease-in-out;
 }
 .blog-detail .top-row .social ul li a:hover svg path {
-  fill: #FDDC8B;
+  fill: #82d16f;
   transition: all 0.5s ease-in-out;
 }
 
@@ -3696,7 +3696,7 @@ footer .footer-widget ul li a i {
   gap: clamp(12px, 0.83vw, 24px);
 }
 .contact-area .contacts-block .block i {
-  background: #FDDC8B;
+  background: #82d16f;
   color: #141414;
   font-size: clamp(16px, 1.25vw, 32px);
   width: clamp(36px, 2.5vw, 64px);
