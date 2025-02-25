@@ -1,0 +1,45 @@
+.contact-area {
+    position: relative;
+    .form-block {
+        position: relative;
+        padding: clamp(20px, 1.66vw, 40px);
+        background-color: $medium-black;
+        border: 1px solid;
+        border-image-slice: 1;
+        border-width: 1px;
+        border-image-source: $gradient;
+        .bottom-row {
+            display: flex;
+            align-items: center;
+            gap: clamp(16px, 1.25vw, 32px);
+            @include media-query(575px) {
+                flex-wrap: wrap;
+            }
+        }
+    }
+    .contacts-block{
+        padding: clamp(20px, 1.66vw, 40px);
+        background-color: $medium-black;
+        .block{
+            display: flex;
+            gap: clamp(12px, 0.83vw, 24px);
+            i{
+                background: $accent-1;
+                color: $black;
+                font-size: clamp(16px, 1.25vw, 32px);
+                width: clamp(36px, 2.5vw, 64px);
+                height: clamp(36px, 2.5vw, 64px);
+                display: grid;
+                justify-content: center;
+                align-content: center;
+            }
+        }
+
+    }
+}
+iframe {
+    width: 100%;
+    height: clamp(300px, 31.25vw, 750px);
+    box-shadow: $shadow-1;
+    border-radius: clamp(16px, 1.25vw, 32px);
+}

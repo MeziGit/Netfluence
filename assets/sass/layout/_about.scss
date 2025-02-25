@@ -1,0 +1,33 @@
+.about {
+    background: url(../media/backgrounds/about-bg-object.png) no-repeat;
+    background-size: contain;
+    background-position: center bottom 6.667vw;
+    position: relative;
+    z-index: 100;
+    .content {
+        position: relative;
+        p {
+            width: 51%;
+            @include media-query(992px) {
+                width: 75%;
+            }
+            @include media-query(767px) {
+                width: 85%;
+            }
+            @include media-query(575px) {
+                width: 92%;
+            }
+        }
+    }
+    .empty-space {
+        height: 20.26vw;
+    }
+}
+.about-2 {
+    background: url(../media/backgrounds/about-bg.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    .content {
+        position: relative;
+    }
+}

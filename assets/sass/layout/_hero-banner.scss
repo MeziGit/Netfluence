@@ -1,0 +1,110 @@
+.hero-banner {
+    width: 100%;
+    .content {
+        background: url(../media/banner/banner-bg-vector.png) no-repeat;
+        background-position: center center;
+        background-size: 77.292vw;
+        @include media-query(992px) {
+            background-position: right 116px;
+            background-size: 71.292vw;
+            padding-top: 0 !important;
+        }
+        .left-block{
+            position: relative;
+            z-index: 10;
+        }
+        .text-block {
+            display: flex;
+            align-items: center;
+            @include media-query(492px) {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                margin-bottom: 16px;
+            }
+            .description {
+                max-width: clamp(280px, 16.25vw, 400px);
+                background: rgba(30, 31, 32, 0.5);
+                padding: 12px;
+                @include media-query(492px) {
+                    margin-left: 10%;
+                }
+            }
+        }
+        .scroll-down {
+            display: flex;
+            align-items: center;
+            height: clamp(40px, 2.917vw, 64px);
+            align-items: center;
+            svg {
+                stroke: $white;
+                transition: $transition;
+            }
+            &:hover {
+                stroke: $accent-1;
+                transition: $transition;
+            }
+        }
+        .reviews-block {
+            position: relative;
+            margin-bottom: clamp(40px, 5.208vw, 200px);
+
+            @include media-query(992px) {
+                display: none;
+            }
+            .rating {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                i {
+                    color: $accent-1;
+                }
+            }
+
+            .slider {
+                position: relative;
+                width: 100%;
+                height: 250px;
+                perspective: 100px;
+                .item {
+                    position: absolute;
+                    width: 100%;
+                    height: auto;
+                    display: none;
+                    border: 1px solid;
+                    border-image-slice: 1;
+                    border-width: 1px;
+                    border-image-source: $gradient;
+                    background: $medium-black;
+                    padding: clamp(24px, 1.66vw, 42px) clamp(16px, 1.25vw, 32px);
+                    &:nth-child(5) {
+                        left: -20px;
+                        top: 20px;
+                        display: block;
+                    }
+
+                    &:nth-child(4) {
+                        left: 0px;
+                        top: 0px;
+                        display: block;
+                    }
+
+                    &:nth-child(3) {
+                        left: 40px;
+                        top: -40px;
+                    }
+
+                    &:nth-child(2) {
+                        left: 60px;
+                        top: -60px;
+                    }
+
+                    &:nth-child(1) {
+                        left: 80px;
+                        top: -80px;
+                    }
+                }
+            }
+        }
+    }
+}

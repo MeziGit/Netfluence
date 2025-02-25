@@ -1,0 +1,48 @@
+// -------------- Footer --------------- //
+footer {
+    background-color: $medium-black;
+    .form-group {
+        input {
+            background: $medium-black !important;
+        }
+        input[type=email]:focus{
+            background: $medium-black !important;
+        }
+    }
+    .top-block {
+        border-bottom: 1px solid;
+        border-image-slice: 1;
+        border-width: 1px;
+        border-image-source: $gradient;
+    }
+    .footer-widget {
+        position: relative;
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            &.contact-list {
+                gap: 8px;
+            }
+            li {
+                a {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    color: $lightest-gray;
+                    transition: $transition;
+                    &:hover{
+                        color: $accent-2;
+                        transition: $transition;
+                    }
+                    i {
+                        background: $gradient;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        font-size: clamp(16px, 1.25vw, 32px);
+                    }
+                }
+            }
+        }
+    }
+}

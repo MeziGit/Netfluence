@@ -1,0 +1,36 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    gap: clamp(6px, 0.43vw, 12px);
+    justify-content: center;
+    li {
+        a {
+            width: clamp(32px, 2.083vw, 48px);
+            height: clamp(32px, 2.083vw, 48px);
+            display: grid;
+            align-content: center;
+            justify-content: center;
+            background: $white;
+            border-radius: 0px;
+            color: $medium-black;
+            line-height: 100%;
+            transition: $transition;
+            padding: 0;
+            svg {
+                transition: $transition;
+                width: clamp(32px, 2.083vw, 48px);
+                height: clamp(32px, 2.083vw, 48px);
+                path {
+                    stroke: $medium-black;
+                    transition: $transition;
+                }
+            }
+            &.active,
+            &:hover {
+                background: $accent-1;
+                transition: $transition;
+            }
+        }
+    }
+}

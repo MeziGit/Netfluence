@@ -1,0 +1,42 @@
+.coming-soon {
+    position: relative;
+    height: 100vh;
+    align-content: center;
+    .newsletter-field {
+        max-width: 530px;
+        margin: 0 auto;
+        @include media-query(767px) {
+            max-width: 450px;
+        }
+    }
+    .countdown {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: clamp(10px, 0.83vw, 24px);
+        @include media-query(492px) {
+            flex-wrap: wrap;
+        }
+        li {
+            width: clamp(80px, 6.25vw, 280px);
+            height: clamp(80px, 6.25vw, 280px);
+            background: $black;
+            border-radius: 0px;
+            border: 1px solid;
+            border-image-slice: 1;
+            border-width: 1px;
+            border-image-source: $gradient;
+            display: grid;
+            justify-content: center;
+            align-content: center;
+            @include media-query(492px) {
+                width: 64px;
+                height: 64px;
+            }
+            p {
+                font-weight: 500;
+                line-height: 120%;
+            }
+        }
+    }
+}

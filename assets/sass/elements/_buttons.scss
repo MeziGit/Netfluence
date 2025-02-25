@@ -1,0 +1,164 @@
+/*----------------------------------------*/
+/* scroll to top
+/*----------------------------------------*/
+.scroll-top {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  height: clamp(36px, 2.5vw, 64px);
+  width: clamp(36px, 2.5vw, 64px);
+  cursor: pointer;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px RGBA(0, 0, 0, 0.2);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+  &::after {
+    position: absolute;
+    content: "\f148";
+    font-family: $font-awesome !important;
+    text-align: center;
+    font-size: clamp(14.5px, 1.042vw, 32px);
+    color: $accent-1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    cursor: pointer;
+    display: block;
+    z-index: 1;
+    -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+  }
+  .scroll-top__circle {
+    path {
+      stroke: $accent-1;
+      stroke-width: 4;
+      fill: none;
+      box-sizing: border-box;
+      -webkit-transition: all 200ms linear;
+      transition: all 200ms linear;
+    }
+  }
+}
+.scroll-top--active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+/*----------------------------------------*/
+/*  Button CSS START
+/*----------------------------------------*/
+.cus-btn {
+    position: relative;
+    transition: 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow: hidden;
+    height: clamp(40px, 2.917vw, 64px);
+    padding: 0 clamp(20px, 1.66vw, 48px);
+    text-transform: uppercase;
+    border: none;
+    color: $medium-black;
+    flex-shrink: 0;
+    width: fit-content;
+    font-size: clamp(13px, 0.833vw, 22px);
+    font-weight: 600;
+    box-sizing: border-box;
+    svg {
+        width: clamp(16px, 1.042vw, 24px);
+        height: clamp(16px, 1.042vw, 24px);
+        path {
+            fill: $medium-black;
+            transition: 0.5s ease-in-out;
+        }
+    }
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -2;
+        background-color: $white !important;
+        transform: translateX(0);
+        box-sizing: border-box;
+        transition: 0.5s ease-in-out;
+    }
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        background: $gradient;
+        transform: translateX(-100%);
+        box-sizing: border-box;
+        transition: 0.5s ease-in-out;
+    }
+    &:hover {
+        color: $black;
+        box-sizing: border-box;
+        transition: 0.5s ease-in-out;
+        svg {
+            path {
+                fill: $black;
+                transition: 0.5s ease-in-out;
+            }
+        }
+        &:after {
+            transform: translateX(0);
+            box-sizing: border-box;
+            transition: 0.5s ease-in-out;
+        }
+    }
+}
+.cus-btn-sec {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow: hidden;
+    height: clamp(40px, 2.917vw, 64px);
+    padding: 0 clamp(20px, 1.66vw, 48px);
+    text-transform: uppercase;
+    border: none;
+    color: $medium-black;
+    background: $white;
+    flex-shrink: 0;
+    width: fit-content;
+    font-size: clamp(13px, 0.833vw, 22px);
+    font-weight: 600;
+    box-sizing: border-box;
+    transition: all 0.5s ease-in;
+    svg {
+        width: clamp(16px, 1.042vw, 24px);
+        height: clamp(16px, 1.042vw, 24px);
+        path {
+            fill: $medium-black;
+            transition: 0.5s ease-in;
+        }
+    }
+    &:hover {
+        color: $black;
+        box-sizing: border-box;
+        transition: all 0.5s ease-in;
+        background: $accent-1;
+        svg {
+            path {
+                fill: $black;
+                transition: all 0.5s ease-in;
+            }
+        }
+    }
+}
