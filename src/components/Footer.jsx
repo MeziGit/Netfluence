@@ -5,9 +5,13 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-dark-card pt-24 pb-12 mt-12 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute bottom-0 left-0 w-full h-full bg-grid opacity-5"></div>
+    <footer className="pt-24 pb-12 mt-12 relative overflow-hidden">
+      {/* Background grid */}
+      <div className="absolute inset-0 bg-grid opacity-10"></div>
+      
+      {/* Gradient blobs */}
+      <div className="absolute -top-40 -right-20 w-[500px] h-[500px] bg-accent/20 rounded-full blur-3xl opacity-40"></div>
+      <div className="absolute -bottom-20 -left-40 w-[450px] h-[450px] bg-accent-tertiary/10 rounded-full blur-3xl opacity-50"></div>
       
       <div className="container relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-white/10">
@@ -152,10 +156,10 @@ const serviceLinks = [
 const socialLinks = [
   {
     name: 'LinkedIn',
-    url: 'https://linkedin.com',
+    url: 'https://www.linkedin.com/company/netfluenceinc/',
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 8v8a5 5 0 01-5 5H8a5 5 0 01-5-5V8a5 5 0 015-5h8a5 5 0 015 5zM7 17v-7M7 7.01l.01-.011M11 17v-3.5a3.5 3.5 0 017 0V17" />
+      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
       </svg>
     )
   },
@@ -170,7 +174,7 @@ const socialLinks = [
   },
   {
     name: 'Instagram',
-    url: 'https://instagram.com',
+    url: 'https://www.instagram.com/netfluence.ca',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 2.25c2.69 0 3.58.01 4.95.07 1.4.06 2.16.3 2.67.5.67.26 1.15.57 1.65 1.08.5.5.82.98 1.08 1.65.2.51.44 1.27.5 2.67.06 1.37.07 2.26.07 4.95s-.01 3.58-.07 4.95c-.06 1.4-.3 2.16-.5 2.67-.26.67-.58 1.15-1.08 1.65-.5.5-.98.82-1.65 1.08-.51.2-1.27.44-2.67.5-1.37.06-2.26.07-4.95.07s-3.58-.01-4.95-.07c-1.4-.06-2.16-.3-2.67-.5-.67-.26-1.15-.58-1.65-1.08-.5-.5-.82-.98-1.08-1.65-.2-.51-.44-1.27-.5-2.67-.06-1.37-.07-2.26-.07-4.95s.01-3.58.07-4.95c.06-1.4.3-2.16.5-2.67.26-.67.58-1.15 1.08-1.65.5-.5.98-.82 1.65-1.08.51-.2 1.27-.44 2.67-.5 1.37-.06 2.26-.07 4.95-.07z" />

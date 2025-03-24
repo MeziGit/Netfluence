@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-const ProjectCard = ({ id, title, type, description, tags, accentColor }) => {
+const ProjectCard = ({ id, title, type, description, tags, accentColor, url, comingSoon }) => {
   return (
     <div className="h-full p-6 flex flex-col">
       {/* Project header */}
@@ -43,10 +43,19 @@ const ProjectCard = ({ id, title, type, description, tags, accentColor }) => {
       
       {/* View project link */}
       <div className="mt-auto flex items-center text-accent font-medium">
-        <Link to={`/project/${id}`} className="inline-flex items-center group">
-          <span>View Project</span>
-          <span className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
-        </Link>
+        {comingSoon ? (
+          <span className="text-white/50">Coming Soon</span>
+        ) : (
+          <a 
+            href={url || "#"} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="inline-flex items-center group"
+          >
+            <span>View Project</span>
+            <span className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+          </a>
+        )}
       </div>
     </div>
   );
@@ -58,11 +67,14 @@ ProjectCard.propTypes = {
   type: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(PropTypes.string),
-  accentColor: PropTypes.string
+  accentColor: PropTypes.string,
+  url: PropTypes.string,
+  comingSoon: PropTypes.bool
 };
 
 ProjectCard.defaultProps = {
-  accentColor: "#0ea5e9"
+  accentColor: "#0ea5e9",
+  comingSoon: false
 };
 
 export default ProjectCard; 

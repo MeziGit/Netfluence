@@ -1,82 +1,76 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { ThemeContext } from '../context/ThemeContext';
 import ProjectCard from '../components/work/ProjectCard';
+import { Link } from 'react-router-dom';
 
 const PortfolioPage = () => {
   const { isDarkMode } = useContext(ThemeContext);
-  const [activeCategory, setActiveCategory] = useState('all');
   
   // Project data
   const projects = [
     {
       id: 1,
-      title: "Neural Engine",
-      type: "Web Platform",
-      description: "AI-powered design system with adaptive components and real-time collaboration tools.",
-      tags: ["React", "WebGL", "Node.js", "TensorFlow"],
+      title: "Victoria Fish",
+      type: "Business Website",
+      description: "Local business website with modern design and responsive layout.",
+      tags: ["React", "Tailwind", "Node.js"],
       accentColor: "#0ea5e9",
-      category: "web"
+      category: "web",
+      url: "https://victoriafish.ca/"
     },
     {
       id: 2,
-      title: "Spatial Guide",
-      type: "Mobile Experience",
-      description: "Location-based AR application for cultural exploration using spatial audio and visual overlays.",
-      tags: ["React Native", "ARKit", "Mapbox", "AWS"],
+      title: "Win",
+      type: "Sports Application",
+      description: "NHL web application for viewing live scores and predicting game outcomes.",
+      tags: ["React", "Node.js", "Tailwind", "MongoDB"],
       accentColor: "#8b5cf6",
-      category: "mobile"
+      category: "web",
+      url: "http://winsports.ca/",
+      comingSoon: true
     },
     {
       id: 3,
-      title: "Pulse Analytics",
-      type: "Data Visualization",
-      description: "Real-time data platform visualizing complex information using 3D interactive displays.",
-      tags: ["Three.js", "D3", "Python", "WebSockets"],
+      title: "Social Rebrand Collective",
+      type: "Marketing Agency",
+      description: "Marketing agency website showcasing services and client success stories.",
+      tags: ["React", "TailwindCSS", "Node.js"],
       accentColor: "#10b981",
-      category: "design"
+      category: "web",
+      url: "http://socialrebrandcollective.com/"
     },
     {
       id: 4,
-      title: "Flux Marketplace",
-      type: "E-commerce Platform",
-      description: "Next-gen marketplace with dynamic product visualization and personalized experience.",
-      tags: ["Next.js", "GraphQL", "Shopify", "Framer Motion"],
+      title: "North Touch",
+      type: "Manufacturing Agent",
+      description: "Northtouch Canada Inc. is a leading electronics manufacturer's agents company representing a wide array of world class assembly machines, test, programming, verification and diagnostic.",
+      tags: ["React", "Node.js", "Tailwind"],
       accentColor: "#0ea5e9",
-      category: "web"
+      category: "web",
+      url: "https://northtouch.com/"
     },
     {
       id: 5,
-      title: "Echo Connect",
-      type: "Social Platform",
-      description: "Audio-first social network with spatial conversation rooms and rich interaction features.",
-      tags: ["Vue.js", "WebRTC", "Firebase", "WebAudio API"],
+      title: "Chateau Hudson",
+      type: "Shopping Mall",
+      description: "Website for a shopping mall with store directory and event information.",
+      tags: ["Bootstrap", "HTML", "CSS", "JavaScript"],
       accentColor: "#0ea5e9",
-      category: "web"
+      category: "web",
+      url: "https://lechateauhudson.com/"
     },
     {
       id: 6,
-      title: "Prism Gallery",
-      type: "3D Exhibition",
-      description: "Virtual gallery space with immersive artwork viewing and spatial audio experience.",
-      tags: ["WebGL", "Three.js", "React", "GLSL Shaders"],
+      title: "Montreal Towing",
+      type: "Service Business",
+      description: "Towing service website with booking features and service area information.",
+      tags: ["WordPress", "Elementor", "PHP"],
       accentColor: "#10b981",
-      category: "design"
+      category: "web",
+      url: "https://montrealtowing.net/"
     }
-  ];
-  
-  // Filter projects by category
-  const filteredProjects = activeCategory === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === activeCategory);
-  
-  // Categories for filter buttons
-  const categories = [
-    { id: 'all', label: 'All Work' },
-    { id: 'web', label: 'Web' },
-    { id: 'mobile', label: 'Mobile' },
-    { id: 'design', label: 'Design' }
   ];
   
   return (
@@ -87,19 +81,20 @@ const PortfolioPage = () => {
       </Helmet>
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 overflow-hidden bg-dark-bg">
+      <section className="relative h-[500px] flex items-center overflow-hidden">
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blob */}
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-accent-tertiary/20 rounded-full blur-3xl"></div>
+        {/* Gradient blobs */}
+        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-accent/20 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-accent-tertiary/10 rounded-full blur-3xl"></div>
         
         <div className="container relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-6"
+            className="mb-6 flex justify-center"
           >
             <span className="px-4 py-1.5 rounded-full bg-accent-tertiary/10 text-accent-tertiary font-medium text-sm inline-flex items-center">
               <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,24 +108,21 @@ const PortfolioPage = () => {
             </span>
           </motion.div>
           
-          <div className="max-w-3xl">
-            <h1 className="mb-6 leading-tight">
-              <span className="block reveal visible">
-                <motion.span
-                  initial={{ y: "100%" }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
-                >
-                  Our Work
-                </motion.span>
-              </span>
-            </h1>
+          <div className="max-w-3xl mx-auto text-center">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-5xl md:text-6xl font-bold mb-6"
+            >
+              Our <span className="text-accent">Portfolio</span>
+            </motion.h1>
             
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-lg max-w-lg text-white/80"
+              className="text-lg max-w-lg mx-auto text-white/80"
             >
               Explore our most recent projects, each crafted with precision and innovative thinking. Our work spans across digital platforms, creating meaningful experiences.
             </motion.p>
@@ -138,33 +130,19 @@ const PortfolioPage = () => {
         </div>
       </section>
       
-      {/* Category Filter */}
-      <section className="py-12 bg-dark-bg border-t border-dark-accent/30">
+      {/* Projects Section */}
+      <section className="py-20 relative overflow-hidden">
+        {/* Background grid */}
+        <div className="absolute inset-0 bg-grid opacity-10"></div>
+        
+        {/* Gradient blobs - slightly different positions for variety */}
+        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-accent-secondary/20 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+        
         <div className="container">
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold mb-6">Filter Projects</h2>
-            <div className="flex flex-wrap gap-4">
-              {categories.map((category) => (
-                <motion.button
-                  key={category.id}
-                  className={`px-5 py-2 text-sm font-medium border-2 ${
-                    activeCategory === category.id 
-                      ? 'border-accent-tertiary text-accent-tertiary' 
-                      : 'border-dark-accent/50 text-white/70 hover:border-dark-accent'
-                  } transition-all duration-300`}
-                  onClick={() => setActiveCategory(category.id)}
-                  whileHover={{ y: -3 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {category.label}
-                </motion.button>
-              ))}
-            </div>
-          </div>
-          
           {/* Projects Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => (
+            {projects.map((project) => (
               <motion.div 
                 key={project.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -182,6 +160,8 @@ const PortfolioPage = () => {
                     tags={project.tags}
                     accentColor={project.accentColor}
                     category={project.category}
+                    url={project.url}
+                    comingSoon={project.comingSoon}
                   />
                 </div>
               </motion.div>
@@ -191,31 +171,43 @@ const PortfolioPage = () => {
       </section>
       
       {/* Contact CTA */}
-      <section className="py-24 bg-dark-bg">
+      <section className="py-20 relative overflow-hidden">
+        {/* Background grid */}
+        <div className="absolute inset-0 bg-grid opacity-10"></div>
+        
+        {/* Gradient blobs - slightly different positions for variety */}
+        <div className="absolute -top-20 right-10 w-[450px] h-[450px] bg-accent/20 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 left-40 w-[550px] h-[550px] bg-accent-secondary/15 rounded-full blur-3xl"></div>
+        
         <div className="container">
-          <div className="bg-gradient-to-br from-dark-card to-dark-accent/20 border-2 border-dark-accent/30 p-12 relative overflow-hidden">
-            <div className="absolute -top-24 -right-24 w-96 h-96 bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+          <div className="bg-gradient-to-br from-dark-card to-dark-accent/20 rounded-2xl p-12 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-full">
+              <div className="absolute -top-24 -right-24 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+            </div>
             
-            <div className="relative z-10 text-center max-w-3xl mx-auto">
-              <motion.h2 
-                className="text-3xl md:text-4xl font-bold mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                Ready to start a project?
-              </motion.h2>
-              
-              <motion.p
-                className="text-lg text-white/80 mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                Let's discuss how our team can help bring your ideas to life with our expertise in web, app, and software development.
-              </motion.p>
+            <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
+              <div className="max-w-xl">
+                <motion.h2 
+                  className="text-3xl md:text-4xl font-bold mb-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
+                >
+                  Ready to Transform Your Digital Presence?
+                </motion.h2>
+                
+                <motion.p
+                  className="text-lg text-white/80 mb-0"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  Let's discuss how our team can help build a website, app, or software solution tailored to your unique needs.
+                </motion.p>
+              </div>
               
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -223,12 +215,12 @@ const PortfolioPage = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <a 
-                  href="/contact" 
-                  className="btn btn-primary"
+                <Link 
+                  to="/contact" 
+                  className="btn btn-primary whitespace-nowrap"
                 >
-                  Get in Touch
-                </a>
+                  Start a Project
+                </Link>
               </motion.div>
             </div>
           </div>

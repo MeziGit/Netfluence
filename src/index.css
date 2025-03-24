@@ -52,6 +52,27 @@
   @apply px-4 mx-auto max-w-full sm:max-w-[90%] md:max-w-[85%] lg:max-w-[80%] xl:max-w-7xl 2xl:max-w-[1600px];
 }
 
+/* Section styles */
+.section {
+  position: relative;
+  z-index: 5;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  transition: all 0.3s ease;
+}
+
+/* Visual separator between sections */
+.section + .section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+  z-index: 2;
+}
+
 /* Prevent FOUC (Flash of Unstyled Content) */
 html.js body {
   visibility: hidden;
@@ -98,11 +119,6 @@ html.js .loaded body {
   /* Glass effect */
   .glass {
     @apply bg-dark-card/70 backdrop-blur-md border border-white/10;
-  }
-
-  /* Section styles */
-  .section {
-    @apply py-16 md:py-24;
   }
 
   /* Grid pattern background */

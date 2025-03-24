@@ -202,7 +202,14 @@ const HomePage = () => {
       </section>
       
       {/* Services Section */}
-      <section className="section bg-dark-card/50 relative">
+      <section className="section relative overflow-hidden">
+        {/* Background grid */}
+        <div className="absolute inset-0 bg-grid opacity-10"></div>
+        
+        {/* Gradient blobs - slightly different positions for variety */}
+        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-accent-secondary/20 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+        
         <div className="container">
           <div className="mb-16 text-center max-w-2xl mx-auto">
             <span className="px-4 py-1.5 rounded-full bg-accent-secondary/10 text-accent-secondary font-medium text-sm inline-flex items-center justify-center mb-4">
@@ -231,24 +238,26 @@ const HomePage = () => {
                 {/* Animated background gradient on hover */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-accent to-accent-tertiary opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-lg"></div>
                 
-                <div className="relative z-10">
+                <div className="relative z-10 flex flex-col h-full">
                   <div className="text-accent-secondary text-3xl mb-6 p-4 bg-accent-secondary/10 rounded-lg w-fit transform group-hover:scale-110 transition-transform duration-300">
                     {service.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">{service.title}</h3>
                   <p className="text-white/70 mb-6">{service.description}</p>
-                  <Link 
-                    to="/services" 
-                    className="inline-flex items-center text-accent-secondary font-medium group/btn"
-                  >
-                    <span className="relative">
-                      Learn More
-                      <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent-secondary group-hover/btn:w-full transition-all duration-300"></span>
-                    </span>
-                    <svg className="w-5 h-5 ml-2 transform transition-transform group-hover/btn:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </Link>
+                  <div className="mt-auto">
+                    <Link 
+                      to="/services" 
+                      className="inline-flex items-center text-accent-secondary font-medium group/btn"
+                    >
+                      <span className="relative">
+                        Learn More
+                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent-secondary group-hover/btn:w-full transition-all duration-300"></span>
+                      </span>
+                      <svg className="w-5 h-5 ml-2 transform transition-transform group-hover/btn:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -257,7 +266,14 @@ const HomePage = () => {
       </section>
       
       {/* Featured Work - Simplified */}
-      <section className="section relative">
+      <section className="section relative overflow-hidden">
+        {/* Background grid */}
+        <div className="absolute inset-0 bg-grid opacity-10"></div>
+        
+        {/* Gradient blobs - slightly different positions for variety */}
+        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-accent/15 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-accent-tertiary/15 rounded-full blur-3xl"></div>
+        
         <div className="container">
           <div className="mb-16 flex flex-col md:flex-row justify-between md:items-end gap-4">
             <div>
@@ -287,10 +303,7 @@ const HomePage = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 whileHover={{ y: -8 }}
               >
-                <Link 
-                  to={`/portfolio`} 
-                  className="block bg-dark-card border border-dark-accent/30 rounded-lg overflow-hidden h-full transition-all duration-300 hover:border-accent/30 hover:shadow-md group"
-                >
+                <div className="block bg-dark-card border border-dark-accent/30 rounded-lg overflow-hidden h-full transition-all duration-300 hover:border-accent/30 hover:shadow-md group">
                   <div className="p-6 h-full flex flex-col">
                     <div className="flex items-center mb-4">
                       <span 
@@ -320,20 +333,38 @@ const HomePage = () => {
                       ))}
                     </div>
                     
-                    <div className="mt-auto flex items-center text-accent font-medium">
-                      <span>View Project</span>
-                      <span className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
-                    </div>
+                    {project.url ? (
+                      <a 
+                        href={project.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="mt-auto flex items-center text-accent font-medium"
+                      >
+                        <span>View Project</span>
+                        <span className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                      </a>
+                    ) : (
+                      <div className="mt-auto flex items-center font-medium">
+                        <span className="text-white/50">Coming Soon</span>
+                      </div>
+                    )}
                   </div>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
       
-      {/* Simple Sharp-Edged Testimonials */}
-      <section className="section py-20 bg-dark-bg">
+      {/* Testimonials */}
+      <section className="section relative overflow-hidden">
+        {/* Background grid */}
+        <div className="absolute inset-0 bg-grid opacity-10"></div>
+        
+        {/* Gradient blobs - slightly different positions for variety */}
+        <div className="absolute -top-20 right-10 w-[450px] h-[450px] bg-accent/20 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 left-40 w-[550px] h-[550px] bg-accent-secondary/15 rounded-full blur-3xl"></div>
+        
         <div className="container">
           <div className="mb-16 text-center">
             <span className="uppercase tracking-wider text-accent text-sm font-medium">Testimonials</span>
@@ -351,14 +382,14 @@ const HomePage = () => {
                 whileHover={{ y: -8, transition: { duration: 0.2 } }}
                 className="bg-dark-card border-2 border-dark-accent hover:border-accent cursor-pointer group transition-all duration-300"
               >
-                <div className="p-8">
+                <div className="p-8 flex flex-col h-full">
                   {/* Quote */}
                   <p className="text-white/80 mb-6 group-hover:text-white transition-colors duration-300">
                     "{testimonial.quote}"
                   </p>
                   
                   {/* Client info */}
-                  <div className="flex items-center border-t border-dark-accent pt-4">
+                  <div className="flex items-center border-t border-dark-accent pt-4 mt-auto">
                     <div className="w-10 h-10 bg-accent flex items-center justify-center text-white font-bold text-lg">
                       {testimonial.name.charAt(0)}
                     </div>
@@ -371,22 +402,82 @@ const HomePage = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+      
+      {/* Process Section */}
+      <section className="section relative overflow-hidden">
+        {/* Background grid */}
+        <div className="absolute inset-0 bg-grid opacity-10"></div>
+        
+        {/* Gradient blobs - slightly different positions for variety */}
+        <div className="absolute top-40 -right-40 w-[600px] h-[600px] bg-accent-tertiary/15 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-20 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl"></div>
+        
+        <div className="container">
+          <div className="mb-16 text-center max-w-2xl mx-auto">
+            <span className="px-4 py-1.5 rounded-full bg-accent-secondary/10 text-accent-secondary font-medium text-sm inline-flex items-center justify-center mb-4">
+              Our Process
+            </span>
+            <h2 className="mb-6">How We Work</h2>
+            <p className="text-lg text-white/80">
+              We follow a structured process to ensure high-quality results and a smooth experience for our clients.
+            </p>
+          </div>
           
-          {/* Simple pagination dots */}
-          <div className="flex justify-center mt-10 gap-2">
-            {[0, 1, 2].map(i => (
-              <button 
-                key={i}
-                onClick={() => {}}
-                className={`w-8 h-1 ${i === selectedTestimonial ? 'bg-accent' : 'bg-dark-accent'} transition-colors duration-300 hover:bg-accent/70`}
-              />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {processSteps.map((step, index) => (
+              <motion.div 
+                key={index} 
+                className="card card-hover reveal group relative overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                whileHover={{ 
+                  y: -10,
+                  transition: { duration: 0.3 }
+                }}
+              >
+                {/* Animated background gradient on hover */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-accent to-accent-tertiary opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-lg"></div>
+                
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="text-accent-secondary text-3xl mb-6 p-4 bg-accent-secondary/10 rounded-lg w-fit transform group-hover:scale-110 transition-transform duration-300">
+                    {step.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">{step.title}</h3>
+                  <p className="text-white/70 mb-6">{step.description}</p>
+                  <div className="mt-auto">
+                    <Link 
+                      to="/process" 
+                      className="inline-flex items-center text-accent-secondary font-medium group/btn"
+                    >
+                      <span className="relative">
+                        Learn More
+                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent-secondary group-hover/btn:w-full transition-all duration-300"></span>
+                      </span>
+                      <svg className="w-5 h-5 ml-2 transform transition-transform group-hover/btn:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
       
       {/* CTA Section */}
-      <section className="section">
+      <section className="section relative overflow-hidden">
+        {/* Background grid */}
+        <div className="absolute inset-0 bg-grid opacity-10"></div>
+        
+        {/* Gradient blobs - slightly different positions for variety */}
+        <div className="absolute -top-40 -right-20 w-[500px] h-[500px] bg-accent/20 rounded-full blur-3xl opacity-50"></div>
+        <div className="absolute -bottom-20 -left-40 w-[450px] h-[450px] bg-accent-tertiary/10 rounded-full blur-3xl opacity-70"></div>
+        
         <div className="container">
           <div className="bg-gradient-to-br from-dark-card to-dark-accent/20 rounded-2xl p-12 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full">
@@ -404,7 +495,7 @@ const HomePage = () => {
               
               <Link to="/contact" className="btn btn-primary whitespace-nowrap">
                 Start a Project
-          </Link>
+              </Link>
             </div>
           </div>
         </div>
@@ -419,8 +510,9 @@ const services = [
     title: "Website Development",
     description: "From creating brand new innovative websites to updating pre-existing ones, we craft responsive, user-friendly sites that showcase your brand.",
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+        <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
+        <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
       </svg>
     )
   },
@@ -428,8 +520,9 @@ const services = [
     title: "Hosting",
     description: "Reliable hosting and maintenance of websites, databases, and servers to ensure your digital assets are secure and performing optimally.",
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+        <path d="M5.507 4.048A3 3 0 017.785 3h8.43a3 3 0 012.278 1.048l1.722 2.008A4.533 4.533 0 0019.5 6h-15c-.243 0-.482.02-.715.057l1.722-2.008z" />
+        <path fillRule="evenodd" d="M1.5 10.5a3 3 0 013-3h15a3 3 0 110 6h-15a3 3 0 01-3-3zm15 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm2.25.75a.75.75 0 100-1.5.75.75 0 000 1.5zM4.5 15a3 3 0 100 6h15a3 3 0 100-6h-15zm11.25 3.75a.75.75 0 100-1.5.75.75 0 000 1.5zM19.5 18a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" clipRule="evenodd" />
       </svg>
     )
   },
@@ -437,8 +530,8 @@ const services = [
     title: "Software Development",
     description: "Developing cutting-edge software solutions tailored to your business needs for improved efficiency and productivity.",
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+        <path fillRule="evenodd" d="M14.447 3.027a.75.75 0 01.527.92l-4.5 16.5a.75.75 0 01-1.448-.394l4.5-16.5a.75.75 0 01.921-.526zM16.72 6.22a.75.75 0 011.06 0l5.25 5.25a.75.75 0 010 1.06l-5.25 5.25a.75.75 0 11-1.06-1.06L21.44 12l-4.72-4.72a.75.75 0 010-1.06zm-9.44 0a.75.75 0 010 1.06L2.56 12l4.72 4.72a.75.75 0 11-1.06 1.06L.97 12.53a.75.75 0 010-1.06l5.25-5.25a.75.75 0 011.06 0z" clipRule="evenodd" />
       </svg>
     )
   },
@@ -446,8 +539,9 @@ const services = [
     title: "Application Development",
     description: "Creating and hosting high-performing applications that provide seamless experiences across all devices.",
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+        <path d="M10.5 18.75a.75.75 0 000 1.5h3a.75.75 0 000-1.5h-3z" />
+        <path fillRule="evenodd" d="M8.625.75A3.375 3.375 0 005.25 4.125v15.75a3.375 3.375 0 003.375 3.375h6.75a3.375 3.375 0 003.375-3.375V4.125A3.375 3.375 0 0015.375.75h-6.75zM7.5 4.125C7.5 3.504 8.004 3 8.625 3H9.75v.375c0 .621.504 1.125 1.125 1.125h2.25c.621 0 1.125-.504 1.125-1.125V3h1.125c.621 0 1.125.504 1.125 1.125v15.75c0 .621-.504 1.125-1.125 1.125h-6.75A1.125 1.125 0 017.5 19.875V4.125z" clipRule="evenodd" />
       </svg>
     )
   }
@@ -456,40 +550,83 @@ const services = [
 // Featured projects data
 const featuredProjects = [
   {
-    title: "ModernCommerce",
-    type: "E-commerce Website",
-    description: "A fully responsive e-commerce platform with custom product filtering and seamless checkout experience.",
-    tags: ["React", "Node.js", "Stripe", "MongoDB"],
-    accentColor: "#0ea5e9"
+    title: "Victoria Fish",
+    type: "Local Business Website",
+    description: "A custom website for a local fish market featuring their products, services, and online ordering capabilities.",
+    tags: ["React", "Tailwind", "Node.js"],
+    accentColor: "#0ea5e9",
+    url: "https://victoriafish.ca/"
   },
   {
-    title: "TaskFlow",
-    type: "Web Application",
-    description: "A productivity app that helps teams manage projects, track tasks, and collaborate more effectively.",
-    tags: ["Vue.js", "Firebase", "Tailwind CSS"],
-    accentColor: "#10b981"
+    title: "Win",
+    type: "NHL Web Application",
+    description: "A web application where users can connect, view live NHL scores, and predict game outcomes.",
+    tags: ["React", "Node.js", "Tailwind", "MongoDB"],
+    accentColor: "#10b981",
+    url: null // Not live yet
   }
 ];
 
 // Testimonials data
 const testimonials = [
   {
-    quote: "Netfluence transformed our outdated website into a modern, user-friendly platform that perfectly represents our brand. Their attention to detail and technical expertise exceeded our expectations.",
-    name: "Sarah Johnson",
-    role: "Marketing Director",
-    company: "TechSolutions Inc."
+    quote: "Netfluence completely transformed our online presence. Our new website has significantly increased our visibility and customer engagement. Their design perfectly captures the essence of our local fish market and has helped drive substantial growth in our online orders.",
+    name: "Demetri Papageorgiou",
+    role: "Manager",
+    company: "Victoria Fish"
   },
   {
-    quote: "Working with Netfluence on our mobile app was a game-changer. Their team not only delivered on time but also provided innovative solutions that enhanced the user experience.",
-    name: "Michael Chen",
+    quote: "Working with Netfluence was a seamless experience from start to finish. They understood our vision immediately and created a website that perfectly represents our brand's values and aesthetic. The results have exceeded our expectations in both design and functionality.",
+    name: "Ahmad Sidawi",
+    role: "Founder",
+    company: "Social Rebrand Collective"
+  },
+  {
+    quote: "The website Netfluence developed for us has been a game-changer for our business. Their team's technical expertise and creative approach resulted in a platform that's not only visually stunning but also highly functional. The attention to detail and user experience design has impressed both our team and our clients.",
+    name: "Benoit Giroux",
     role: "CEO",
-    company: "AppInnovate"
+    company: "Northtouch"
+  }
+];
+
+// Process steps data
+const processSteps = [
+  {
+    title: "Discovery",
+    description: "We start by understanding your business, goals, and target audience to create a solid foundation for your project.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+        <path d="M8.25 10.875a2.625 2.625 0 115.25 0 2.625 2.625 0 01-5.25 0z" />
+        <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.125 4.5a4.125 4.125 0 102.338 7.524l2.007 2.006a.75.75 0 101.06-1.06l-2.006-2.007a4.125 4.125 0 00-3.399-6.463z" clipRule="evenodd" />
+      </svg>
+    )
   },
   {
-    quote: "The custom software Netfluence developed for us streamlined our operations and increased efficiency by 40%. Their ongoing support has been invaluable to our business.",
-    name: "David Rodriguez",
-    role: "Operations Manager",
-    company: "Logistics Pro"
+    title: "Design",
+    description: "We design a visually appealing and functional website or app that meets your business needs and user expectations.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+        <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
+      </svg>
+    )
+  },
+  {
+    title: "Development",
+    description: "We develop your website or app using the latest technologies and best practices to ensure high performance and reliability.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+        <path fillRule="evenodd" d="M3 6a3 3 0 013-3h12a3 3 0 013 3v12a3 3 0 01-3 3H6a3 3 0 01-3-3V6zm14.25 6a.75.75 0 01-.22.53l-2.25 2.25a.75.75 0 11-1.06-1.06L15.44 12l-1.72-1.72a.75.75 0 111.06-1.06l2.25 2.25c.141.14.22.331.22.53zm-10.28-.53a.75.75 0 000 1.06l2.25 2.25a.75.75 0 101.06-1.06L8.56 12l1.72-1.72a.75.75 0 10-1.06-1.06l-2.25 2.25z" clipRule="evenodd" />
+      </svg>
+    )
+  },
+  {
+    title: "Testing & Launch",
+    description: "We thoroughly test your solution across all devices and browsers before launching, then provide ongoing support to ensure continued success.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+        <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
+      </svg>
+    )
   }
 ];
 

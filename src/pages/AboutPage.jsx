@@ -2,6 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import johnAbbottImage from '../assets/images/John-Abbott-College.jpg';
+import ryanImage from '../assets/images/ryan-meziane.jpg';
+import kuiImage from '../assets/images/kui-hua.jpg';
 
 const AboutPage = () => {
   return (
@@ -15,7 +18,7 @@ const AboutPage = () => {
       </Helmet>
       
       {/* Hero Section */}
-      <section className="pt-28 pb-20 relative overflow-hidden">
+      <section className="relative h-[500px] flex items-center overflow-hidden">
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
@@ -25,6 +28,22 @@ const AboutPage = () => {
         
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-6"
+            >
+              <span className="px-4 py-1.5 rounded-full bg-accent/10 text-accent font-medium text-sm inline-flex items-center">
+                <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M12 8V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M8 12H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                Our Story
+              </span>
+            </motion.div>
+            
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -47,16 +66,25 @@ const AboutPage = () => {
       </section>
       
       {/* Our Story Section */}
-      <section className="py-20 relative">
+      <section className="py-20 relative overflow-hidden">
+        {/* Background grid */}
+        <div className="absolute inset-0 bg-grid opacity-10"></div>
+        
+        {/* Gradient blobs - slightly different positions for variety */}
+        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-accent-secondary/20 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+        
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <div className="relative">
                 <div className="bg-dark-card p-1 rounded-lg shadow-xl relative z-10">
-                  <div className="aspect-[4/3] rounded-lg overflow-hidden bg-dark-accent/30 relative">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-5xl font-bold text-accent/20">Our Story</span>
-                    </div>
+                  <div className="aspect-[4/3] rounded-lg overflow-hidden relative">
+                    <img 
+                      src={johnAbbottImage} 
+                      alt="John Abbott College" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
                 <div className="absolute -bottom-4 -right-4 w-full h-full bg-accent/10 rounded-lg"></div>
@@ -67,9 +95,7 @@ const AboutPage = () => {
               <h2 className="text-3xl font-bold mb-6">Our Story</h2>
               <div className="space-y-4 text-white/70">
                 <p>
-                  Founded in 2020, Netfluence began with a simple mission: to create digital solutions that drive 
-                  real business impact. What started as a small team of passionate developers has grown into a
-                  full-service digital development agency.
+                  Founded in May 2024, Netfluence began as the vision of two ambitious students who wanted to become entrepreneurs after graduating from John Abbott College. With our computer science backgrounds and passion for technology, we set out to create digital solutions that drive real business impact.
                 </p>
                 <p>
                   We believe that exceptional digital products are born at the intersection of beautiful design and
@@ -77,8 +103,7 @@ const AboutPage = () => {
                   solutions that exceed expectations.
                 </p>
                 <p>
-                  Today, we're proud to work with clients ranging from innovative startups to established enterprises,
-                  helping them transform their ideas into digital reality.
+                  As recent graduates embarking on our entrepreneurial journey, we bring fresh perspectives and innovative approaches to web and software development. Our academic foundation from John Abbott College, combined with our passion for cutting-edge technology, enables us to create outstanding digital experiences for clients seeking modern solutions.
                 </p>
               </div>
             </div>
@@ -87,10 +112,15 @@ const AboutPage = () => {
       </section>
       
       {/* Our Values Section */}
-      <section className="py-20 bg-dark-card/50 relative">
-        <div className="absolute inset-0 bg-grid opacity-5"></div>
+      <section className="py-20 relative overflow-hidden">
+        {/* Background grid */}
+        <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        <div className="container relative z-10">
+        {/* Gradient blobs - slightly different positions for variety */}
+        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-accent/15 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-accent-tertiary/15 rounded-full blur-3xl"></div>
+        
+        <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl font-bold mb-6">Our Core Values</h2>
             <p className="text-white/70">
@@ -116,31 +146,41 @@ const AboutPage = () => {
       </section>
       
       {/* Our Team Section */}
-      <section className="py-20 relative">
+      <section className="py-20 relative overflow-hidden">
+        {/* Background grid */}
+        <div className="absolute inset-0 bg-grid opacity-10"></div>
+        
+        {/* Gradient blobs - slightly different positions for variety */}
+        <div className="absolute -top-20 right-10 w-[450px] h-[450px] bg-accent/20 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 left-40 w-[550px] h-[550px] bg-accent-secondary/15 rounded-full blur-3xl"></div>
+        
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl font-bold mb-6">Meet Our Team</h2>
             <p className="text-white/70">
-              We're a diverse group of passionate developers, designers, and digital strategists 
-              committed to crafting exceptional digital experiences.
+              With over 5 years of computer science programming knowledge, our small but efficient team delivers exceptional digital solutions.
             </p>
           </div>
           
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {teamMembers.map((member, index) => (
               <div 
                 key={index}
-                className="bg-dark-card rounded-lg overflow-hidden group"
+                className="bg-dark-card rounded-lg overflow-hidden group hover:shadow-lg hover:shadow-accent/10 transition-all duration-300 border border-dark-accent hover:border-accent/30"
               >
-                <div className="aspect-[3/4] bg-dark-accent/30 relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-4xl font-bold text-accent/20">{member.initials}</span>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark-card to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="aspect-[3/4] bg-gradient-to-br from-dark-accent/30 to-accent/5 relative overflow-hidden">
+                  <img 
+                    src={member.photo}
+                    alt={member.name}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark-card to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-6">
-                  <h3 className="font-bold text-lg mb-1">{member.name}</h3>
-                  <p className="text-accent mb-3">{member.role}</p>
+                  <h3 className="font-bold text-xl mb-2 group-hover:text-accent transition-colors duration-300">{member.name}</h3>
+                  <div className="mb-4">
+                    <span className="px-3 py-1 bg-accent/10 text-accent text-sm font-medium rounded-full">{member.role}</span>
+                  </div>
                   <p className="text-white/70 text-sm">{member.bio}</p>
                 </div>
               </div>
@@ -149,69 +189,32 @@ const AboutPage = () => {
         </div>
       </section>
       
-      {/* Our Journey Timeline */}
-      <section className="py-20 bg-dark-card/50 relative">
-        <div className="absolute inset-0 bg-grid opacity-5"></div>
-        
-        <div className="container relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold mb-6">Our Journey</h2>
-            <p className="text-white/70">
-              From our humble beginnings to where we are today, this timeline highlights key milestones in our evolution.
-            </p>
-          </div>
-          
-          <div className="relative max-w-4xl mx-auto">
-            {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-white/10"></div>
-            
-            {timeline.map((item, index) => (
-              <div 
-                key={index}
-                className={`relative z-10 flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} mb-16 last:mb-0`}
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-accent"></div>
-                
-                {/* Content */}
-                <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-12' : 'text-left pl-12'}`}>
-                  <div className="bg-dark-card p-6 rounded-lg border border-white/5">
-                    <span className="text-accent font-medium">{item.year}</span>
-                    <h3 className="text-xl font-bold mt-2 mb-3">{item.title}</h3>
-                    <p className="text-white/70">{item.description}</p>
-                  </div>
-                </div>
-                
-                <div className="w-2/12"></div>
-                
-                <div className="w-5/12"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
       {/* CTA Section */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent-tertiary/20 opacity-30"></div>
+      <section className="section relative overflow-hidden">
+        {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        <div className="container relative z-10">
-          <div className="max-w-4xl mx-auto bg-dark-card rounded-2xl p-12 border border-white/5">
-            <div className="text-center">
-              <h2 className="text-3xl font-bold mb-6">Ready to Start Your Project?</h2>
-              <p className="text-white/70 mb-8 max-w-2xl mx-auto">
-                Whether you're looking to build a new website, develop a mobile app, or create custom software,
-                we're here to help turn your vision into reality.
-              </p>
-              <Link 
-                to="/contact" 
-                className="inline-flex items-center px-6 py-3 bg-accent hover:bg-accent/90 text-white font-medium rounded-full transition-colors duration-300"
-              >
-                Get in Touch
-                <svg className="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
+        {/* Gradient blobs - slightly different positions for variety */}
+        <div className="absolute -top-40 -right-20 w-[500px] h-[500px] bg-accent/20 rounded-full blur-3xl opacity-50"></div>
+        <div className="absolute -bottom-20 -left-40 w-[450px] h-[450px] bg-accent-tertiary/10 rounded-full blur-3xl opacity-70"></div>
+        
+        <div className="container">
+          <div className="bg-gradient-to-br from-dark-card to-dark-accent/20 rounded-2xl p-12 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-full">
+              <div className="absolute -top-24 -right-24 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+            </div>
+            
+            <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
+              <div className="max-w-xl">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Transform Your Digital Presence?</h2>
+                <p className="text-lg text-white/80 mb-0">
+                  Let's discuss how our team can help build a website, app, or software solution tailored to your unique needs.
+                </p>
+              </div>
+              
+              <Link to="/contact" className="btn btn-primary whitespace-nowrap">
+                Start a Project
               </Link>
             </div>
           </div>
@@ -258,57 +261,18 @@ const values = [
 // Sample data for team members
 const teamMembers = [
   {
-    initials: "JD",
-    name: "John Doe",
-    role: "Founder & CEO",
-    bio: "With over 15 years of experience in software development, John leads our team with vision and technical expertise."
+    name: "Ryan Meziane",
+    role: "Full Stack Developer & Co-founder",
+    initials: "RM",
+    bio: "Computer Science graduate from John Abbott College with 5+ years of programming experience. Currently pursuing a Bachelor's degree while working on client projects.",
+    photo: ryanImage
   },
   {
-    initials: "JS",
-    name: "Jane Smith",
-    role: "Lead Developer",
-    bio: "Jane specializes in full-stack development and has architected solutions for Fortune 500 companies."
-  },
-  {
-    initials: "MR",
-    name: "Mike Roberts",
-    role: "UX/UI Designer",
-    bio: "Mike combines aesthetic sensibility with user-centered design principles to create intuitive interfaces."
-  },
-  {
-    initials: "AL",
-    name: "Anna Lee",
-    role: "Project Manager",
-    bio: "Anna ensures our projects are delivered on time and exceed client expectations through meticulous planning."
-  }
-];
-
-// Sample data for timeline
-const timeline = [
-  {
-    year: "2020",
-    title: "Netfluence is Born",
-    description: "Starting with just three developers, we launched our company with a focus on web development."
-  },
-  {
-    year: "2021",
-    title: "Expanding Services",
-    description: "Added mobile app development to our services and grew our team to include dedicated designers."
-  },
-  {
-    year: "2022",
-    title: "First Major Client",
-    description: "Secured our first enterprise client, developing a custom software solution that transformed their operations."
-  },
-  {
-    year: "2023",
-    title: "Office Expansion",
-    description: "Moved to a larger office space and expanded our team to include specialists in various technologies."
-  },
-  {
-    year: "Present",
-    title: "Global Reach",
-    description: "Now working with clients across multiple countries, delivering high-quality digital solutions worldwide."
+    name: "Kui Hua Wang",
+    role: "Full Stack Developer & Co-founder",
+    initials: "KW",
+    bio: "Computer Science graduate from John Abbott College with extensive programming knowledge. Currently working towards a Bachelor's degree while developing innovative solutions.",
+    photo: kuiImage
   }
 ];
 
