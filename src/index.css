@@ -49,7 +49,7 @@
 
 /* Container styles */
 .container {
-  @apply px-4 mx-auto max-w-7xl;
+  @apply px-4 mx-auto max-w-full sm:max-w-[90%] md:max-w-[85%] lg:max-w-[80%] xl:max-w-7xl 2xl:max-w-[1600px];
 }
 
 /* Prevent FOUC (Flash of Unstyled Content) */

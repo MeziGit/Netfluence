@@ -26,17 +26,17 @@ const Header = () => {
   
   return (
     <header 
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'py-3 backdrop-blur-md bg-dark-bg/80 border-b border-dark-accent/50' : 'py-5'
+      className={`fixed w-full z-50 transition-all duration-300 py-6 ${
+        scrolled ? 'backdrop-blur-md bg-dark-bg/80 border-b border-dark-accent/50' : ''
       }`}
     >
       <div className="container flex items-center justify-between">
         <Link 
           to="/" 
-          className="font-display text-xl font-bold tracking-tight relative z-10 flex items-center gap-2"
+          className="font-display text-2xl font-bold tracking-tight relative z-10 flex items-center gap-3"
           data-cursor="pointer"
         >
-          <svg className="w-8 h-8 text-accent" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-10 h-10 text-accent" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -51,7 +51,7 @@ const Header = () => {
               key={item.path}
               to={item.path}
               className={({ isActive }) => 
-                `relative text-sm font-medium uppercase transition-all group
+                `relative text-base font-medium uppercase transition-all group
                 ${isActive ? 'text-accent' : 'text-white/70 hover:text-white'}`
               }
               data-cursor="pointer"

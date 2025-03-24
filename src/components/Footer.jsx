@@ -73,29 +73,29 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-6">Contact</h3>
             <div className="flex flex-col space-y-4 text-white/70">
               <a 
-                href="mailto:hello@netfluence.com" 
+                href="mailto:info@netfluence.ca" 
                 className="flex items-center gap-3 hover:text-white transition-colors"
               >
                 <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                hello@netfluence.com
+                info@netfluence.ca
               </a>
               <a 
-                href="tel:+1234567890" 
+                href="tel:5147927781" 
                 className="flex items-center gap-3 hover:text-white transition-colors"
               >
                 <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                +1 (234) 567-890
+                (514) 792-7781
               </a>
               <div className="flex items-center gap-3">
                 <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                Los Angeles, CA
+                Montreal, QC
               </div>
             </div>
           </div>
@@ -151,15 +151,6 @@ const serviceLinks = [
 // Social media icons using SVG
 const socialLinks = [
   {
-    name: 'Twitter',
-    url: 'https://twitter.com',
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84 0 0 0 .497-3.753C20.18 7.773 21.692 5.25 22 4.009z" />
-      </svg>
-    )
-  },
-  {
     name: 'LinkedIn',
     url: 'https://linkedin.com',
     icon: (
@@ -169,21 +160,22 @@ const socialLinks = [
     )
   },
   {
-    name: 'Github',
-    url: 'https://github.com',
+    name: 'Email',
+    url: 'mailto:info@netfluence.ca',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
     )
   },
   {
-    name: 'Dribbble',
-    url: 'https://dribbble.com',
+    name: 'Instagram',
+    url: 'https://instagram.com',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 2.25c2.69 0 3.58.01 4.95.07 1.4.06 2.16.3 2.67.5.67.26 1.15.57 1.65 1.08.5.5.82.98 1.08 1.65.2.51.44 1.27.5 2.67.06 1.37.07 2.26.07 4.95s-.01 3.58-.07 4.95c-.06 1.4-.3 2.16-.5 2.67-.26.67-.58 1.15-1.08 1.65-.5.5-.98.82-1.65 1.08-.51.2-1.27.44-2.67.5-1.37.06-2.26.07-4.95.07s-3.58-.01-4.95-.07c-1.4-.06-2.16-.3-2.67-.5-.67-.26-1.15-.58-1.65-1.08-.5-.5-.82-.98-1.08-1.65-.2-.51-.44-1.27-.5-2.67-.06-1.37-.07-2.26-.07-4.95s.01-3.58.07-4.95c.06-1.4.3-2.16.5-2.67.26-.67.58-1.15 1.08-1.65.5-.5.98-.82 1.65-1.08.51-.2 1.27-.44 2.67-.5 1.37-.06 2.26-.07 4.95-.07z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.5 6.5h.01" />
       </svg>
     )
   }
