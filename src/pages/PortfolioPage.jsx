@@ -50,7 +50,7 @@ const PortfolioPage = () => {
       tags: ["React", "Node.js", "Tailwind"],
       accentColor: "#0ea5e9",
       category: "web",
-      url: "https://northtouch.com/"
+      url: "https://northtouch.netlify.app/"
     },
     {
       id: 5,
