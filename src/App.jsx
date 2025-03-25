@@ -15,7 +15,7 @@ import CustomCursor from './components/ui/CustomCursor';
 
 // Styles
 import './styles/globals.css';
-// Only import locomotive scroll CSS when needed - will be loaded dynamically
+// Locomotive scroll CSS - not imported by default
 
 // Scroll to top component
 const ScrollToTop = () => {
@@ -37,22 +37,27 @@ const AppContent = () => {
   useEffect(() => {
     // Check if device is mobile
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      
+      // Add mobile class to body to disable animations via CSS
+      if (mobile) {
+        document.body.classList.add('mobile-device');
+      } else {
+        document.body.classList.remove('mobile-device');
+      }
     };
     
     checkMobile();
     window.addEventListener('resize', checkMobile);
     
-    // Conditionally load Locomotive Scroll only on desktop
+    // Disable scroll animations globally on mobile
     if (!isMobile) {
-      // Dynamically import Locomotive Scroll CSS
+      // Only load locomotive scroll on desktop
       const linkElement = document.createElement('link');
       linkElement.rel = 'stylesheet';
       linkElement.href = 'https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css';
       document.head.appendChild(linkElement);
-      
-      // Could also dynamically import the JS if needed
-      // But that would require restructuring the application
     }
     
     return () => {
@@ -66,8 +71,9 @@ const AppContent = () => {
         <Header />
         
         <main>
-          <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
+          {isMobile ? (
+            // Regular routing without animations on mobile
+            <Routes>
               <Route path="/" element={<HomePage isMobile={isMobile} />} />
               <Route path="/services" element={<ServicesPage isMobile={isMobile} />} />
               <Route path="/portfolio" element={<PortfolioPage isMobile={isMobile} />} />
@@ -75,7 +81,19 @@ const AppContent = () => {
               <Route path="/contact" element={<ContactPage isMobile={isMobile} />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
-          </AnimatePresence>
+          ) : (
+            // Animated transitions only on desktop
+            <AnimatePresence mode="wait">
+              <Routes location={location} key={location.pathname}>
+                <Route path="/" element={<HomePage isMobile={isMobile} />} />
+                <Route path="/services" element={<ServicesPage isMobile={isMobile} />} />
+                <Route path="/portfolio" element={<PortfolioPage isMobile={isMobile} />} />
+                <Route path="/about" element={<AboutPage isMobile={isMobile} />} />
+                <Route path="/contact" element={<ContactPage isMobile={isMobile} />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </AnimatePresence>
+          )}
         </main>
         
         <Footer />

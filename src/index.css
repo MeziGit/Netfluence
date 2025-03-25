@@ -10,6 +10,82 @@
   --accent-tertiary: #8b5cf6;
 }
 
+/* Completely disable all animations on mobile devices */
+.mobile-device *,
+.mobile-device *::before, 
+.mobile-device *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+  transition-delay: 0ms !important;
+}
+
+/* Also remove all blur effects on mobile - these are extremely performance intensive */
+.mobile-device .blur-3xl,
+.mobile-device .blur-2xl,
+.mobile-device .blur-xl,
+.mobile-device .blur-lg,
+.mobile-device .blur-md,
+.mobile-device .blur-sm {
+  filter: none !important;
+  opacity: 0.3 !important;
+}
+
+/* Hide gradient orbs completely on very small screens */
+@media (max-width: 390px) {
+  .rounded-full.blur-3xl {
+    display: none !important;
+  }
+  
+  /* Disable all gradient backgrounds */
+  .bg-gradient-to-br,
+  .bg-gradient-to-r,
+  .bg-gradient-to-tr,
+  .bg-gradient-to-bl {
+    background: #111827 !important; /* Replace with dark background */
+  }
+  
+  /* Convert glass effects to simple backgrounds */
+  .glass {
+    background: rgba(17, 24, 39, 0.8) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Simplify card hover effects */
+  .card-hover:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Prevent excessive repainting by disabling complex animations */
+  .animate-float,
+  .animate-float-delay,
+  .animate-pulse-slow,
+  .animate-blob,
+  .animate-morph,
+  .animate-gradient {
+    animation: none !important;
+  }
+  
+  /* Force hardware acceleration for scrolling */
+  body {
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  /* Reduce text animations */
+  .typewriter,
+  .reveal-text,
+  .reveal-image {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

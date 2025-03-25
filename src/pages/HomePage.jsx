@@ -3,28 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
-const HomePage = () => {
+const HomePage = ({ isMobile = false }) => {
   const heroRef = useRef(null);
   const [selectedTestimonial, setSelectedTestimonial] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
   
-  // Check for mobile devices
+  // No IntersectionObserver or animations on mobile
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-    };
-  }, []);
-  
-  // Animation to reveal text when in view - use more performant approach
-  useEffect(() => {
-    // Skip IntersectionObserver on mobile for better performance
     if (isMobile) return;
     
     const observer = new IntersectionObserver((entries) => {
@@ -42,6 +26,47 @@ const HomePage = () => {
       revealElements.forEach(el => observer.unobserve(el));
     };
   }, [isMobile]);
+  
+  // Static components for mobile (no animations)
+  const StaticComponent = ({ children, className = '' }) => {
+    return isMobile ? (
+      <div className={className}>{children}</div>
+    ) : (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, margin: "-100px" }}
+        className={className}
+      >
+        {children}
+      </motion.div>
+    );
+  };
+  
+  // Static card for mobile (no animations)
+  const StaticCard = ({ children, index }) => {
+    return isMobile ? (
+      <div className="card card-hover relative overflow-hidden">
+        {children}
+      </div>
+    ) : (
+      <motion.div 
+        key={index} 
+        className="card card-hover reveal group relative overflow-hidden"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        whileHover={{ 
+          y: -10,
+          transition: { duration: 0.3 }
+        }}
+      >
+        {children}
+      </motion.div>
+    );
+  };
   
   return (
     <>
@@ -304,43 +329,15 @@ const HomePage = () => {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <motion.div 
-                key={index} 
-                className="card card-hover reveal group relative overflow-hidden"
-                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: isMobile ? 0.3 : 0.5, delay: isMobile ? 0 : index * 0.1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                whileHover={isMobile ? {} : { 
-                  y: -10,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                {/* Animated background gradient on hover */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-accent to-accent-tertiary opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-lg"></div>
-                
+              <StaticCard key={index} index={index}>
                 <div className="relative z-10 flex flex-col h-full">
-                  <div className="text-accent-secondary text-3xl mb-6 p-4 bg-accent-secondary/10 rounded-lg w-fit transform group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-accent-secondary text-3xl mb-6 p-4 bg-accent-secondary/10 rounded-lg w-fit">
                     {service.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">{service.title}</h3>
+                  <h3 className="text-xl font-bold mb-3">{service.title}</h3>
                   <p className="text-white/70 mb-6">{service.description}</p>
-                  <div className="mt-auto">
-                    <Link 
-                      to="/services" 
-                      className="inline-flex items-center text-accent-secondary font-medium group/btn"
-                    >
-                      <span className="relative">
-                        Learn More
-                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent-secondary group-hover/btn:w-full transition-all duration-300"></span>
-                      </span>
-                      <svg className="w-5 h-5 ml-2 transform transition-transform group-hover/btn:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </Link>
-                  </div>
                 </div>
-              </motion.div>
+              </StaticCard>
             ))}
           </div>
         </div>
@@ -376,14 +373,7 @@ const HomePage = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {featuredProjects.map((project, index) => (
-              <motion.div
-                key={index} 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                whileHover={{ y: -8 }}
-              >
+              <StaticCard key={index} index={index}>
                 <div className="block bg-dark-card border border-dark-accent/30 rounded-lg overflow-hidden h-full transition-all duration-300 hover:border-accent/30 hover:shadow-md group">
                   <div className="p-6 h-full flex flex-col">
                     <div className="flex items-center mb-4">
@@ -431,7 +421,7 @@ const HomePage = () => {
                     )}
                   </div>
                 </div>
-              </motion.div>
+              </StaticCard>
             ))}
           </div>
         </div>
@@ -454,15 +444,7 @@ const HomePage = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                className="bg-dark-card border-2 border-dark-accent hover:border-accent cursor-pointer group transition-all duration-300"
-              >
+              <StaticCard key={index} index={index}>
                 <div className="p-8 flex flex-col h-full">
                   {/* Quote */}
                   <p className="text-white/80 mb-6 group-hover:text-white transition-colors duration-300">
@@ -480,7 +462,7 @@ const HomePage = () => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </StaticCard>
             ))}
           </div>
         </div>
@@ -509,43 +491,15 @@ const HomePage = () => {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {processSteps.map((step, index) => (
-              <motion.div 
-                key={index} 
-                className="card card-hover reveal group relative overflow-hidden"
-                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: isMobile ? 0.3 : 0.5, delay: isMobile ? 0 : index * 0.1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                whileHover={isMobile ? {} : { 
-                  y: -10,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                {/* Animated background gradient on hover */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-accent to-accent-tertiary opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-lg"></div>
-                
+              <StaticCard key={index} index={index}>
                 <div className="relative z-10 flex flex-col h-full">
-                  <div className="text-accent-secondary text-3xl mb-6 p-4 bg-accent-secondary/10 rounded-lg w-fit transform group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-accent-secondary text-3xl mb-6 p-4 bg-accent-secondary/10 rounded-lg w-fit">
                     {step.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">{step.title}</h3>
+                  <h3 className="text-xl font-bold mb-3">{step.title}</h3>
                   <p className="text-white/70 mb-6">{step.description}</p>
-                  <div className="mt-auto">
-                    <Link 
-                      to="/process" 
-                      className="inline-flex items-center text-accent-secondary font-medium group/btn"
-                    >
-                      <span className="relative">
-                        Learn More
-                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-accent-secondary group-hover/btn:w-full transition-all duration-300"></span>
-                      </span>
-                      <svg className="w-5 h-5 ml-2 transform transition-transform group-hover/btn:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </Link>
-                  </div>
                 </div>
-              </motion.div>
+              </StaticCard>
             ))}
           </div>
         </div>
