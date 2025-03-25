@@ -116,9 +116,10 @@ const ServicesPage = () => {
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blobs */}
-        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-accent-secondary/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+        {/* Gradient blobs - varied positioning with rotation */}
+        <div className="absolute top-1/4 -right-80 w-[900px] h-[700px] bg-accent-secondary/15 rounded-full blur-3xl rotate-15"></div>
+        <div className="absolute -bottom-96 left-1/3 w-[800px] h-[500px] bg-accent-tertiary/10 rounded-full blur-3xl -rotate-6"></div>
+        <div className="absolute top-3/4 right-1/4 w-[300px] h-[300px] bg-accent/5 rounded-full blur-3xl"></div>
         
         <div className="container">
           <div className="mb-16 text-center max-w-2xl mx-auto">
@@ -181,16 +182,17 @@ const ServicesPage = () => {
           {/* Background grid */}
           <div className="absolute inset-0 bg-grid opacity-10"></div>
           
-          {/* Gradient blobs - alternate positions */}
+          {/* Gradient blobs - completely different positions for each section */}
           {index % 2 === 0 ? (
             <>
-              <div className="absolute -top-40 right-40 w-[550px] h-[550px] bg-accent/15 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+              <div className="absolute top-20 right-1/5 w-[650px] h-[400px] bg-accent/15 rounded-full blur-3xl rotate-12"></div>
+              <div className="absolute -bottom-60 -left-32 w-[450px] h-[700px] bg-accent-tertiary/10 rounded-full blur-3xl"></div>
             </>
           ) : (
             <>
-              <div className="absolute -top-40 -left-40 w-[550px] h-[550px] bg-accent-secondary/15 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-20 right-40 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl"></div>
+              <div className="absolute -top-80 left-1/4 w-[750px] h-[550px] bg-accent-secondary/15 rounded-full blur-3xl -rotate-12"></div>
+              <div className="absolute bottom-1/3 right-0 w-[400px] h-[600px] bg-accent/10 rounded-full blur-3xl rotate-45"></div>
+              <div className="absolute top-3/4 left-1/6 w-[250px] h-[250px] bg-accent-tertiary/5 rounded-full blur-3xl"></div>
             </>
           )}
           
@@ -262,15 +264,16 @@ const ServicesPage = () => {
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blobs */}
-        <div className="absolute -top-40 -right-20 w-[500px] h-[500px] bg-accent/20 rounded-full blur-3xl opacity-50"></div>
-        <div className="absolute -bottom-20 -left-40 w-[450px] h-[450px] bg-accent-tertiary/10 rounded-full blur-3xl opacity-70"></div>
+        {/* Gradient blobs - asymmetric positioning with varying opacity */}
+        <div className="absolute top-0 right-1/6 w-[400px] h-[800px] bg-accent/10 rounded-full blur-3xl opacity-40 -rotate-15"></div>
+        <div className="absolute -bottom-96 left-64 w-[700px] h-[400px] bg-accent-tertiary/20 rounded-full blur-3xl opacity-60"></div>
+        <div className="absolute top-1/3 left-1/5 w-[250px] h-[250px] bg-accent-secondary/15 rounded-full blur-3xl opacity-70"></div>
         
         <div className="container">
           <div className="bg-gradient-to-br from-dark-card to-dark-accent/20 rounded-2xl p-12 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full">
-            <div className="absolute -top-24 -right-24 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+              <div className="absolute -top-48 right-40 w-72 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 -left-24 w-80 h-80 bg-accent-tertiary/10 rounded-full blur-3xl rotate-45"></div>
             </div>
             
             <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">

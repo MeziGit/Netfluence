@@ -4,6 +4,7 @@ const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
   const [typingIndex, setTypingIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   
   const typingTexts = [
     'Web Development',
@@ -15,13 +16,30 @@ const Hero = () => {
 
   useEffect(() => {
     setIsMounted(true);
+    
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
 
+    let ticking = false;
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   useEffect(() => {
@@ -33,7 +51,7 @@ const Hero = () => {
   }, [typingIndex, typingTexts.length]);
 
   const parallaxStyle = {
-    transform: `translateY(${scrollY * 0.4}px)`,
+    transform: isMobile ? 'none' : `translateY(${scrollY * 0.2}px)`,
   };
 
   const handleScrollToServices = () => {
@@ -131,7 +149,9 @@ const Hero = () => {
                         <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
                         <div className="w-3 h-3 rounded-full bg-green-500"></div>
                       </div>
-                      <div className="space-y-2 font-mono text-xs sm:text-sm text-left">
+                      
+                      {/* Desktop code view */}
+                      <div className={`space-y-2 font-mono text-xs sm:text-sm text-left ${isMobile ? 'hidden' : 'block'}`}>
                         <div className="text-gray-400">
                           <span className="text-accent">const</span> <span className="text-gray-100">netfluence</span> = <span className="text-accent">{`{`}</span>
                         </div>
@@ -160,19 +180,44 @@ const Hero = () => {
                           <span className="text-green-400">netfluence</span>.<span className="text-gray-300">createAwesomeProduct</span>();
                         </div>
                       </div>
+                      
+                      {/* Mobile code view - simplified version */}
+                      <div className={`space-y-2 font-mono text-xs sm:text-sm text-left ${isMobile ? 'block' : 'hidden'}`}>
+                        <div className="text-gray-400">
+                          <span className="text-accent">const</span> <span className="text-gray-100">netfluence</span> = <span className="text-accent">{`{`}</span>
+                        </div>
+                        <div className="pl-4 text-gray-400">
+                          <span className="text-green-400">services:</span> [<span className="text-gray-100">'web'</span>, <span className="text-gray-100">'mobile'</span>],
+                        </div>
+                        <div className="pl-4 text-gray-400">
+                          <span className="text-green-400">create:</span> <span className="text-accent">() =></span> <span className="text-accent">{`{`}</span>
+                        </div>
+                        <div className="pl-8 text-gray-400">
+                          <span className="text-green-400">return</span> <span className="text-gray-100">'Amazing'</span>;
+                        </div>
+                        <div className="pl-4 text-gray-400">
+                          <span className="text-accent">{`}`}</span>
+                        </div>
+                        <div className="text-gray-400">
+                          <span className="text-accent">{`}`}</span>;
+                        </div>
+                        <div className="text-gray-400 animate-pulse">
+                          <span className="text-green-400">netfluence</span>.<span className="text-gray-300">create</span>();
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
               
-              {/* Floating elements */}
-              <div className="absolute -top-5 -right-5 glass p-4 rounded-lg animate-float">
+              {/* Floating elements - hide on very small screens */}
+              <div className="absolute -top-5 -right-5 glass p-4 rounded-lg animate-float hidden sm:flex">
                 <div className="flex items-center">
                   <i className="fas fa-code text-accent text-lg mr-2"></i>
                   <span className="text-white font-medium">Clean Code</span>
                 </div>
               </div>
-              <div className="absolute -bottom-5 -left-5 glass p-4 rounded-lg animate-float" style={{ animationDelay: '1s' }}>
+              <div className="absolute -bottom-5 -left-5 glass p-4 rounded-lg animate-float hidden sm:flex" style={{ animationDelay: '1s' }}>
                 <div className="flex items-center">
                   <i className="fas fa-rocket text-accent text-lg mr-2"></i>
                   <span className="text-white font-medium">Fast Delivery</span>

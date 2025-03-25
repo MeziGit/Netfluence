@@ -11,7 +11,11 @@ interface Project {
   accentColor: string;
 }
 
-const Portfolio = () => {
+interface PortfolioProps {
+  isMobile?: boolean;
+}
+
+const Portfolio: React.FC<PortfolioProps> = ({ isMobile = false }) => {
   const [filter, setFilter] = useState('all');
   const [isVisible, setIsVisible] = useState(false);
   const [visibleProjects, setVisibleProjects] = useState<Project[]>([]);
@@ -84,19 +88,30 @@ const Portfolio = () => {
     setVisibleProjects([]);
     
     // Add projects with a staggered delay for animation
-    const timer = setTimeout(() => {
-      filtered.forEach((project, index) => {
-        setTimeout(() => {
-          setVisibleProjects(prev => [...prev, project]);
-        }, index * 100);
-      });
-    }, 300);
-    
-    return () => clearTimeout(timer);
-  }, [filter, projects]);
+    // On mobile, add all projects at once for better performance
+    if (isMobile) {
+      setVisibleProjects(filtered);
+    } else {
+      const timer = setTimeout(() => {
+        filtered.forEach((project, index) => {
+          setTimeout(() => {
+            setVisibleProjects(prev => [...prev, project]);
+          }, index * 100);
+        });
+      }, 300);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [filter, projects, isMobile]);
   
   // Intersection observer to trigger animations when section is visible
   useEffect(() => {
+    // Skip IntersectionObserver on mobile for better performance
+    if (isMobile) {
+      setIsVisible(true);
+      return;
+    }
+    
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setIsVisible(true);
@@ -114,7 +129,7 @@ const Portfolio = () => {
         observer.unobserve(workSection);
       }
     };
-  }, []);
+  }, [isMobile]);
   
   // Filter categories
   const categories = [

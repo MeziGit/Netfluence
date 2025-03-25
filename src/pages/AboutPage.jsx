@@ -99,9 +99,10 @@ const AboutPage = () => {
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blobs - slightly different positions for variety */}
-        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-accent-secondary/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+        {/* Gradient blobs - varied asymmetric positioning */}
+        <div className="absolute top-10 right-1/6 w-[700px] h-[400px] bg-accent-secondary/15 rounded-full blur-3xl rotate-6"></div>
+        <div className="absolute -bottom-72 -left-20 w-[500px] h-[700px] bg-accent-tertiary/10 rounded-full blur-3xl -rotate-12"></div>
+        <div className="absolute top-2/3 left-1/4 w-[250px] h-[250px] bg-accent/5 rounded-full blur-3xl"></div>
         
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -145,9 +146,10 @@ const AboutPage = () => {
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blobs - slightly different positions for variety */}
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-accent/15 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-accent-tertiary/15 rounded-full blur-3xl"></div>
+        {/* Gradient blobs - horizontal positioning */}
+        <div className="absolute -top-96 right-72 w-[900px] h-[500px] bg-accent/10 rounded-full blur-3xl -rotate-6"></div>
+        <div className="absolute bottom-40 -left-96 w-[800px] h-[600px] bg-accent-tertiary/10 rounded-full blur-3xl rotate-15"></div>
+        <div className="absolute top-1/4 right-1/3 w-[350px] h-[350px] bg-accent-secondary/5 rounded-full blur-3xl"></div>
         
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -179,9 +181,10 @@ const AboutPage = () => {
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blobs - slightly different positions for variety */}
-        <div className="absolute -top-20 right-10 w-[450px] h-[450px] bg-accent/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 left-40 w-[550px] h-[550px] bg-accent-secondary/15 rounded-full blur-3xl"></div>
+        {/* Gradient blobs - diagonal positioning */}
+        <div className="absolute top-0 right-1/5 w-[450px] h-[700px] bg-accent/15 rounded-full blur-3xl rotate-30"></div>
+        <div className="absolute bottom-0 left-1/3 w-[600px] h-[400px] bg-accent-secondary/10 rounded-full blur-3xl -rotate-30"></div>
+        <div className="absolute top-1/2 right-2/3 w-[300px] h-[300px] bg-accent-tertiary/10 rounded-full blur-3xl"></div>
         
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -223,15 +226,16 @@ const AboutPage = () => {
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blobs - slightly different positions for variety */}
-        <div className="absolute -top-40 -right-20 w-[500px] h-[500px] bg-accent/20 rounded-full blur-3xl opacity-50"></div>
-        <div className="absolute -bottom-20 -left-40 w-[450px] h-[450px] bg-accent-tertiary/10 rounded-full blur-3xl opacity-70"></div>
+        {/* Gradient blobs - layered with varying opacity */}
+        <div className="absolute -top-20 left-1/4 w-[650px] h-[450px] bg-accent/10 rounded-full blur-3xl opacity-50 rotate-12"></div>
+        <div className="absolute bottom-40 right-0 w-[500px] h-[600px] bg-accent-tertiary/15 rounded-full blur-3xl opacity-40"></div>
+        <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-accent-secondary/20 rounded-full blur-3xl opacity-60"></div>
         
         <div className="container">
           <div className="bg-gradient-to-br from-dark-card to-dark-accent/20 rounded-2xl p-12 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full">
-              <div className="absolute -top-24 -right-24 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+              <div className="absolute top-0 -right-32 w-96 h-80 bg-accent/10 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-1/4 w-80 h-96 bg-accent-tertiary/15 rounded-full blur-3xl rotate-45"></div>
             </div>
             
             <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">

@@ -158,9 +158,10 @@ const ContactPage = () => {
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blobs - slightly different positions for variety */}
-        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-accent-secondary/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+        {/* Gradient blobs - radial positioning with overlap */}
+        <div className="absolute -top-96 right-1/3 w-[900px] h-[600px] bg-accent-secondary/15 rounded-full blur-3xl rotate-15"></div>
+        <div className="absolute bottom-0 -left-60 w-[700px] h-[500px] bg-accent-tertiary/10 rounded-full blur-3xl -rotate-12"></div>
+        <div className="absolute top-2/3 right-20 w-[300px] h-[400px] bg-accent/5 rounded-full blur-3xl"></div>
         
         <div className="container">
           <div className="grid lg:grid-cols-3 gap-12">
@@ -416,9 +417,10 @@ const ContactPage = () => {
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blobs - slightly different positions for variety */}
-        <div className="absolute -top-20 right-10 w-[450px] h-[450px] bg-accent/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 left-40 w-[550px] h-[550px] bg-accent-secondary/15 rounded-full blur-3xl"></div>
+        {/* Gradient blobs - corner-anchored */}
+        <div className="absolute -top-40 -left-40 w-[700px] h-[600px] bg-accent/15 rounded-full blur-3xl rotate-45"></div>
+        <div className="absolute bottom-1/3 right-0 w-[500px] h-[600px] bg-accent-secondary/10 rounded-full blur-3xl -rotate-30"></div>
+        <div className="absolute top-20 right-1/3 w-[250px] h-[250px] bg-accent-tertiary/10 rounded-full blur-3xl"></div>
         
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-16">

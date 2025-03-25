@@ -6,9 +6,27 @@ import { Link } from 'react-router-dom';
 const HomePage = () => {
   const heroRef = useRef(null);
   const [selectedTestimonial, setSelectedTestimonial] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   
-  // Animation to reveal text when in view
+  // Check for mobile devices
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+  
+  // Animation to reveal text when in view - use more performant approach
+  useEffect(() => {
+    // Skip IntersectionObserver on mobile for better performance
+    if (isMobile) return;
+    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -23,7 +41,7 @@ const HomePage = () => {
     return () => {
       revealElements.forEach(el => observer.unobserve(el));
     };
-  }, []);
+  }, [isMobile]);
   
   return (
     <>
@@ -98,18 +116,18 @@ const HomePage = () => {
                 <h1 className="mb-6 leading-tight">
                   <span className="block reveal visible">
                     <motion.span
-                      initial={{ y: "100%" }}
-                      animate={{ y: 0 }}
-                      transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
+                      initial={isMobile ? false : { y: "100%" }}
+                      animate={isMobile ? { y: 0 } : { y: 0 }}
+                      transition={{ duration: isMobile ? 0.4 : 0.8, ease: [0.4, 0, 0.2, 1], delay: isMobile ? 0 : 0.1 }}
                     >
                       Crafting Digital
                     </motion.span>
                   </span>
                   <span className="block reveal visible">
                     <motion.span
-                      initial={{ y: "100%" }}
-                      animate={{ y: 0 }}
-                      transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
+                      initial={isMobile ? false : { y: "100%" }}
+                      animate={isMobile ? { y: 0 } : { y: 0 }}
+                      transition={{ duration: isMobile ? 0.4 : 0.8, ease: [0.4, 0, 0.2, 1], delay: isMobile ? 0 : 0.2 }}
                       className="text-accent"
                     >
                       Experiences
@@ -117,9 +135,9 @@ const HomePage = () => {
                   </span>
                   <span className="block reveal visible">
                     <motion.span
-                      initial={{ y: "100%" }}
-                      animate={{ y: 0 }}
-                      transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
+                      initial={isMobile ? false : { y: "100%" }}
+                      animate={isMobile ? { y: 0 } : { y: 0 }}
+                      transition={{ duration: isMobile ? 0.4 : 0.8, ease: [0.4, 0, 0.2, 1], delay: isMobile ? 0 : 0.3 }}
                     >
                       That Stand Out
                     </motion.span>
@@ -169,9 +187,9 @@ const HomePage = () => {
                     <span className="hidden group-hover:inline">your-amazing-website.js</span>
                   </div>
                 </div>
-                <div className="code-body relative overflow-hidden min-h-[320px]">
-                  {/* Default code view */}
-                  <pre className="text-white/80 group-hover:opacity-0 transition-opacity duration-300 absolute inset-0 p-4">
+                <div className="code-body relative overflow-hidden min-h-[320px] md:min-h-[320px] min-h-[220px]">
+                  {/* Default code view - Desktop version */}
+                  <pre className={`text-white/80 group-hover:opacity-0 transition-opacity duration-300 absolute inset-0 p-4 ${isMobile ? 'hidden' : 'block'}`}>
                     <span className="text-accent-tertiary">const</span> <span className="text-accent-secondary">createAmazingWebsite</span> <span className="text-white">=</span> <span className="text-accent-tertiary">async</span> <span className="text-white">() =&gt;</span> <span className="text-white">{'{'}</span>
                     <br/>
                     <span className="pl-4 text-accent-tertiary">const</span> <span className="text-white">design</span> <span className="text-white">=</span> <span className="text-accent-tertiary">await</span> <span className="text-accent-secondary">designSystem</span><span className="text-white">{'({'}</span>
@@ -199,8 +217,21 @@ const HomePage = () => {
                     <span className="text-white">{'}'};</span>
                   </pre>
                   
-                  {/* Hover code view - personalized */}
-                  <pre className="text-white/80 group-hover:opacity-100 opacity-0 transition-opacity duration-300 absolute inset-0 p-4">
+                  {/* Mobile-optimized code view - simplified version */}
+                  <pre className={`text-white/80 transition-opacity duration-300 absolute inset-0 p-4 ${isMobile ? 'block' : 'hidden'}`}>
+                    <span className="text-accent-tertiary">const</span> <span className="text-accent-secondary">createWebsite</span> <span className="text-white">=</span> <span className="text-white">() =&gt;</span> <span className="text-white">{'{'}</span>
+                    <br/>
+                    <span className="pl-4 text-white">design:</span> <span className="text-accent">'responsive'</span><span className="text-white">,</span>
+                    <br/>
+                    <span className="pl-4 text-white">stack:</span> <span className="text-white">{'['}</span><span className="text-accent">'React'</span><span className="text-white">{']'}</span><span className="text-white">,</span>
+                    <br/>
+                    <span className="pl-4 text-accent-tertiary">return</span> <span className="text-accent-secondary">success</span><span className="text-white">();</span>
+                    <br/>
+                    <span className="text-white">{'}'};</span>
+                  </pre>
+                  
+                  {/* Hover code view - personalized (desktop) */}
+                  <pre className={`text-white/80 group-hover:opacity-100 opacity-0 transition-opacity duration-300 absolute inset-0 p-4 ${isMobile ? 'hidden' : 'block'}`}>
                     <span className="text-accent-tertiary">import</span> <span className="text-accent">'magic'</span><span className="text-white">;</span>
                     <br/>
                     <span className="text-accent-tertiary">const</span> <span className="text-accent-secondary">buildYourWebsite</span> <span className="text-white">=</span> <span className="text-accent-tertiary">async</span> <span className="text-white">(</span><span className="text-accent-secondary">yourIdeas</span><span className="text-white">) =&gt;</span> <span className="text-white">{'{'}</span>
@@ -225,6 +256,25 @@ const HomePage = () => {
                     <br/><br/>
                     <span className="text-accent-tertiary">// Let's build something amazing together!</span>
                   </pre>
+                  
+                  {/* Hover code view - personalized (mobile) */}
+                  <pre className={`text-white/80 group-hover:opacity-100 opacity-0 transition-opacity duration-300 absolute inset-0 p-4 ${isMobile ? 'block' : 'hidden'}`}>
+                    <span className="text-accent-tertiary">import</span> <span className="text-accent">'magic'</span><span className="text-white">;</span>
+                    <br/>
+                    <span className="text-accent-tertiary">const</span> <span className="text-accent-secondary">buildYourWebsite</span> <span className="text-white">=</span> <span className="text-white">(</span><span className="text-accent-secondary">ideas</span><span className="text-white">) =&gt;</span> <span className="text-white">{'{'}</span>
+                    <br/>
+                    <span className="pl-4 text-white">features:</span> <span className="text-white">{'{'}</span>
+                    <br/>
+                    <span className="pl-8 text-white">design:</span> <span className="text-accent">'amazing'</span><span className="text-white">,</span>
+                    <br/>
+                    <span className="pl-8 text-white">speed:</span> <span className="text-accent">'fast'</span>
+                    <br/>
+                    <span className="pl-4 text-white">{'}'},</span>
+                    <br/>
+                    <span className="pl-4 text-accent-tertiary">return</span> <span className="text-accent-secondary">netfluence</span><span className="text-white">.create(ideas);</span>
+                    <br/>
+                    <span className="text-white">{'}'};</span>
+                  </pre>
                 </div>
               </div>
             </motion.div>
@@ -237,9 +287,9 @@ const HomePage = () => {
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blobs - slightly different positions for variety */}
-        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-accent-secondary/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+        {/* Gradient blobs - with more varied positioning */}
+        <div className="absolute -top-32 right-1/4 w-[700px] h-[500px] bg-accent-secondary/15 rounded-full blur-3xl rotate-12"></div>
+        <div className="absolute bottom-1/4 -left-20 w-[450px] h-[650px] bg-accent-tertiary/10 rounded-full blur-3xl"></div>
         
         <div className="container">
           <div className="mb-16 text-center max-w-2xl mx-auto">
@@ -257,11 +307,11 @@ const HomePage = () => {
               <motion.div 
                 key={index} 
                 className="card card-hover reveal group relative overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: isMobile ? 0.3 : 0.5, delay: isMobile ? 0 : index * 0.1 }}
                 viewport={{ once: true, margin: "-100px" }}
-                whileHover={{ 
+                whileHover={isMobile ? {} : { 
                   y: -10,
                   transition: { duration: 0.3 }
                 }}
@@ -301,9 +351,9 @@ const HomePage = () => {
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blobs - slightly different positions for variety */}
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-accent/15 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-accent-tertiary/15 rounded-full blur-3xl"></div>
+        {/* Gradient blobs - completely different positioning */}
+        <div className="absolute top-1/3 -right-64 w-[800px] h-[800px] bg-accent/10 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-96 left-1/4 w-[650px] h-[650px] bg-accent-tertiary/10 rounded-full blur-3xl rotate-45"></div>
         
         <div className="container">
           <div className="mb-16 flex flex-col md:flex-row justify-between md:items-end gap-4">
@@ -392,9 +442,9 @@ const HomePage = () => {
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blobs - slightly different positions for variety */}
-        <div className="absolute -top-20 right-10 w-[450px] h-[450px] bg-accent/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 left-40 w-[550px] h-[550px] bg-accent-secondary/15 rounded-full blur-3xl"></div>
+        {/* Gradient blobs - diagonal positioning */}
+        <div className="absolute top-40 left-1/3 w-[550px] h-[550px] bg-accent/15 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-72 right-48 w-[700px] h-[500px] bg-accent-secondary/10 rounded-full blur-3xl -rotate-12"></div>
         
         <div className="container">
           <div className="mb-16 text-center">
@@ -441,9 +491,10 @@ const HomePage = () => {
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blobs - slightly different positions for variety */}
-        <div className="absolute top-40 -right-40 w-[600px] h-[600px] bg-accent-tertiary/15 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-20 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl"></div>
+        {/* Gradient blobs - asymmetric positioning */}
+        <div className="absolute top-20 -left-96 w-[900px] h-[600px] bg-accent-tertiary/10 rounded-full blur-3xl rotate-12"></div>
+        <div className="absolute bottom-10 right-1/5 w-[500px] h-[700px] bg-accent/5 rounded-full blur-3xl -rotate-45"></div>
+        <div className="absolute top-1/2 right-1/3 w-[300px] h-[300px] bg-accent-secondary/10 rounded-full blur-3xl"></div>
         
         <div className="container">
           <div className="mb-16 text-center max-w-2xl mx-auto">
@@ -461,11 +512,11 @@ const HomePage = () => {
               <motion.div 
                 key={index} 
                 className="card card-hover reveal group relative overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: isMobile ? 0.3 : 0.5, delay: isMobile ? 0 : index * 0.1 }}
                 viewport={{ once: true, margin: "-100px" }}
-                whileHover={{ 
+                whileHover={isMobile ? {} : { 
                   y: -10,
                   transition: { duration: 0.3 }
                 }}
@@ -505,15 +556,16 @@ const HomePage = () => {
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blobs - slightly different positions for variety */}
-        <div className="absolute -top-40 -right-20 w-[500px] h-[500px] bg-accent/20 rounded-full blur-3xl opacity-50"></div>
-        <div className="absolute -bottom-20 -left-40 w-[450px] h-[450px] bg-accent-tertiary/10 rounded-full blur-3xl opacity-70"></div>
+        {/* Gradient blobs - varied colors and overlapping */}
+        <div className="absolute -top-40 left-32 w-[450px] h-[650px] bg-accent/15 rounded-full blur-3xl opacity-40"></div>
+        <div className="absolute bottom-20 right-20 w-[600px] h-[400px] bg-accent-tertiary/20 rounded-full blur-3xl opacity-60 rotate-45"></div>
+        <div className="absolute top-1/2 right-1/2 w-[350px] h-[350px] bg-accent-secondary/10 rounded-full blur-3xl"></div>
         
         <div className="container">
           <div className="bg-gradient-to-br from-dark-card to-dark-accent/20 rounded-2xl p-12 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full">
-              <div className="absolute -top-24 -right-24 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+              <div className="absolute -top-36 right-1/3 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-1/3 -left-24 w-96 h-96 bg-accent-tertiary/10 rounded-full blur-3xl"></div>
             </div>
             
             <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">

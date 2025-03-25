@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import ServiceCard from './ServiceCard';
 
-const Services = () => {
+interface ServicesProps {
+  isMobile?: boolean;
+}
+
+const Services: React.FC<ServicesProps> = ({ isMobile = false }) => {
   const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
+    // Skip IntersectionObserver on mobile for better performance
+    if (isMobile) {
+      setIsVisible(true);
+      return;
+    }
+    
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setIsVisible(true);
@@ -22,7 +32,7 @@ const Services = () => {
         observer.unobserve(servicesSection);
       }
     };
-  }, []);
+  }, [isMobile]);
   
   const services = [
     {
@@ -83,10 +93,10 @@ const Services = () => {
           {services.map((service, index) => (
             <div 
               key={index} 
-              className={`transition-all duration-1000 transform ${
+              className={`transition-all duration-${isMobile ? '300' : '500'} transform ${
                 isVisible 
                   ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-16'
+                  : 'opacity-0 translate-y-10'
               }`}
               style={{
                 transitionDelay: `${200 + (index * 100)}ms`
@@ -102,8 +112,8 @@ const Services = () => {
           ))}
         </div>
         
-        <div className={`flex justify-center mt-16 transition-all duration-1000 transform ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
+        <div className={`flex justify-center mt-16 transition-all duration-${isMobile ? '300' : '500'} transform ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`} style={{ transitionDelay: '800ms' }}>
           <a 
             href="#contact" 

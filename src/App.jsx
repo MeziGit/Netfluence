@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { HelmetProvider } from 'react-helmet-async';
@@ -15,7 +15,7 @@ import CustomCursor from './components/ui/CustomCursor';
 
 // Styles
 import './styles/globals.css';
-import 'locomotive-scroll/dist/locomotive-scroll.min.css';
+// Only import locomotive scroll CSS when needed - will be loaded dynamically
 
 // Scroll to top component
 const ScrollToTop = () => {
@@ -32,6 +32,33 @@ const ScrollToTop = () => {
 const AppContent = () => {
   const { isDarkMode } = useContext(ThemeContext);
   const location = useLocation();
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    // Conditionally load Locomotive Scroll only on desktop
+    if (!isMobile) {
+      // Dynamically import Locomotive Scroll CSS
+      const linkElement = document.createElement('link');
+      linkElement.rel = 'stylesheet';
+      linkElement.href = 'https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css';
+      document.head.appendChild(linkElement);
+      
+      // Could also dynamically import the JS if needed
+      // But that would require restructuring the application
+    }
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
   
   return (
     <div className={isDarkMode ? 'dark' : 'light'}>
@@ -41,11 +68,11 @@ const AppContent = () => {
         <main>
           <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/portfolio" element={<PortfolioPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/" element={<HomePage isMobile={isMobile} />} />
+              <Route path="/services" element={<ServicesPage isMobile={isMobile} />} />
+              <Route path="/portfolio" element={<PortfolioPage isMobile={isMobile} />} />
+              <Route path="/about" element={<AboutPage isMobile={isMobile} />} />
+              <Route path="/contact" element={<ContactPage isMobile={isMobile} />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </AnimatePresence>
@@ -53,7 +80,7 @@ const AppContent = () => {
         
         <Footer />
       </div>
-      <CustomCursor />
+      {!isMobile && <CustomCursor />}
     </div>
   );
 };

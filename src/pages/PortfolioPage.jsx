@@ -180,14 +180,15 @@ const PortfolioPage = () => {
         </div>
       </section>
       
-      {/* Projects Section */}
+      {/* Portfolio items section */}
       <section className="py-20 relative overflow-hidden">
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blobs - slightly different positions for variety */}
-        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-accent-secondary/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+        {/* Gradient blobs - wide asymmetric positioning */}
+        <div className="absolute top-40 -right-96 w-[1200px] h-[600px] bg-accent/10 rounded-full blur-3xl rotate-6"></div>
+        <div className="absolute -bottom-80 left-1/5 w-[700px] h-[700px] bg-accent-tertiary/15 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/3 left-10 w-[400px] h-[300px] bg-accent-secondary/5 rounded-full blur-3xl rotate-45"></div>
         
         <div className="container">
           {/* Projects Grid */}
@@ -220,20 +221,21 @@ const PortfolioPage = () => {
         </div>
       </section>
       
-      {/* Contact CTA */}
+      {/* CTA Section */}
       <section className="py-20 relative overflow-hidden">
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         
-        {/* Gradient blobs - slightly different positions for variety */}
-        <div className="absolute -top-20 right-10 w-[450px] h-[450px] bg-accent/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 left-40 w-[550px] h-[550px] bg-accent-secondary/15 rounded-full blur-3xl"></div>
+        {/* Gradient blobs - vertical stacked positioning */}
+        <div className="absolute -top-32 left-1/3 w-[600px] h-[800px] bg-accent/15 rounded-full blur-3xl -rotate-12"></div>
+        <div className="absolute bottom-1/4 right-0 w-[500px] h-[400px] bg-accent-secondary/10 rounded-full blur-3xl rotate-30"></div>
+        <div className="absolute top-2/3 left-0 w-[350px] h-[350px] bg-accent-tertiary/10 rounded-full blur-3xl"></div>
         
         <div className="container">
           <div className="bg-gradient-to-br from-dark-card to-dark-accent/20 rounded-2xl p-12 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full">
-              <div className="absolute -top-24 -right-24 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-accent-tertiary/10 rounded-full blur-3xl"></div>
+              <div className="absolute top-10 right-1/4 w-80 h-96 bg-accent/10 rounded-full blur-3xl -rotate-15"></div>
+              <div className="absolute -bottom-32 -left-12 w-96 h-80 bg-accent-tertiary/15 rounded-full blur-3xl"></div>
             </div>
             
             <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
