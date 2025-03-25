@@ -10,58 +10,6 @@
   --accent-tertiary: #8b5cf6;
 }
 
-/* Lightweight interactive animations */
-@keyframes gentle-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-@keyframes subtle-fade {
-  from { opacity: 0.9; }
-  to { opacity: 1; }
-}
-
-/* Lightweight hover effects that won't trigger repaints */
-.hover-lift {
-  transition: transform 0.3s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-5px);
-}
-
-.hover-glow {
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.hover-glow:hover {
-  box-shadow: 0 0 15px rgba(14, 165, 233, 0.15);
-  transform: translateY(-2px);
-}
-
-/* Fix for card flickering on mobile - ensure initial state is clean */
-.card, .card-hover {
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  -webkit-font-smoothing: subpixel-antialiased;
-  will-change: transform;
-}
-
-/* Prevent Cumulative Layout Shift (CLS) for cards */
-.card-container {
-  min-height: 200px;
-  position: relative;
-}
-
-/* Mobile-friendly non-disruptive animations */
-.mobile-device .gentle-animation {
-  animation: gentle-float 3s ease-in-out infinite;
-}
-
-.mobile-device .subtle-highlight {
-  animation: subtle-fade 2s ease-in-out alternate infinite;
-}
-
 /* Completely disable all animations on mobile devices */
 .mobile-device *,
 .mobile-device *::before, 
@@ -84,16 +32,8 @@
   opacity: 0.3 !important;
 }
 
-/* Exceptions - allow specific lightweight animations on mobile */
-.mobile-device .allow-animation {
-  animation-duration: initial !important;
-  animation-iteration-count: initial !important;
-  transition-duration: initial !important;
-}
-
-/* Additional optimizations for very small screens */
+/* Hide gradient orbs completely on very small screens */
 @media (max-width: 390px) {
-  /* Hide all gradient backgrounds and blurs */
   .rounded-full.blur-3xl {
     display: none !important;
   }
@@ -384,121 +324,4 @@ html.js .loaded body {
   background-color: currentColor;
   margin-left: 4px;
   animation: blink 1s step-end infinite;
-}
-
-/* Fix card flickering issues */
-.card-hover {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  will-change: transform;
-  transition: transform 0.2s ease-out;
-}
-
-/* Allow certain animations even on mobile */
-.allow-animation {
-  animation-duration: 0.4s !important;
-  animation-fill-mode: both !important;
-}
-
-/* Subtle mobile-friendly animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes gentle-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-.gentle-animation {
-  animation: gentle-float 4s ease-in-out infinite;
-}
-
-/* Lightweight hover effects */
-.hover-lift {
-  transition: transform 0.2s ease-out !important;
-}
-
-.hover-lift:hover, 
-.hover-lift:focus {
-  transform: translateY(-5px) !important;
-}
-
-.hover-glow {
-  transition: box-shadow 0.2s ease-out, color 0.2s ease-out !important;
-}
-
-.hover-glow:hover,
-.hover-glow:focus {
-  color: var(--accent-color) !important;
-}
-
-/* Disable all animations for very low-end devices */
-@media (prefers-reduced-motion), (max-width: 360px) {
-  .card-hover, 
-  .hover-lift, 
-  .hover-glow,
-  .gentle-animation {
-    transition: none !important;
-    animation: none !important;
-    transform: none !important;
-  }
-}
-
-/* ...existing mobile-device class... */
-.mobile-device .gentle-animation {
-  /* Allow gentle animations even on mobile */
-  animation: fadeIn 0.5s ease-out !important;
-}
-
-/* Fix any remaining flickering by ensuring hardware acceleration */
-.card-hover > * {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-}
-
-/* Button interactions for better mobile UX */
-button:active {
-  transform: scale(0.98) !important;
-}
-
-/* Make sure images don't cause layout shifts */
-img {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* Prevent initial render flickering */
-.render-stable * {
-  backface-visibility: hidden !important;
-  -webkit-backface-visibility: hidden !important;
-  transform: translateZ(0) !important;
-  -webkit-transform: translateZ(0) !important;
-  transition: none !important;
-}
-
-/* Mobile code container optimizations */
-.mobile-code {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-.mobile-code pre,
-.mobile-code code {
-  -webkit-overflow-scrolling: touch;
-  transform: translateZ(0);
-}
-
-/* Prevent layout shifts */
-.mobile-device [class*="card"],
-.mobile-device .btn-primary,
-.mobile-device .btn-secondary {
-  transform: translateZ(0) !important;
-  animation: fadeIn 0.3s ease-out !important;
-  transition: transform 0.2s ease-out !important;
 } 

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 
-const Hero = ({ isMobile = false }) => {
+const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
   const [typingIndex, setTypingIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const [isFileHovered, setIsFileHovered] = useState(false);
   
   const typingTexts = [
@@ -50,17 +50,6 @@ const Hero = ({ isMobile = false }) => {
 
     return () => clearTimeout(timer);
   }, [typingIndex, typingTexts.length]);
-
-  // Fix for mobile flickering - ensure stable initial render
-  useEffect(() => {
-    if (isMobile) {
-      // Prevent initial flicker by ensuring stable render
-      document.documentElement.classList.add('render-stable');
-      return () => {
-        document.documentElement.classList.remove('render-stable');
-      };
-    }
-  }, [isMobile]);
 
   const parallaxStyle = {
     transform: isMobile ? 'none' : `translateY(${scrollY * 0.2}px)`,

@@ -27,28 +27,16 @@ const HomePage = ({ isMobile = false }) => {
     };
   }, [isMobile]);
   
-  // Static components for mobile with lightweight animations
-  const StaticComponent = ({ children, className = '', index = 0 }) => {
-    const animationDelay = `${index * 0.1}s`;
-    
-    // Apply specific animations instead of framer-motion complexity
+  // Static components for mobile (no animations)
+  const StaticComponent = ({ children, className = '' }) => {
     return isMobile ? (
-      <div 
-        className={`${className} allow-animation`} 
-        style={{ 
-          opacity: 1, 
-          transform: 'translateZ(0)',
-          animationDelay
-        }}
-      >
-        {children}
-      </div>
+      <div className={className}>{children}</div>
     ) : (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
-        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, margin: "-100px" }}
         className={className}
       >
         {children}
@@ -56,32 +44,20 @@ const HomePage = ({ isMobile = false }) => {
     );
   };
   
-  // Static card with lightweight hover effect
+  // Static card for mobile (no animations)
   const StaticCard = ({ children, index }) => {
-    // Fix flickering by ensuring stable initial state
-    const animationDelay = `${index * 0.1}s`;
-    
     return isMobile ? (
-      <div 
-        className="card-hover relative overflow-hidden hover-lift"
-        style={{ 
-          opacity: 1, 
-          transform: 'translateZ(0)',
-          animationDelay
-        }}
-      >
-        <div className="relative z-10">
-          {children}
-        </div>
+      <div className="card card-hover relative overflow-hidden">
+        {children}
       </div>
     ) : (
       <motion.div 
         key={index} 
-        className="card-hover reveal group relative overflow-hidden"
+        className="card card-hover reveal group relative overflow-hidden"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true, margin: "-100px" }}
         whileHover={{ 
           y: -10,
           transition: { duration: 0.3 }
@@ -89,28 +65,6 @@ const HomePage = ({ isMobile = false }) => {
       >
         {children}
       </motion.div>
-    );
-  };
-  
-  // Button with subtle animation
-  const AnimatedButton = ({ children, onClick, className }) => {
-    return (
-      <button
-        onClick={onClick}
-        className={`${className} hover-lift allow-animation`}
-      >
-        {children}
-      </button>
-    );
-  };
-  
-  // Interactive icon that works on mobile and desktop
-  const InteractiveIcon = ({ icon, text, className }) => {
-    return (
-      <div className={`${className} hover-glow allow-animation gentle-animation`}>
-        <i className={`fas fa-${icon} text-accent mr-2`}></i>
-        <span>{text}</span>
-      </div>
     );
   };
   
@@ -376,21 +330,12 @@ const HomePage = ({ isMobile = false }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
               <StaticCard key={index} index={index}>
-                <div className="p-6 flex flex-col h-full">
+                <div className="relative z-10 flex flex-col h-full">
                   <div className="text-accent-secondary text-3xl mb-6 p-4 bg-accent-secondary/10 rounded-lg w-fit">
-                    <i className={`fas fa-${service.icon}`}></i>
+                    {service.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-3">{service.title}</h3>
                   <p className="text-white/70 mb-6">{service.description}</p>
-                  <div className="mt-auto">
-                    <AnimatedButton 
-                      className="text-accent-secondary font-medium flex items-center"
-                      onClick={() => {}}
-                    >
-                      Learn More
-                      <i className="fas fa-arrow-right ml-2"></i>
-                    </AnimatedButton>
-                  </div>
                 </div>
               </StaticCard>
             ))}
@@ -599,24 +544,43 @@ const HomePage = ({ isMobile = false }) => {
 // Services data
 const services = [
   {
-    icon: 'laptop-code',
-    title: 'Web Development',
-    description: 'Custom responsive websites that look great on any device.'
+    title: "Website Development",
+    description: "From creating brand new innovative websites to updating pre-existing ones, we craft responsive, user-friendly sites that showcase your brand.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+        <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
+        <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
+      </svg>
+    )
   },
   {
-    icon: 'mobile-alt',
-    title: 'Mobile Apps',
-    description: 'Native and cross-platform mobile applications for iOS and Android.'
+    title: "Hosting",
+    description: "Reliable hosting and maintenance of websites, databases, and servers to ensure your digital assets are secure and performing optimally.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+        <path d="M5.507 4.048A3 3 0 017.785 3h8.43a3 3 0 012.278 1.048l1.722 2.008A4.533 4.533 0 0019.5 6h-15c-.243 0-.482.02-.715.057l1.722-2.008z" />
+        <path fillRule="evenodd" d="M1.5 10.5a3 3 0 013-3h15a3 3 0 110 6h-15a3 3 0 01-3-3zm15 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm2.25.75a.75.75 0 100-1.5.75.75 0 000 1.5zM4.5 15a3 3 0 100 6h15a3 3 0 100-6h-15zm11.25 3.75a.75.75 0 100-1.5.75.75 0 000 1.5zM19.5 18a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" clipRule="evenodd" />
+      </svg>
+    )
   },
   {
-    icon: 'cogs',
-    title: 'Custom Software',
-    description: 'Tailor-made software solutions for your business needs.'
+    title: "Software Development",
+    description: "Developing cutting-edge software solutions tailored to your business needs for improved efficiency and productivity.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+        <path fillRule="evenodd" d="M14.447 3.027a.75.75 0 01.527.92l-4.5 16.5a.75.75 0 01-1.448-.394l4.5-16.5a.75.75 0 01.921-.526zM16.72 6.22a.75.75 0 011.06 0l5.25 5.25a.75.75 0 010 1.06l-5.25 5.25a.75.75 0 11-1.06-1.06L21.44 12l-4.72-4.72a.75.75 0 010-1.06zm-9.44 0a.75.75 0 010 1.06L2.56 12l4.72 4.72a.75.75 0 11-1.06 1.06L.97 12.53a.75.75 0 010-1.06l5.25-5.25a.75.75 0 011.06 0z" clipRule="evenodd" />
+      </svg>
+    )
   },
   {
-    icon: 'chart-line',
-    title: 'Digital Marketing',
-    description: 'SEO, content marketing, and social media strategies.'
+    title: "Application Development",
+    description: "Creating and hosting high-performing applications that provide seamless experiences across all devices.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+        <path d="M10.5 18.75a.75.75 0 000 1.5h3a.75.75 0 000-1.5h-3z" />
+        <path fillRule="evenodd" d="M8.625.75A3.375 3.375 0 005.25 4.125v15.75a3.375 3.375 0 003.375 3.375h6.75a3.375 3.375 0 003.375-3.375V4.125A3.375 3.375 0 0015.375.75h-6.75zM7.5 4.125C7.5 3.504 8.004 3 8.625 3H9.75v.375c0 .621.504 1.125 1.125 1.125h2.25c.621 0 1.125-.504 1.125-1.125V3h1.125c.621 0 1.125.504 1.125 1.125v15.75c0 .621-.504 1.125-1.125 1.125h-6.75A1.125 1.125 0 017.5 19.875V4.125z" clipRule="evenodd" />
+      </svg>
+    )
   }
 ];
 
