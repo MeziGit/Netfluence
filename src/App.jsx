@@ -35,20 +35,29 @@ const AppContent = () => {
   const [isMobile, setIsMobile] = useState(false);
   
   useEffect(() => {
-    // Check if device is mobile
+    // Function to check for mobile
     const checkMobile = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
       
-      // Add mobile class to body to disable animations via CSS
+      // Add/remove mobile-device class
       if (mobile) {
-        document.body.classList.add('mobile-device');
+        document.documentElement.classList.add('mobile-device');
+        
+        // Prevent flickering on initial load
+        document.documentElement.classList.add('render-stable');
+        setTimeout(() => {
+          document.documentElement.classList.remove('render-stable');
+        }, 300);
       } else {
-        document.body.classList.remove('mobile-device');
+        document.documentElement.classList.remove('mobile-device');
       }
     };
     
+    // Check on mount
     checkMobile();
+    
+    // Add resize listener
     window.addEventListener('resize', checkMobile);
     
     // Disable scroll animations globally on mobile
@@ -60,6 +69,7 @@ const AppContent = () => {
       document.head.appendChild(linkElement);
     }
     
+    // Cleanup
     return () => {
       window.removeEventListener('resize', checkMobile);
     };

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
-const Hero = () => {
+const Hero = ({ isMobile = false }) => {
   const [scrollY, setScrollY] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
   const [typingIndex, setTypingIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
   const [isFileHovered, setIsFileHovered] = useState(false);
   
   const typingTexts = [
@@ -51,6 +51,17 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, [typingIndex, typingTexts.length]);
 
+  // Fix for mobile flickering - ensure stable initial render
+  useEffect(() => {
+    if (isMobile) {
+      // Prevent initial flicker by ensuring stable render
+      document.documentElement.classList.add('render-stable');
+      return () => {
+        document.documentElement.classList.remove('render-stable');
+      };
+    }
+  }, [isMobile]);
+
   const parallaxStyle = {
     transform: isMobile ? 'none' : `translateY(${scrollY * 0.2}px)`,
   };
@@ -62,6 +73,13 @@ const Hero = () => {
         top: element.offsetTop - 80,
         behavior: 'smooth'
       });
+    }
+  };
+  
+  // Toggle code view on mobile
+  const toggleFileHovered = () => {
+    if (isMobile) {
+      setIsFileHovered(!isFileHovered);
     }
   };
 
@@ -139,12 +157,12 @@ const Hero = () => {
                 <div className="w-full h-full glass overflow-hidden rounded-2xl p-1">
                   <div 
                     className="w-full h-full rounded-xl bg-gray-800 relative flex items-center justify-center p-8"
-                    onMouseEnter={() => setIsFileHovered(true)}
-                    onMouseLeave={() => setIsFileHovered(false)}
+                    onMouseEnter={() => !isMobile && setIsFileHovered(true)}
+                    onMouseLeave={() => !isMobile && setIsFileHovered(false)}
+                    onClick={toggleFileHovered}
                   >
                     <div className="absolute top-0 left-0 w-full h-full overflow-hidden rounded-xl">
                       <div className="w-full h-full bg-gradient-to-br from-gray-900 to-gray-800"></div>
-                      <div className="absolute top-0 left-0 w-full h-full opacity-20"></div>
                     </div>
                     
                     {/* Code editor content */}
@@ -154,7 +172,16 @@ const Hero = () => {
                         <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
                         <div className="w-3 h-3 rounded-full bg-green-500"></div>
                         <div className="ml-4 text-xs text-white/50">
-                          <span className="hidden group-hover:inline">netfluence.js</span>
+                          {isMobile && (
+                            <span>
+                              {isFileHovered ? "your-project.js" : "netfluence.js"}
+                              {isMobile && (
+                                <span className="ml-2 text-xs text-accent">
+                                  [tap to {isFileHovered ? "close" : "view"}]
+                                </span>
+                              )}
+                            </span>
+                          )}
                         </div>
                       </div>
                       
@@ -184,7 +211,7 @@ const Hero = () => {
                         <div className="text-gray-400">
                           <span className="text-accent">{`}`}</span>;
                         </div>
-                        <div className="text-gray-400 animate-pulse">
+                        <div className="text-gray-400">
                           <span className="text-green-400">netfluence</span>.<span className="text-gray-300">createAwesomeProduct</span>();
                         </div>
                       </div>
@@ -223,25 +250,19 @@ const Hero = () => {
                           <span className="text-accent">const</span> <span className="text-accent-secondary">buildYourWebsite</span> <span className="text-white">=</span> <span className="text-accent-tertiary">async</span> <span className="text-white">(</span><span className="text-accent-secondary">yourIdeas</span><span className="text-white">) =&gt;</span> <span className="text-white">{'{'}</span>
                         </div>
                         <div className="pl-4 text-gray-400">
-                          <span className="text-accent-tertiary">const</span> <span className="text-white">yourBrand</span> <span className="text-white">=</span> <span className="text-accent-tertiary">await</span> <span className="text-accent-secondary">createBrandIdentity</span><span className="text-white">(yourIdeas);</span>
-                        </div>
-                        <div className="pl-4 text-gray-400">
                           <span className="text-accent-tertiary">const</span> <span className="text-white">features</span> <span className="text-white">=</span> <span className="text-white">{'{'}</span>
                         </div>
                         <div className="pl-8 text-gray-400">
                           <span className="text-white">customDesign:</span> <span className="text-accent-secondary">true</span><span className="text-white">,</span>
                         </div>
                         <div className="pl-8 text-gray-400">
-                          <span className="text-white">performance:</span> <span className="text-accent">'blazing-fast'</span><span className="text-white">,</span>
-                        </div>
-                        <div className="pl-8 text-gray-400">
-                          <span className="text-white">support:</span> <span className="text-accent">'24/7'</span>
+                          <span className="text-white">performance:</span> <span className="text-accent">'blazing-fast'</span>
                         </div>
                         <div className="pl-4 text-gray-400">
                           <span className="text-white">{'}'};</span>
                         </div>
                         <div className="pl-4 text-gray-400">
-                          <span className="text-accent-tertiary">return</span> <span className="text-accent-secondary">netfluence</span><span className="text-white">.deliver(yourBrand, features);</span>
+                          <span className="text-accent-tertiary">return</span> <span className="text-accent-secondary">netfluence</span><span className="text-white">.deliver(features);</span>
                         </div>
                         <div className="text-gray-400">
                           <span className="text-white">{'}'};</span>
@@ -251,10 +272,7 @@ const Hero = () => {
                       {/* Mobile code view - hover state */}
                       <div className={`space-y-2 font-mono text-xs sm:text-sm text-left ${isMobile ? (isFileHovered ? 'block' : 'hidden') : 'hidden'}`}>
                         <div className="text-gray-400">
-                          <span className="text-accent">import</span> <span className="text-accent">'magic'</span><span className="text-white">;</span>
-                        </div>
-                        <div className="text-gray-400">
-                          <span className="text-accent">const</span> <span className="text-accent-secondary">buildWebsite</span> <span className="text-white">=</span> <span className="text-white">(</span><span className="text-accent-secondary">ideas</span><span className="text-white">) =&gt;</span> <span className="text-white">{'{'}</span>
+                          <span className="text-accent">const</span> <span className="text-accent-secondary">yourProject</span> <span className="text-white">=</span> <span className="text-white">(</span><span className="text-accent-secondary">ideas</span><span className="text-white">) =&gt;</span> <span className="text-white">{'{'}</span>
                         </div>
                         <div className="pl-4 text-gray-400">
                           <span className="text-white">features:</span> <span className="text-white">{'{'}</span>
@@ -269,7 +287,7 @@ const Hero = () => {
                           <span className="text-white">{'}'},</span>
                         </div>
                         <div className="pl-4 text-gray-400">
-                          <span className="text-accent-tertiary">return</span> <span className="text-accent-secondary">netfluence</span><span className="text-white">.create(ideas);</span>
+                          <span className="text-accent-tertiary">return</span> <span className="text-accent-secondary">netfluence</span><span className="text-white">.build(ideas);</span>
                         </div>
                         <div className="text-gray-400">
                           <span className="text-white">{'}'};</span>
