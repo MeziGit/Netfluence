@@ -243,9 +243,9 @@ const ServicesPage = () => {
                   </div>
                   
                   {/* Floating stats card */}
-                  <div className="absolute -bottom-8 -right-8 bg-dark-card border border-dark-accent/70 rounded-lg p-4 shadow-xl w-48">
+                  <div className="absolute -bottom-8 sm:-right-8 right-0 bg-dark-card border border-dark-accent/70 rounded-lg p-4 shadow-xl w-36 sm:w-48 max-w-[90%]">
                     <div className="text-sm font-medium text-white/70 mb-1">Up Time</div>
-                    <div className="text-2xl font-bold text-accent-secondary mb-2">{service.stats.upTime}</div>
+                    <div className="text-xl sm:text-2xl font-bold text-accent-secondary mb-2">{service.stats.upTime}</div>
                     <div className="w-full bg-dark-accent/50 h-1.5 rounded-full overflow-hidden">
                       <div className="bg-accent-secondary h-full rounded-full" style={{ width: "99.9%" }}></div>
                     </div>

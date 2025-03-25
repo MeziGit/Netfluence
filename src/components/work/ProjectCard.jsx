@@ -50,7 +50,11 @@ const ProjectCard = ({ id, title, type, description, tags, accentColor, url, com
             href={url || "#"} 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="inline-flex items-center group"
+            className="inline-flex items-center group cursor-pointer hover:text-accent-light"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (url) window.open(url, '_blank', 'noopener,noreferrer');
+            }}
           >
             <span>View Project</span>
             <span className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">→</span>

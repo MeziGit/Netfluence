@@ -14,7 +14,8 @@ const ProjectCard = ({ title, type, description, tags, accentColor }) => {
   };
   
   const calculateTransform = () => {
-    if (!isHovered) return 'translateY(0) rotateX(0) rotateY(0)';
+    // Disable 3D effect on mobile devices
+    if (window.innerWidth < 768 || !isHovered) return 'translateY(0) rotateX(0) rotateY(0)';
     
     const rotateY = (mousePosition.x - 0.5) * 10; // -5 to 5 degrees
     const rotateX = (0.5 - mousePosition.y) * 10; // -5 to 5 degrees
@@ -33,8 +34,10 @@ const ProjectCard = ({ title, type, description, tags, accentColor }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseMove={handleMouseMove}
+      onTouchStart={() => setIsHovered(true)}
+      onTouchEnd={() => setIsHovered(false)}
     >
-      <div className="p-6 md:p-8 relative h-full flex flex-col">
+      <div className="p-4 sm:p-6 md:p-8 relative h-full flex flex-col">
         {/* Top gradient line */}
         <div 
           className="absolute top-0 left-0 w-full h-1 transition-transform duration-300 transform origin-left group-hover:scale-x-100 scale-x-0"
@@ -42,14 +45,14 @@ const ProjectCard = ({ title, type, description, tags, accentColor }) => {
         ></div>
         
         {/* Background pattern */}
-        <div className="absolute top-0 right-0 w-32 h-32 opacity-5">
+        <div className="absolute top-0 right-0 w-24 sm:w-32 h-24 sm:h-32 opacity-5">
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <path fill={accentColor} d="M47.5,-51.2C59.1,-39.1,64.9,-19.6,64.1,-0.8C63.3,18,55.9,36,42.2,49.8C28.5,63.6,8.5,73.2,-9.9,73C-28.4,72.8,-45.3,62.7,-59.8,46.7C-74.4,30.7,-86.5,8.7,-83.8,-11.2C-81.1,-31.1,-63.6,-48.8,-45.5,-60.6C-27.3,-72.4,-8.4,-78.5,5.2,-74.1C18.8,-69.7,35.9,-63.3,47.5,-51.2Z" transform="translate(100 100)" />
           </svg>
         </div>
         
         {/* Content */}
-        <div className="mb-4">
+        <div className="mb-3 sm:mb-4">
           <span 
             className="text-xs font-semibold uppercase tracking-wider"
             style={{ color: accentColor }}
@@ -58,20 +61,20 @@ const ProjectCard = ({ title, type, description, tags, accentColor }) => {
           </span>
         </div>
         
-        <h3 className="text-xl md:text-2xl font-display font-bold mb-4 text-white">
+        <h3 className="text-lg sm:text-xl md:text-2xl font-display font-bold mb-3 sm:mb-4 text-white">
           {title}
         </h3>
         
-        <p className="text-gray-300 mb-6 flex-grow">
+        <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6 flex-grow">
           {description}
         </p>
         
         {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
           {tags.map((tag, index) => (
             <span 
               key={index} 
-              className="px-3 py-1 text-xs rounded-full font-medium"
+              className="px-2 sm:px-3 py-0.5 sm:py-1 text-xs rounded-full font-medium"
               style={{ 
                 background: `${accentColor}20`, 
                 color: accentColor 
@@ -86,12 +89,12 @@ const ProjectCard = ({ title, type, description, tags, accentColor }) => {
         <div className="mt-auto">
           <a 
             href="/portfolio"
-            className="inline-flex items-center font-medium transition-all duration-300"
+            className="inline-flex items-center text-sm sm:text-base font-medium transition-all duration-300"
             style={{ color: accentColor }}
           >
             View Details
             <svg 
-              className="w-5 h-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1"
+              className="w-4 sm:w-5 h-4 sm:h-5 ml-1.5 sm:ml-2 transform transition-transform duration-300 group-hover:translate-x-1"
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24" 

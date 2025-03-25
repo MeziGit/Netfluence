@@ -13,11 +13,13 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
   
   body {
     @apply bg-dark-bg text-white;
     font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -25,15 +27,15 @@
   }
   
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold;
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold;
   }
 
   h2 {
-    @apply text-3xl md:text-4xl font-bold;
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold;
   }
 
   h3 {
-    @apply text-2xl font-bold;
+    @apply text-xl sm:text-2xl font-bold;
   }
 
   /* Code styling */
@@ -45,19 +47,25 @@
   :focus-visible {
     @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-dark-bg;
   }
+
+  /* Improve touch targets on mobile */
+  button, a {
+    @apply touch-manipulation;
+  }
 }
 
 /* Container styles */
 .container {
-  @apply px-4 mx-auto max-w-full sm:max-w-[90%] md:max-w-[85%] lg:max-w-[80%] xl:max-w-7xl 2xl:max-w-[1600px];
+  @apply px-4 sm:px-6 mx-auto max-w-full sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-7xl 2xl:max-w-[1600px];
 }
 
 /* Section styles */
 .section {
   position: relative;
   z-index: 5;
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  @apply sm:py-24;
   transition: all 0.3s ease;
 }
 
@@ -84,7 +92,7 @@ html.js .loaded body {
 @layer components {
   /* Button styles */
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-md font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark-bg;
+    @apply inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 rounded-md font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark-bg;
   }
 
   .btn-primary {
@@ -100,16 +108,16 @@ html.js .loaded body {
   }
 
   .btn-sm {
-    @apply px-4 py-2 text-sm;
+    @apply px-3 sm:px-4 py-1.5 sm:py-2 text-sm;
   }
 
   .btn-lg {
-    @apply px-8 py-4 text-lg;
+    @apply px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg;
   }
 
   /* Card styles */
   .card {
-    @apply bg-dark-card rounded-lg p-6 transition-all duration-300 border border-dark-accent/50;
+    @apply bg-dark-card rounded-lg p-4 sm:p-6 transition-all duration-300 border border-dark-accent/50;
   }
 
   .card-hover {
@@ -142,6 +150,19 @@ html.js .loaded body {
 
   .code-body {
     @apply p-4 font-mono text-sm overflow-x-auto;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 

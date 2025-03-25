@@ -26,32 +26,32 @@ const Header = () => {
   
   return (
     <header 
-      className={`fixed w-full z-50 transition-all duration-300 py-6 ${
+      className={`fixed w-full z-50 transition-all duration-300 py-3 sm:py-4 md:py-6 ${
         scrolled ? 'backdrop-blur-md bg-dark-bg/80 border-b border-dark-accent/50' : ''
       }`}
     >
       <div className="container flex items-center justify-between">
         <Link 
           to="/" 
-          className="font-display text-2xl font-bold tracking-tight relative z-10 flex items-center gap-3"
+          className="font-display text-xl sm:text-2xl font-bold tracking-tight relative z-10 flex items-center gap-1.5 sm:gap-3"
           data-cursor="pointer"
         >
-          <svg className="w-10 h-10 text-accent" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-8 h-8 sm:w-10 sm:h-10 text-accent" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-          <span>NETFLUENCE</span>
+          <span className="hidden xs:inline">NETFLUENCE</span>
         </Link>
         
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-4 lg:gap-8">
           {navItems.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}
               className={({ isActive }) => 
-                `relative text-base font-medium uppercase transition-all group
+                `relative text-sm lg:text-base font-medium uppercase transition-all group
                 ${isActive ? 'text-accent' : 'text-white/70 hover:text-white'}`
               }
               data-cursor="pointer"
@@ -68,7 +68,7 @@ const Header = () => {
                   </span>
                   
                   {/* Hover dot indicator */}
-                  <span className="absolute -right-4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-accent scale-0 group-hover:scale-100 transition-transform duration-300 origin-center"></span>
+                  <span className="absolute -right-3 sm:-right-4 top-1/2 -translate-y-1/2 w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-accent scale-0 group-hover:scale-100 transition-transform duration-300 origin-center"></span>
                 </>
               )}
             </NavLink>
@@ -76,11 +76,11 @@ const Header = () => {
           
           <button 
             onClick={toggleTheme}
-            className="ml-2 w-9 h-9 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors"
+            className="ml-2 w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors"
             aria-label="Toggle dark mode"
             data-cursor="pointer"
           >
-            <div className="relative w-5 h-5">
+            <div className="relative w-4 sm:w-5 h-4 sm:h-5">
               <motion.div 
                 animate={{ 
                   rotate: isDarkMode ? 0 : 180,
@@ -89,7 +89,7 @@ const Header = () => {
                 transition={{ duration: 0.5 }}
                 className="absolute inset-0 flex items-center justify-center"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 sm:w-5 h-4 sm:h-5">
                   <circle cx="12" cy="12" r="5"></circle>
                   <line x1="12" y1="1" x2="12" y2="3"></line>
                   <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -109,7 +109,7 @@ const Header = () => {
                 transition={{ duration: 0.5 }}
                 className="absolute inset-0 flex items-center justify-center"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 sm:w-5 h-4 sm:h-5">
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
               </motion.div>
@@ -122,23 +122,23 @@ const Header = () => {
         </nav>
         
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-4">
-          <Link to="/contact" className="btn btn-primary btn-sm hidden sm:flex">
+        <div className="md:hidden flex items-center gap-3 sm:gap-4">
+          <Link to="/contact" className="btn btn-primary btn-sm text-xs hidden xs:flex">
             Get Started
           </Link>
           
           <button 
-            className="relative w-10 h-10 flex items-center justify-center"
+            className="relative w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
             data-cursor="pointer"
           >
-            <div className="w-6 flex flex-col items-end justify-center space-y-1.5">
+            <div className="w-5 sm:w-6 flex flex-col items-end justify-center space-y-1.5">
               <motion.span 
                 animate={{
                   width: menuOpen ? '100%' : '100%',
                   rotate: menuOpen ? 45 : 0,
-                  y: menuOpen ? 9 : 0
+                  y: menuOpen ? 8 : 0
                 }}
                 className="block h-px bg-current"
               />
@@ -153,7 +153,7 @@ const Header = () => {
                 animate={{
                   width: menuOpen ? '100%' : '50%',
                   rotate: menuOpen ? -45 : 0,
-                  y: menuOpen ? -9 : 0
+                  y: menuOpen ? -8 : 0
                 }}
                 className="block h-px bg-current"
               />
@@ -172,14 +172,14 @@ const Header = () => {
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="md:hidden overflow-hidden glass"
           >
-            <div className="container py-8">
-              <nav className="flex flex-col space-y-6">
+            <div className="container py-6 sm:py-8">
+              <nav className="flex flex-col space-y-4 sm:space-y-6">
                 {navItems.map((item) => (
                   <NavLink
                     key={item.path}
                     to={item.path}
                     className={({ isActive }) => 
-                      `text-2xl font-semibold transition-all ${
+                      `text-xl sm:text-2xl font-semibold transition-all ${
                         isActive ? 'text-accent' : 'text-white/70 hover:text-white'
                       }`
                     }
@@ -194,13 +194,13 @@ const Header = () => {
                     onClick={toggleTheme}
                     className="flex items-center space-x-2 text-white/70 hover:text-white transition-colors"
                   >
-                    <span className="text-sm uppercase">
+                    <span className="text-xs sm:text-sm uppercase">
                       {isDarkMode ? 'Light Mode' : 'Dark Mode'}
                     </span>
-                    <div className="w-10 h-5 bg-dark-accent rounded-full p-0.5 flex items-center">
+                    <div className="w-9 h-5 bg-dark-accent rounded-full p-0.5 flex items-center">
                       <motion.div 
                         animate={{ 
-                          x: isDarkMode ? 0 : 20
+                          x: isDarkMode ? 0 : 16
                         }}
                         className="w-4 h-4 bg-white rounded-full"
                       />
@@ -209,7 +209,7 @@ const Header = () => {
                   
                   <Link 
                     to="/contact" 
-                    className="btn btn-primary w-full sm:hidden"
+                    className="btn btn-primary w-full xs:hidden"
                     onClick={() => setMenuOpen(false)}
                   >
                     Get Started

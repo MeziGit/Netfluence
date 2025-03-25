@@ -39,7 +39,8 @@ const PortfolioPage = () => {
       tags: ["React", "TailwindCSS", "Node.js"],
       accentColor: "#10b981",
       category: "web",
-      url: "http://socialrebrandcollective.com/"
+      url: "http://socialrebrandcollective.com/",
+      comingSoon: true
     },
     {
       id: 4,
@@ -69,7 +70,7 @@ const PortfolioPage = () => {
       tags: ["WordPress", "Elementor", "PHP"],
       accentColor: "#10b981",
       category: "web",
-      url: "https://montrealtowing.net/"
+      url: "https://montrealtowing.net"
     }
   ];
   
