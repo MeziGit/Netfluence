@@ -55,8 +55,21 @@ const ContactForm = () => {
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
+
+  const handleSubmit = (e: any) => {
+    if (!validateForm()) {
+      e.preventDefault(); // Prevent form submission if validation fails
+      return false;
+    }
+    
+    // Show loading state, but let the form submit normally
+    setIsSubmitting(true);
+    
+    // FormSubmit will handle the actual submission
+    return true;
+  };
   
-  // Form submission is now handled entirely by FormSubmit
+  // Return the form component
   return (
     <div className="glass p-6 md:p-8 rounded-2xl relative overflow-hidden">
       {/* Background pattern */}
@@ -82,11 +95,11 @@ const ContactForm = () => {
         </div>
       )}
       
-      <form action="https://formsubmit.co/info@netfluence.ca" method="POST" className="space-y-6">
+      <form action="https://formsubmit.co/4019a7b9b3b0cbee5c2b303edd4d2bf4" method="POST" onSubmit={handleSubmit} className="space-y-6">
         {/* FormSubmit configuration fields */}
         <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_subject" value={`Contact Form: ${formData.subject || 'New Inquiry'}`} />
         <input type="hidden" name="_next" value={window.location.href} />
-        <input type="hidden" name="_subject" value={formData.subject || "New contact form submission"} />
         <input type="text" name="_honey" style={{ display: 'none' }} />
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -317,6 +330,16 @@ const ContactForm = () => {
           </button>
         </div>
       </form>
+      
+      {/* Add a section at the bottom explaining the form submission process */}
+      <div className="mt-8 p-4 border border-amber-500/20 bg-amber-500/10 rounded-lg text-sm">
+        <h4 className="font-bold text-amber-400 mb-1">Form Submission Process:</h4>
+        <p className="text-amber-200">
+          This form uses FormSubmit.co service. The first submission will trigger a confirmation email to 
+          <strong> info@netfluence.ca</strong>. You'll need to click the activation link in that email 
+          before receiving form submissions. Check all mail folders including spam.
+        </p>
+      </div>
       
       <div className="mt-10 pt-8 border-t border-gray-800">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">

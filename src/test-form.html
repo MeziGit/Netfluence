@@ -25,24 +25,67 @@
             border: none;
             cursor: pointer;
         }
+        #debug {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .note {
+            margin-top: 20px;
+            padding: 10px;
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 4px;
+        }
+        .success {
+            margin-top: 20px;
+            padding: 10px;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            color: #155724;
+        }
     </style>
 </head>
 <body>
     <h1>Test Contact Form</h1>
     <p>Basic form using FormSubmit's exact instructions</p>
     
+    <div class="success">
+        <h3>✅ Form Activated!</h3>
+        <p>Your FormSubmit form is now active and ready to receive submissions.</p>
+    </div>
+    
+    <div id="debug">
+        <strong>Debug Info:</strong>
+        <pre id="debugContent">IMPORTANT: This form will use traditional form submission (page will reload)</pre>
+    </div>
+    
     <!-- Following FormSubmit's exact instructions -->
-    <form action="https://formsubmit.co/info@netfluence.ca" method="POST">
+    <form id="contactForm" action="https://formsubmit.co/4019a7b9b3b0cbee5c2b303edd4d2bf4" method="POST">
+        <!-- FormSubmit configuration -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://netfluence.ca/thank-you">
+        
         <label for="name">Name</label>
-        <input type="text" name="name" required>
+        <input type="text" name="name" id="name" required>
         
         <label for="email">Email</label>
-        <input type="email" name="email" required>
+        <input type="email" name="email" id="email" required>
         
         <label for="message">Message</label>
-        <textarea name="message" required></textarea>
+        <textarea name="message" id="message" required></textarea>
         
-        <button type="submit">Send Test</button>
+        <button type="submit" id="submitBtn">Send Test</button>
     </form>
+    
+    <div class="note">
+        <p><strong>Success:</strong> Your FormSubmit form has been activated! All submissions will now be sent to your email address.</p>
+        <p><strong>Important:</strong> You've replaced your email with the activation code: <code>4019a7b9b3b0cbee5c2b303edd4d2bf4</code></p>
+    </div>
 </body>
 </html> 
