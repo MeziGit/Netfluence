@@ -5,7 +5,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="pt-16 sm:pt-24 pb-8 sm:pb-12 relative overflow-hidden">
+    <footer className="pt-16 sm:pt-24 pb-8 sm:pb-12 relative overflow-hidden border-t border-white/10">
       {/* Background grid */}
       <div className="absolute inset-0 bg-grid opacity-10"></div>
       

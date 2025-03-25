@@ -385,7 +385,7 @@ const HomePage = ({ isMobile = false }) => {
       </section>
       
       {/* Services Section */}
-      <section className="section relative overflow-hidden">
+      <section className="section section-after-hero relative overflow-hidden">
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         

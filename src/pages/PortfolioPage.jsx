@@ -181,7 +181,7 @@ const PortfolioPage = () => {
       </section>
       
       {/* Portfolio items section */}
-      <section className="py-20 relative overflow-hidden">
+      <section className="py-20 section-after-hero relative overflow-hidden">
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-10"></div>
         

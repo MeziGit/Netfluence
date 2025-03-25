@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Form Entry ID Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            overflow: auto;
+            border-radius: 5px;
+        }
+        .steps {
+            background: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            margin-bottom: 20px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Google Form Entry ID Finder</h1>
+    
+    <div class="steps">
+        <h2>Steps to find your form's entry IDs:</h2>
+        <ol>
+            <li>Open your Google Form in a browser tab</li>
+            <li>Right-click anywhere on the form and select "View Page Source" (or press Ctrl+U/Cmd+U)</li>
+            <li>Press Ctrl+F/Cmd+F to open the search box</li>
+            <li>Search for <code>entry.</code> (include the period)</li>
+            <li>You'll find multiple results like <code>entry.123456789</code></li>
+            <li>Each form field has a unique entry ID</li>
+        </ol>
+    </div>
+    
+    <h2>Try this automated approach:</h2>
+    <p>Click the button below to automatically visit your form and open the browser console. In the console, we'll log all entry IDs.</p>
+    
+    <ol>
+        <li>Click the button below</li>
+        <li>When your form opens in a new tab, press F12 to open Developer Tools</li>
+        <li>Go to the "Console" tab</li>
+        <li>You should see output showing the entry IDs for each field</li>
+    </ol>
+    
+    <button id="findEntryIdsBtn">Open Form & Find Entry IDs</button>
+    
+    <div class="result" id="result">
+        <h3>Identified Entry IDs:</h3>
+        <pre id="entryIds">Looking for entry IDs...</pre>
+    </div>
+    
+    <script>
+        document.getElementById('findEntryIdsBtn').addEventListener('click', function() {
+            const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc8Frz7iIQUzRLBtg-mx0X5AtNnjkLu12nPUBRprW-76OETGg/viewform";
+            
+            // Open form in new tab
+            const newTab = window.open(formUrl, '_blank');
+            
+            // Show a message with instructions
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('entryIds').innerText = 
+                "Form opened in a new tab.\n\n" +
+                "1. Press F12 to open Developer Tools\n" +
+                "2. Go to the 'Console' tab\n" +
+                "3. Look for output showing entry IDs\n\n" +
+                "Then in the console, paste this code:\n\n" +
+                "Array.from(document.querySelectorAll('input, textarea, select'))\n" +
+                "  .filter(el => el.name && el.name.includes('entry.'))\n" +
+                "  .forEach(el => {\n" +
+                "    const label = document.querySelector(`label[for='${el.id}']`)?.innerText || 'Unknown';\n" +
+                "    console.log(`Field: ${label} -> ${el.name}`);\n" +
+                "  });";
+        });
+    </script>
+</body>
+</html> 

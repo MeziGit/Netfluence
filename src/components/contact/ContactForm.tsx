@@ -13,8 +13,10 @@ const ContactForm = () => {
   
   const [activeInput, setActiveInput] = useState('');
   const [formErrors, setFormErrors] = useState<{[key: string]: string}>({});
-  const [formSuccess, setFormSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Google Form direct URL (without iframe embedding)
+  const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSc8Frz7iIQUzRLBtg-mx0X5AtNnjkLu12nPUBRprW-76OETGg/viewform";
   
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -57,16 +59,34 @@ const ContactForm = () => {
   };
 
   const handleSubmit = (e: any) => {
+    e.preventDefault();
+    
     if (!validateForm()) {
-      e.preventDefault(); // Prevent form submission if validation fails
-      return false;
+      return;
     }
     
-    // Show loading state, but let the form submit normally
     setIsSubmitting(true);
     
-    // FormSubmit will handle the actual submission
-    return true;
+    // IMPORTANT: Update these entry IDs after inspecting your Google Form
+    // You'll need to inspect your form in the browser to get these exact entry IDs
+    // Use the network tab in dev tools when submitting the form to see the entry IDs
+    const entryIds = {
+      name: "entry.1234567890", // Replace with actual ID from your form
+      email: "entry.0987654321", // Replace with actual ID from your form
+      message: "entry.1122334455", // Replace with actual ID from your form
+      // Add others as needed
+    };
+    
+    // Build the Google Form URL with form data
+    let googleFormSubmitURL = googleFormURL + "?";
+    googleFormSubmitURL += `${entryIds.name}=${encodeURIComponent(formData.name)}&`;
+    googleFormSubmitURL += `${entryIds.email}=${encodeURIComponent(formData.email)}&`;
+    googleFormSubmitURL += `${entryIds.message}=${encodeURIComponent(formData.message)}`;
+    
+    // Add other fields if you have the corresponding entry IDs
+    
+    // Redirect to Google Form with pre-filled data
+    window.location.href = googleFormSubmitURL;
   };
   
   // Return the form component
@@ -77,15 +97,6 @@ const ContactForm = () => {
       
       <h3 className="text-2xl font-display font-bold mb-8 text-center">Get in Touch</h3>
       
-      {formSuccess ? (
-        <div className="bg-green-500 bg-opacity-10 border border-green-500 text-green-500 rounded-lg p-4 mb-6 animate-fade-in">
-          <div className="flex items-center">
-            <i className="fas fa-check-circle text-xl mr-2"></i>
-            <p>Thank you for your message! We'll get back to you soon.</p>
-          </div>
-        </div>
-      ) : null}
-      
       {formErrors.submit && (
         <div className="bg-red-500 bg-opacity-10 border border-red-500 text-red-500 rounded-lg p-4 mb-6 animate-fade-in">
           <div className="flex items-center">
@@ -95,13 +106,7 @@ const ContactForm = () => {
         </div>
       )}
       
-      <form action="https://formsubmit.co/4019a7b9b3b0cbee5c2b303edd4d2bf4" method="POST" onSubmit={handleSubmit} className="space-y-6">
-        {/* FormSubmit configuration fields */}
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_subject" value={`Contact Form: ${formData.subject || 'New Inquiry'}`} />
-        <input type="hidden" name="_next" value={window.location.href} />
-        <input type="text" name="_honey" style={{ display: 'none' }} />
-        
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Name input */}
           <div className="relative">
@@ -331,13 +336,11 @@ const ContactForm = () => {
         </div>
       </form>
       
-      {/* Add a section at the bottom explaining the form submission process */}
-      <div className="mt-8 p-4 border border-amber-500/20 bg-amber-500/10 rounded-lg text-sm">
-        <h4 className="font-bold text-amber-400 mb-1">Form Submission Process:</h4>
-        <p className="text-amber-200">
-          This form uses FormSubmit.co service. The first submission will trigger a confirmation email to 
-          <strong> info@netfluence.ca</strong>. You'll need to click the activation link in that email 
-          before receiving form submissions. Check all mail folders including spam.
+      {/* Instructions section */}
+      <div className="mt-8 p-4 border border-blue-500/20 bg-blue-500/10 rounded-lg text-sm">
+        <h4 className="font-bold text-blue-400 mb-1">Contact Form Information:</h4>
+        <p className="text-blue-200">
+          This form uses Google Forms to process submissions. After filling out this form, you'll be redirected to complete your submission on Google Forms with your information pre-filled.
         </p>
       </div>
       

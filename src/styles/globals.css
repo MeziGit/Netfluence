@@ -76,6 +76,11 @@ p {
   position: relative;
 }
 
+/* First section after hero */
+.section-after-hero {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 @media (min-width: 768px) {
   .section {
     padding: 8rem 0;
