@@ -30,7 +30,7 @@ const HomePage = ({ isMobile = false }) => {
   // Static components for mobile (no animations)
   const StaticComponent = ({ children, className = '' }) => {
     return isMobile ? (
-      <div className={className}>{children}</div>
+      <div className={className} style={{ willChange: 'auto', transform: 'translateZ(0)' }}>{children}</div>
     ) : (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -47,7 +47,7 @@ const HomePage = ({ isMobile = false }) => {
   // Static card for mobile (no animations)
   const StaticCard = ({ children, index }) => {
     return isMobile ? (
-      <div className="card card-hover relative overflow-hidden">
+      <div className="card card-hover relative overflow-hidden" style={{ willChange: 'auto', transform: 'translateZ(0)' }}>
         {children}
       </div>
     ) : (
@@ -243,12 +243,30 @@ const HomePage = ({ isMobile = false }) => {
                   </pre>
                   
                   {/* Mobile-optimized code view - simplified version */}
-                  <pre className={`text-white/80 transition-opacity duration-300 absolute inset-0 p-4 ${isMobile ? 'block' : 'hidden'}`}>
+                  <pre className={`text-white/80 transition-opacity duration-300 absolute inset-0 p-4 ${isMobile ? 'group-hover:opacity-0 block' : 'hidden'}`}>
                     <span className="text-accent-tertiary">const</span> <span className="text-accent-secondary">createWebsite</span> <span className="text-white">=</span> <span className="text-white">() =&gt;</span> <span className="text-white">{'{'}</span>
                     <br/>
                     <span className="pl-4 text-white">design:</span> <span className="text-accent">'responsive'</span><span className="text-white">,</span>
                     <br/>
-                    <span className="pl-4 text-white">stack:</span> <span className="text-white">{'['}</span><span className="text-accent">'React'</span><span className="text-white">{']'}</span><span className="text-white">,</span>
+                    <span className="pl-4 text-white">stack:</span> <span className="text-white">{'['}</span>
+                    <br/>
+                    <span className="pl-8 text-accent">'React'</span><span className="text-white">,</span>
+                    <br/>
+                    <span className="pl-8 text-accent">'Tailwind'</span><span className="text-white">,</span>
+                    <br/>
+                    <span className="pl-8 text-accent">'Node.js'</span>
+                    <br/>
+                    <span className="pl-4 text-white">{']'},</span>
+                    <br/>
+                    <span className="pl-4 text-white">features:</span> <span className="text-white">{'{'}</span>
+                    <br/>
+                    <span className="pl-8 text-white">performance:</span> <span className="text-accent">'optimized'</span><span className="text-white">,</span>
+                    <br/>
+                    <span className="pl-8 text-white">seo:</span> <span className="text-accent-secondary">true</span><span className="text-white">,</span>
+                    <br/>
+                    <span className="pl-8 text-white">mobile:</span> <span className="text-accent-secondary">true</span>
+                    <br/>
+                    <span className="pl-4 text-white">{'}'}</span><span className="text-white">,</span>
                     <br/>
                     <span className="pl-4 text-accent-tertiary">return</span> <span className="text-accent-secondary">success</span><span className="text-white">();</span>
                     <br/>
@@ -288,15 +306,27 @@ const HomePage = ({ isMobile = false }) => {
                     <br/>
                     <span className="text-accent-tertiary">const</span> <span className="text-accent-secondary">buildYourWebsite</span> <span className="text-white">=</span> <span className="text-white">(</span><span className="text-accent-secondary">ideas</span><span className="text-white">) =&gt;</span> <span className="text-white">{'{'}</span>
                     <br/>
+                    <span className="pl-4 text-accent-tertiary">// Transform your ideas into reality</span>
+                    <br/>
+                    <span className="pl-4 text-accent-tertiary">const</span> <span className="text-white">design</span> <span className="text-white">=</span> <span className="text-accent-secondary">createDesign</span><span className="text-white">(ideas);</span>
+                    <br/>
                     <span className="pl-4 text-white">features:</span> <span className="text-white">{'{'}</span>
                     <br/>
                     <span className="pl-8 text-white">design:</span> <span className="text-accent">'amazing'</span><span className="text-white">,</span>
                     <br/>
-                    <span className="pl-8 text-white">speed:</span> <span className="text-accent">'fast'</span>
+                    <span className="pl-8 text-white">speed:</span> <span className="text-accent">'fast'</span><span className="text-white">,</span>
+                    <br/>
+                    <span className="pl-8 text-white">responsive:</span> <span className="text-accent-secondary">true</span><span className="text-white">,</span>
+                    <br/>
+                    <span className="pl-8 text-white">security:</span> <span className="text-accent-secondary">true</span>
                     <br/>
                     <span className="pl-4 text-white">{'}'},</span>
                     <br/>
-                    <span className="pl-4 text-accent-tertiary">return</span> <span className="text-accent-secondary">netfluence</span><span className="text-white">.create(ideas);</span>
+                    <span className="pl-4 text-accent-tertiary">// Let's make something beautiful</span>
+                    <br/>
+                    <span className="pl-4 text-accent-tertiary">const</span> <span className="text-white">result</span> <span className="text-white">=</span> <span className="text-accent-secondary">netfluence</span><span className="text-white">.build(ideas);</span>
+                    <br/><br/>
+                    <span className="pl-4 text-accent-tertiary">return</span> <span className="text-white">result;</span>
                     <br/>
                     <span className="text-white">{'}'};</span>
                   </pre>
@@ -374,45 +404,79 @@ const HomePage = ({ isMobile = false }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {featuredProjects.map((project, index) => (
               <StaticCard key={index} index={index}>
-                <div className="block bg-dark-card border border-dark-accent/30 rounded-lg overflow-hidden h-full transition-all duration-300 hover:border-accent/30 hover:shadow-md group">
+                <div 
+                  className="block bg-dark-card border border-dark-accent/30 rounded-lg overflow-hidden h-full transition-transform duration-300 hover:border-accent/30 group"
+                  style={{ transform: 'translateZ(0)' }} // Hardware acceleration
+                >
                   <div className="p-6 h-full flex flex-col">
-                    <div className="flex items-center mb-4">
+                    {/* Project header - with touch-friendly tap area */}
+                    <div className="flex items-center mb-4 relative">
                       <span 
-                        className="text-xs px-3 py-1 rounded-full mr-3"
+                        className="text-xs font-medium px-3 py-1 rounded-full mr-3"
                         style={{ 
-                          background: `${project.accentColor}15`, 
-                          color: project.accentColor 
+                          background: `${project.accentColor}20`, 
+                          color: project.accentColor,
+                          willChange: 'transform' // Performance hint
                         }}
                       >
                         {project.type}
                       </span>
                       
                       <div className="h-px flex-1 bg-dark-accent/30"></div>
+                      
+                      <div 
+                        className="ml-3 text-2xl transform transition-transform duration-300 group-hover:scale-110"
+                        style={{ 
+                          color: project.accentColor,
+                          opacity: 0.5,
+                          willChange: 'transform'
+                        }}
+                      >
+                        {index + 1 < 10 ? `0${index + 1}` : index + 1}
+                      </div>
                     </div>
                     
-                    <h3 className="text-2xl font-bold mb-3 group-hover:text-accent transition-colors duration-300">{project.title}</h3>
+                    {/* Project content - simplified transitions */}
+                    <h3 
+                      className="text-2xl font-bold mb-3 transition-colors duration-300 group-hover:text-accent relative"
+                    >
+                      {project.title}
+                      <span className="absolute -left-2 top-1/2 w-1 h-0 group-hover:h-full bg-accent opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-full" style={{ transform: 'translateY(-50%)' }}></span>
+                    </h3>
+                    
                     <p className="text-white/70 mb-6">{project.description}</p>
                     
+                    {/* Tags - simplified with reduced effects */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.tags.map((tag, i) => (
                         <span 
                           key={i} 
-                          className="text-xs px-2 py-1 bg-dark-accent/50 rounded-full"
+                          className="text-xs px-3 py-1 rounded-full font-medium"
+                          style={{ 
+                            background: `${project.accentColor}10`, 
+                            color: `${project.accentColor}`,
+                            transform: 'translateZ(0)' // Hardware acceleration
+                          }}
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
                     
+                    {/* Link - with performance optimized transitions */}
                     {project.url ? (
                       <a 
                         href={project.url} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="mt-auto flex items-center text-accent font-medium"
+                        className="mt-auto flex items-center font-medium"
+                        style={{ 
+                          color: project.accentColor,
+                          transform: 'translateZ(0)' // Hardware acceleration
+                        }}
                       >
                         <span>View Project</span>
-                        <span className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                        <span className="inline-block ml-2 transform transition-transform duration-300 group-hover:translate-x-1">→</span>
                       </a>
                     ) : (
                       <div className="mt-auto flex items-center font-medium">

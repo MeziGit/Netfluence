@@ -155,7 +155,7 @@ const Hero = () => {
                     </div>
                     
                     {/* Code editor content */}
-                    <div className="z-10 w-full">
+                    <div className="z-10 w-full h-full relative">
                       <div className="flex items-center mb-3">
                         <div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
                         <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
@@ -163,7 +163,7 @@ const Hero = () => {
                         <div className="ml-4 text-xs text-white/50">
                           {isMobile && (
                             <span>
-                              {isFileHovered ? "your-project.js" : "netfluence.js"}
+                              {isFileHovered ? "your-amazing-website.js" : "netfluence.js"}
                               {isMobile && (
                                 <span className="ml-2 text-xs text-accent">
                                   [tap to {isFileHovered ? "close" : "view"}]
@@ -174,113 +174,117 @@ const Hero = () => {
                         </div>
                       </div>
                       
-                      {/* Desktop code view - default state */}
-                      <div className={`space-y-2 font-mono text-xs sm:text-sm text-left ${isMobile ? 'hidden' : (isFileHovered ? 'hidden' : 'block')}`}>
-                        <div className="text-gray-400">
-                          <span className="text-accent">const</span> <span className="text-gray-100">netfluence</span> = <span className="text-accent">{`{`}</span>
-                        </div>
-                        <div className="pl-6 text-gray-400">
-                          <span className="text-green-400">expertise:</span> [<span className="text-gray-100">'web'</span>, <span className="text-gray-100">'mobile'</span>, <span className="text-gray-100">'software'</span>],
-                        </div>
-                        <div className="pl-6 text-gray-400">
-                          <span className="text-green-400">location:</span> <span className="text-gray-100">'Montreal, QC'</span>,
-                        </div>
-                        <div className="pl-6 text-gray-400">
-                          <span className="text-green-400">clients:</span> <span className="text-gray-100">100</span>,
-                        </div>
-                        <div className="pl-6 text-gray-400">
-                          <span className="text-green-400">createAwesomeProduct:</span> <span className="text-accent">() =></span> <span className="text-accent">{`{`}</span>
-                        </div>
-                        <div className="pl-12 text-gray-400">
-                          <span className="text-green-400">return</span> <span className="text-gray-100">'Exceptional digital solutions'</span>;
-                        </div>
-                        <div className="pl-6 text-gray-400">
-                          <span className="text-accent">{`}`}</span>
-                        </div>
-                        <div className="text-gray-400">
-                          <span className="text-accent">{`}`}</span>;
-                        </div>
-                        <div className="text-gray-400">
-                          <span className="text-green-400">netfluence</span>.<span className="text-gray-300">createAwesomeProduct</span>();
-                        </div>
-                      </div>
-                      
-                      {/* Mobile code view - simplified version */}
-                      <div className={`space-y-2 font-mono text-xs sm:text-sm text-left ${isMobile ? (!isFileHovered ? 'block' : 'hidden') : 'hidden'}`}>
-                        <div className="text-gray-400">
-                          <span className="text-accent">const</span> <span className="text-gray-100">netfluence</span> = <span className="text-accent">{`{`}</span>
-                        </div>
-                        <div className="pl-4 text-gray-400">
-                          <span className="text-green-400">services:</span> [<span className="text-gray-100">'web'</span>, <span className="text-gray-100">'mobile'</span>],
-                        </div>
-                        <div className="pl-4 text-gray-400">
-                          <span className="text-green-400">create:</span> <span className="text-accent">() =></span> <span className="text-accent">{`{`}</span>
-                        </div>
-                        <div className="pl-8 text-gray-400">
-                          <span className="text-green-400">return</span> <span className="text-gray-100">'Amazing'</span>;
-                        </div>
-                        <div className="pl-4 text-gray-400">
-                          <span className="text-accent">{`}`}</span>
-                        </div>
-                        <div className="text-gray-400">
-                          <span className="text-accent">{`}`}</span>;
-                        </div>
-                        <div className="text-gray-400">
-                          <span className="text-green-400">netfluence</span>.<span className="text-gray-300">create</span>();
-                        </div>
-                      </div>
-                      
-                      {/* Desktop code view - hover state */}
-                      <div className={`space-y-2 font-mono text-xs sm:text-sm text-left ${isMobile ? 'hidden' : (isFileHovered ? 'block' : 'hidden')}`}>
-                        <div className="text-gray-400">
-                          <span className="text-accent">import</span> <span className="text-accent">'magic'</span><span className="text-white">;</span>
-                        </div>
-                        <div className="text-gray-400">
-                          <span className="text-accent">const</span> <span className="text-accent-secondary">buildYourWebsite</span> <span className="text-white">=</span> <span className="text-accent-tertiary">async</span> <span className="text-white">(</span><span className="text-accent-secondary">yourIdeas</span><span className="text-white">) =&gt;</span> <span className="text-white">{'{'}</span>
-                        </div>
-                        <div className="pl-4 text-gray-400">
-                          <span className="text-accent-tertiary">const</span> <span className="text-white">features</span> <span className="text-white">=</span> <span className="text-white">{'{'}</span>
-                        </div>
-                        <div className="pl-8 text-gray-400">
-                          <span className="text-white">customDesign:</span> <span className="text-accent-secondary">true</span><span className="text-white">,</span>
-                        </div>
-                        <div className="pl-8 text-gray-400">
-                          <span className="text-white">performance:</span> <span className="text-accent">'blazing-fast'</span>
-                        </div>
-                        <div className="pl-4 text-gray-400">
-                          <span className="text-white">{'}'};</span>
-                        </div>
-                        <div className="pl-4 text-gray-400">
-                          <span className="text-accent-tertiary">return</span> <span className="text-accent-secondary">netfluence</span><span className="text-white">.deliver(features);</span>
-                        </div>
-                        <div className="text-gray-400">
-                          <span className="text-white">{'}'};</span>
-                        </div>
-                      </div>
-                      
-                      {/* Mobile code view - hover state */}
-                      <div className={`space-y-2 font-mono text-xs sm:text-sm text-left ${isMobile ? (isFileHovered ? 'block' : 'hidden') : 'hidden'}`}>
-                        <div className="text-gray-400">
-                          <span className="text-accent">const</span> <span className="text-accent-secondary">yourProject</span> <span className="text-white">=</span> <span className="text-white">(</span><span className="text-accent-secondary">ideas</span><span className="text-white">) =&gt;</span> <span className="text-white">{'{'}</span>
-                        </div>
-                        <div className="pl-4 text-gray-400">
-                          <span className="text-white">features:</span> <span className="text-white">{'{'}</span>
-                        </div>
-                        <div className="pl-8 text-gray-400">
-                          <span className="text-white">design:</span> <span className="text-accent">'amazing'</span><span className="text-white">,</span>
-                        </div>
-                        <div className="pl-8 text-gray-400">
-                          <span className="text-white">speed:</span> <span className="text-accent">'fast'</span>
-                        </div>
-                        <div className="pl-4 text-gray-400">
-                          <span className="text-white">{'}'},</span>
-                        </div>
-                        <div className="pl-4 text-gray-400">
-                          <span className="text-accent-tertiary">return</span> <span className="text-accent-secondary">netfluence</span><span className="text-white">.build(ideas);</span>
-                        </div>
-                        <div className="text-gray-400">
-                          <span className="text-white">{'}'};</span>
-                        </div>
+                      {/* Code editor with separate containers for mobile display */}
+                      <div className="code-body relative overflow-hidden min-h-[320px] md:min-h-[320px] min-h-[220px]">
+                        {/* Desktop versions - no changes */}
+                        {!isMobile && (
+                          <>
+                            <pre className="text-white/80 group-hover:opacity-0 transition-opacity duration-300 absolute inset-0 p-4">
+                              // ... existing desktop code ...
+                            </pre>
+                            <pre className="text-white/80 group-hover:opacity-100 opacity-0 transition-opacity duration-300 absolute inset-0 p-4">
+                              // ... existing desktop hover code ...
+                            </pre>
+                          </>
+                        )}
+                        
+                        {/* Mobile version - completely new approach */}
+                        {isMobile && (
+                          <div className="absolute inset-0 p-4 bg-gray-900/60">
+                            <div className="font-mono text-xs sm:text-sm text-left relative">
+                              {/* File name indicator */}
+                              <div className="absolute -top-2 right-0 text-xs">
+                                <button 
+                                  onClick={() => setIsFileHovered(!isFileHovered)}
+                                  className="px-2 py-1 text-[10px] rounded bg-gray-800 text-gray-400"
+                                >
+                                  {isFileHovered ? "your-amazing-website.js" : "netfluence.js"} 
+                                  <span className="ml-1 text-accent">[tap to switch]</span>
+                                </button>
+                              </div>
+                              
+                              {/* First file content - Hardware accelerated */}
+                              <div 
+                                className={`space-y-2 ${isFileHovered ? 'hidden' : 'block'}`}
+                                style={{ transform: 'translateZ(0)' }}
+                              >
+                                <div className="text-gray-400">
+                                  <span className="text-purple-500">import</span> <span className="text-cyan-300">'magic'</span>;
+                                </div>
+                                <div className="text-gray-400">
+                                  <span className="text-purple-500">const</span> <span className="text-white">createWebsite</span> = <span className="text-purple-300">() =></span> <span className="text-white">{`{`}</span>
+                                </div>
+                                <div className="pl-4 text-gray-400">
+                                  <span className="text-purple-500">const</span> <span className="text-white">yourWebsite</span> = <span className="text-purple-300">(</span><span className="text-cyan-300">ideas</span><span className="text-purple-300">) =></span> <span className="text-white">{`{`}</span>
+                                </div>
+                                <div className="pl-8 text-gray-400">
+                                  <span className="text-red-400">features:</span> <span className="text-white">{`{`}</span>
+                                </div>
+                                <div className="pl-12 text-gray-400">
+                                  <span className="text-red-400">design:</span> <span className="text-cyan-300">'amazing'</span>,
+                                </div>
+                                <div className="pl-12 text-gray-400">
+                                  <span className="text-red-400">speed:</span> <span className="text-cyan-300">'fast'</span>
+                                </div>
+                                <div className="pl-8 text-gray-400">
+                                  <span className="text-white">{`}`}</span>,
+                                </div>
+                                <div className="pl-8 text-gray-400">
+                                  <span className="text-purple-500">return</span> <span className="text-white">netfluence</span>.<span className="text-white">create</span><span className="text-white">(ideas);</span>
+                                </div>
+                                <div className="pl-4 text-gray-400">
+                                  <span className="text-white">{`}`}</span>;
+                                </div>
+                                <div className="text-gray-400">
+                                  <span className="text-purple-500">return</span> <span className="text-white">netfluence</span>.<span className="text-white">create</span><span className="text-white">(yourWebsite);</span>
+                                </div>
+                                <div className="text-gray-400">
+                                  <span className="text-white">{`}`}</span>;
+                                </div>
+                              </div>
+                              
+                              {/* Second file content - Hardware accelerated */}
+                              <div 
+                                className={`space-y-2 ${isFileHovered ? 'block' : 'hidden'}`}
+                                style={{ transform: 'translateZ(0)' }}
+                              >
+                                <div className="text-gray-400">
+                                  <span className="text-purple-500">import</span> <span className="text-cyan-300">'magic'</span>;
+                                </div>
+                                <div className="text-gray-400">
+                                  <span className="text-purple-500">const</span> <span className="text-white">createWebsite</span> = <span className="text-purple-300">() =></span> <span className="text-white">{`{`}</span>
+                                </div>
+                                <div className="pl-4 text-gray-400">
+                                  <span className="text-purple-500">const</span> <span className="text-white">yourWebsite</span> = <span className="text-purple-300">(</span><span className="text-cyan-300">ideas</span><span className="text-purple-300">) =></span> <span className="text-white">{`{`}</span>
+                                </div>
+                                <div className="pl-8 text-gray-400">
+                                  <span className="text-red-400">features:</span> <span className="text-white">{`{`}</span>
+                                </div>
+                                <div className="pl-12 text-gray-400">
+                                  <span className="text-red-400">design:</span> <span className="text-cyan-300">'amazing'</span>,
+                                </div>
+                                <div className="pl-12 text-gray-400">
+                                  <span className="text-red-400">speed:</span> <span className="text-cyan-300">'fast'</span>
+                                </div>
+                                <div className="pl-8 text-gray-400">
+                                  <span className="text-white">{`}`}</span>,
+                                </div>
+                                <div className="pl-8 text-gray-400">
+                                  <span className="text-purple-500">return</span> <span className="text-white">netfluence</span>.<span className="text-white">create</span><span className="text-white">(ideas);</span>
+                                </div>
+                                <div className="pl-4 text-gray-400">
+                                  <span className="text-white">{`}`}</span>;
+                                </div>
+                                <div className="text-gray-400">
+                                  <span className="text-purple-500">return</span> <span className="text-white">netfluence</span>.<span className="text-white">create</span><span className="text-white">(yourWebsite);</span>
+                                </div>
+                                <div className="text-gray-400">
+                                  <span className="text-white">{`}`}</span>;
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
