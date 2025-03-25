@@ -8,6 +8,8 @@
   --accent-color: #0ea5e9;
   --accent-secondary: #10b981;
   --accent-tertiary: #8b5cf6;
+  --accent: #10b981;
+  --accent-rgb: 16, 185, 129; /* RGB values for the accent color */
 }
 
 /* Completely disable all animations on mobile devices */
@@ -324,4 +326,27 @@ html.js .loaded body {
   background-color: currentColor;
   margin-left: 4px;
   animation: blink 1s step-end infinite;
+}
+
+/* Mobile touch effects for cards */
+@media (max-width: 768px) {
+  .card-hover {
+    transform: translateZ(0);
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .card-hover:active {
+    transform: translateZ(0) scale(0.98);
+    box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.2);
+  }
+  
+  .card-hover:active .touch-feedback {
+    background-color: rgba(var(--accent-rgb), 0.05);
+  }
+}
+
+/* Card focus and hover states that work on both mobile and desktop */
+.card-hover:focus-within {
+  box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.25);
+  outline: none;
 } 

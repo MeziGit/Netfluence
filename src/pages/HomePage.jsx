@@ -47,7 +47,21 @@ const HomePage = ({ isMobile = false }) => {
   // Static card for mobile (no animations)
   const StaticCard = ({ children, index }) => {
     return isMobile ? (
-      <div className="card card-hover relative overflow-hidden" style={{ willChange: 'auto', transform: 'translateZ(0)' }}>
+      <div 
+        className="card card-hover relative overflow-hidden" 
+        style={{ 
+          willChange: 'auto', 
+          transform: 'translateZ(0)',
+          transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+        }}
+      >
+        <div 
+          className="touch-feedback absolute inset-0 bg-accent/0 z-0 pointer-events-none"
+          style={{ 
+            transition: 'background-color 0.3s ease',
+            transform: 'translateZ(0)'
+          }}
+        />
         {children}
       </div>
     ) : (
@@ -361,11 +375,15 @@ const HomePage = ({ isMobile = false }) => {
             {services.map((service, index) => (
               <StaticCard key={index} index={index}>
                 <div className="relative z-10 flex flex-col h-full">
-                  <div className="text-accent-secondary text-3xl mb-6 p-4 bg-accent-secondary/10 rounded-lg w-fit">
+                  <div 
+                    className="text-accent-secondary text-3xl mb-6 p-4 bg-accent-secondary/10 rounded-lg w-fit transition-all duration-300 group-hover:bg-accent-secondary/20 group-hover:scale-105" 
+                    style={{ transform: 'translateZ(0)', transformOrigin: 'left' }}
+                  >
                     {service.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                  <p className="text-white/70 mb-6">{service.description}</p>
+                  <h3 className="text-xl font-bold mb-3 transition-colors duration-300 group-hover:text-accent-secondary">{service.title}</h3>
+                  <p className="text-white/70 mb-6 transition-colors duration-300 group-hover:text-white/90">{service.description}</p>
+                  <div className="h-0.5 w-0 bg-accent-secondary/30 mt-auto group-hover:w-full transition-all duration-500"></div>
                 </div>
               </StaticCard>
             ))}
@@ -416,7 +434,8 @@ const HomePage = ({ isMobile = false }) => {
                         style={{ 
                           background: `${project.accentColor}20`, 
                           color: project.accentColor,
-                          willChange: 'transform' // Performance hint
+                          willChange: 'transform', // Performance hint
+                          transform: 'translateZ(0)' // Hardware acceleration
                         }}
                       >
                         {project.type}
@@ -429,33 +448,36 @@ const HomePage = ({ isMobile = false }) => {
                         style={{ 
                           color: project.accentColor,
                           opacity: 0.5,
-                          willChange: 'transform'
+                          willChange: 'transform',
+                          transform: 'translateZ(0)' // Hardware acceleration
                         }}
                       >
                         {index + 1 < 10 ? `0${index + 1}` : index + 1}
                       </div>
                     </div>
                     
-                    {/* Project content - simplified transitions */}
+                    {/* Project content - enhanced transitions */}
                     <h3 
-                      className="text-2xl font-bold mb-3 transition-colors duration-300 group-hover:text-accent relative"
+                      className="text-2xl font-bold mb-3 transition-all duration-300 group-hover:text-accent relative"
+                      style={{ transform: 'translateZ(0)' }}
                     >
                       {project.title}
-                      <span className="absolute -left-2 top-1/2 w-1 h-0 group-hover:h-full bg-accent opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-full" style={{ transform: 'translateY(-50%)' }}></span>
+                      <span className="absolute -left-2 top-1/2 w-1 h-0 group-hover:h-full bg-accent opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-full" style={{ transform: 'translateY(-50%)', willChange: 'opacity, height' }}></span>
                     </h3>
                     
                     <p className="text-white/70 mb-6">{project.description}</p>
                     
-                    {/* Tags - simplified with reduced effects */}
+                    {/* Tags - with improved effects */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.tags.map((tag, i) => (
                         <span 
                           key={i} 
-                          className="text-xs px-3 py-1 rounded-full font-medium"
+                          className="text-xs px-3 py-1 rounded-full font-medium transition-all duration-300"
                           style={{ 
                             background: `${project.accentColor}10`, 
                             color: `${project.accentColor}`,
-                            transform: 'translateZ(0)' // Hardware acceleration
+                            transform: 'translateZ(0)', // Hardware acceleration
+                            willChange: 'auto'
                           }}
                         >
                           {tag}
@@ -463,20 +485,22 @@ const HomePage = ({ isMobile = false }) => {
                       ))}
                     </div>
                     
-                    {/* Link - with performance optimized transitions */}
+                    {/* Link - with enhanced effects */}
                     {project.url ? (
                       <a 
                         href={project.url} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="mt-auto flex items-center font-medium"
+                        className="mt-auto flex items-center font-medium relative overflow-hidden"
                         style={{ 
                           color: project.accentColor,
-                          transform: 'translateZ(0)' // Hardware acceleration
+                          transform: 'translateZ(0)', // Hardware acceleration
+                          willChange: 'auto'
                         }}
                       >
-                        <span>View Project</span>
-                        <span className="inline-block ml-2 transform transition-transform duration-300 group-hover:translate-x-1">→</span>
+                        <span className="relative z-10">View Project</span>
+                        <span className="inline-block ml-2 transform transition-transform duration-300 group-hover:translate-x-1 relative z-10">→</span>
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 group-hover:w-full opacity-50"></span>
                       </a>
                     ) : (
                       <div className="mt-auto flex items-center font-medium">
@@ -512,12 +536,14 @@ const HomePage = ({ isMobile = false }) => {
                 <div className="p-8 flex flex-col h-full">
                   {/* Quote */}
                   <p className="text-white/80 mb-6 group-hover:text-white transition-colors duration-300">
-                    "{testimonial.quote}"
+                    <span className="text-accent text-4xl font-serif leading-none inline-block opacity-50 transform -translate-y-2 mr-1">"</span>
+                    {testimonial.quote}
+                    <span className="text-accent text-4xl font-serif leading-none inline-block opacity-50 transform translate-y-2 ml-1">"</span>
                   </p>
                   
                   {/* Client info */}
                   <div className="flex items-center border-t border-dark-accent pt-4 mt-auto">
-                    <div className="w-10 h-10 bg-accent flex items-center justify-center text-white font-bold text-lg">
+                    <div className="w-10 h-10 bg-accent flex items-center justify-center text-white font-bold text-lg transform transition-transform duration-300 group-hover:scale-110" style={{ transform: 'translateZ(0)' }}>
                       {testimonial.name.charAt(0)}
                     </div>
                     <div className="ml-4">
@@ -557,11 +583,17 @@ const HomePage = ({ isMobile = false }) => {
             {processSteps.map((step, index) => (
               <StaticCard key={index} index={index}>
                 <div className="relative z-10 flex flex-col h-full">
-                  <div className="text-accent-secondary text-3xl mb-6 p-4 bg-accent-secondary/10 rounded-lg w-fit">
+                  <div 
+                    className="text-accent-secondary text-3xl mb-6 p-4 bg-accent-secondary/10 rounded-lg w-fit transition-all duration-300 group-hover:bg-accent-secondary/20" 
+                    style={{ transform: 'translateZ(0)' }}
+                  >
                     {step.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                  <p className="text-white/70 mb-6">{step.description}</p>
+                  <h3 className="text-xl font-bold mb-3 transition-colors duration-300 group-hover:text-accent-secondary">{step.title}</h3>
+                  <p className="text-white/70 mb-6 transition-colors duration-300 group-hover:text-white/90">{step.description}</p>
+                  <div className="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-accent-secondary/70 text-sm font-medium">Step {index + 1}</span>
+                  </div>
                 </div>
               </StaticCard>
             ))}
