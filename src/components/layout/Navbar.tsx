@@ -64,25 +64,25 @@ const Navbar = () => {
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'py-3 glass' : 'py-6 bg-transparent'
-      }`}
+        isScrolled ? 'bg-dark-bg/95 backdrop-blur-md border-b border-white/10' : 'bg-dark-bg/50 backdrop-blur-sm'
+      } min-h-[70px] md:min-h-[90px]`}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between">
+      <div className="container mx-auto px-5 md:px-16 flex items-center justify-between h-full min-h-[70px] md:min-h-[90px] py-2 md:py-0">
         {/* Logo */}
-        <div className="relative z-10 flex items-center">
-          <span className="text-2xl md:text-3xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
+        <div className="relative z-10 flex items-center py-1">
+          <span className="text-2xl md:text-4xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
             Netfluence
           </span>
-          <div className="h-2 w-2 bg-accent rounded-full ml-1 animate-pulse-slow"></div>
+          <div className="h-3 w-3 bg-accent rounded-full ml-1 animate-pulse-slow"></div>
         </div>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-10">
           {navLinks.map(link => (
             <button
               key={link.id}
               onClick={() => scrollToSection(link.id)}
-              className={`nav-link text-sm font-medium transition-colors duration-300 ${
+              className={`nav-link text-base font-medium transition-colors duration-300 ${
                 activeLink === link.id ? 'text-accent' : 'text-gray-300 hover:text-white'
               }`}
             >
@@ -91,7 +91,7 @@ const Navbar = () => {
           ))}
           <a 
             href="#contact" 
-            className="button-effect button-3d bg-accent hover:bg-accent-light text-white px-5 py-2 rounded-md text-sm font-medium transition-all duration-300"
+            className="button-effect button-3d bg-accent hover:bg-accent-light text-white px-8 py-3 rounded-md text-base font-medium transition-all duration-300"
           >
             Get Started
           </a>
@@ -99,18 +99,18 @@ const Navbar = () => {
         
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden relative z-10 text-gray-100 focus:outline-none"
+          className="md:hidden relative z-10 text-gray-100 focus:outline-none p-2 -mr-2"
           onClick={toggleMobileMenu}
           aria-label="Toggle menu"
         >
-          <div className="w-6 flex flex-col justify-center items-end">
-            <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${
+          <div className="w-8 flex flex-col justify-center items-end">
+            <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-8 rounded-sm ${
               isMobileMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'
             }`}></span>
-            <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-5 rounded-sm my-0.5 ${
+            <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${
               isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
             }`}></span>
-            <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${
+            <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-8 rounded-sm ${
               isMobileMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'
             }`}></span>
           </div>
@@ -118,7 +118,7 @@ const Navbar = () => {
       </div>
       
       {/* Mobile Menu */}
-      <div className={`fixed inset-0 z-40 glass-hover transition-all duration-500 ${
+      <div className={`fixed inset-0 z-40 bg-dark-bg/95 backdrop-blur-md transition-all duration-500 ${
         isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
       }`}>
         <div className="flex flex-col items-center justify-center h-full">
@@ -127,7 +127,7 @@ const Navbar = () => {
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className={`text-xl font-medium transition-colors duration-300 nav-link ${
+                className={`text-2xl font-medium transition-colors duration-300 nav-link ${
                   activeLink === link.id ? 'text-accent' : 'text-gray-200 hover:text-white'
                 } transform transition-transform duration-300 hover:scale-110`}
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -137,7 +137,7 @@ const Navbar = () => {
             ))}
             <a 
               href="#contact" 
-              className="button-effect button-3d bg-accent hover:bg-accent-light text-white px-8 py-3 rounded-md text-lg font-medium transition-all duration-300 mt-6"
+              className="button-effect button-3d bg-accent hover:bg-accent-light text-white px-10 py-4 rounded-md text-xl font-medium transition-all duration-300 mt-6"
               onClick={() => {
                 scrollToSection('contact');
                 toggleMobileMenu();
@@ -150,16 +150,16 @@ const Navbar = () => {
           {/* Social Links */}
           <div className="mt-12 flex items-center space-x-6">
             <a href="https://twitter.com/netfluence" className="text-gray-400 hover:text-accent transition-colors duration-300">
-              <i className="fab fa-twitter text-xl"></i>
+              <i className="fab fa-twitter text-2xl"></i>
             </a>
             <a href="https://instagram.com/netfluence" className="text-gray-400 hover:text-accent transition-colors duration-300">
-              <i className="fab fa-instagram text-xl"></i>
+              <i className="fab fa-instagram text-2xl"></i>
             </a>
             <a href="https://linkedin.com/company/netfluence" className="text-gray-400 hover:text-accent transition-colors duration-300">
-              <i className="fab fa-linkedin text-xl"></i>
+              <i className="fab fa-linkedin text-2xl"></i>
             </a>
             <a href="https://facebook.com/netfluence" className="text-gray-400 hover:text-accent transition-colors duration-300">
-              <i className="fab fa-facebook text-xl"></i>
+              <i className="fab fa-facebook text-2xl"></i>
             </a>
           </div>
           

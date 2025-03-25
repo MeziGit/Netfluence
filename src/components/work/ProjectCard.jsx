@@ -4,6 +4,18 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const ProjectCard = ({ id, title, type, description, tags, accentColor, url, comingSoon }) => {
+  // Function to open the URL when clicked
+  const handleViewProject = (e) => {
+    // Prevent any parent click handlers from firing
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Open the URL in a new tab
+    if (url && !comingSoon) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <div className="h-full p-6 flex flex-col">
       {/* Project header */}
@@ -46,19 +58,18 @@ const ProjectCard = ({ id, title, type, description, tags, accentColor, url, com
         {comingSoon ? (
           <span className="text-white/50">Coming Soon</span>
         ) : (
-          <a 
-            href={url || "#"} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="inline-flex items-center group cursor-pointer hover:text-accent-light"
-            onClick={(e) => {
-              e.stopPropagation();
-              if (url) window.open(url, '_blank', 'noopener,noreferrer');
+          <button 
+            onClick={handleViewProject}
+            className="inline-flex items-center group cursor-pointer hover:text-accent-light py-2 px-1 -ml-1 relative z-20 active:opacity-75 touch-manipulation"
+            style={{ 
+              color: accentColor,
+              WebkitTapHighlightColor: 'transparent'
             }}
+            aria-label={`View ${title} project`}
           >
-            <span>View Project</span>
+            <span className="relative">View Project</span>
             <span className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
-          </a>
+          </button>
         )}
       </div>
     </div>

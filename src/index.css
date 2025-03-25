@@ -5,11 +5,23 @@
 @tailwind utilities;
 
 :root {
-  --accent-color: #0ea5e9;
-  --accent-secondary: #10b981;
-  --accent-tertiary: #8b5cf6;
-  --accent: #10b981;
-  --accent-rgb: 16, 185, 129; /* RGB values for the accent color */
+  /* Base colors */
+  --color-background: #030712;
+  --color-card: #111827;
+  --color-accent: #0ea5e9;
+  --color-accent-secondary: #10b981;
+  --color-accent-tertiary: #8b5cf6;
+  --color-muted: #1f2937;
+  --color-text: #f9fafb;
+  --color-text-muted: rgba(249, 250, 251, 0.7);
+  
+  /* RGB values for opacity adjustments */
+  --accent-rgb: 14, 165, 233;
+  --accent-secondary-rgb: 16, 185, 129;
+  --accent-tertiary-rgb: 139, 92, 246;
+  
+  /* Animation easing */
+  --easing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Completely disable all animations on mobile devices */
@@ -37,7 +49,12 @@
 /* Hide gradient orbs completely on very small screens */
 @media (max-width: 390px) {
   .rounded-full.blur-3xl {
-    display: none !important;
+    opacity: 0.3 !important;
+    filter: blur(30px) !important;
+    transform: scale(0.7) translateZ(0) !important;
+    will-change: transform, opacity !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
   }
   
   /* Disable all gradient backgrounds */
@@ -244,6 +261,104 @@ html.js .loaded body {
   }
 }
 
+/* Mobile navbar optimization */
+@media (max-width: 768px) {
+  /* Ensure navbar has sufficient height and padding on mobile */
+  header {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+  
+  /* Make the logo text slightly larger for better visibility */
+  header .text-2xl {
+    font-size: 1.5rem;
+    letter-spacing: 0.01em;
+  }
+  
+  /* Ensure mobile menu button has a sufficient touch target */
+  header button {
+    min-height: 48px;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Make background orbs more visible on mobile but optimized for performance */
+  .bg-accent.rounded-full.blur-3xl,
+  .bg-accent\/20.rounded-full.blur-3xl,
+  .bg-accent\/15.rounded-full.blur-3xl,
+  .bg-accent\/10.rounded-full.blur-3xl,
+  .bg-accent\/5.rounded-full.blur-3xl {
+    opacity: 0.4 !important;
+    filter: blur(40px) !important;
+    transform: translateZ(0) !important;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .bg-accent-tertiary.rounded-full.blur-3xl,
+  .bg-accent-tertiary\/20.rounded-full.blur-3xl,
+  .bg-accent-tertiary\/15.rounded-full.blur-3xl,
+  .bg-accent-tertiary\/10.rounded-full.blur-3xl,
+  .bg-accent-tertiary\/5.rounded-full.blur-3xl {
+    opacity: 0.4 !important;
+    filter: blur(40px) !important;
+    transform: translateZ(0) !important;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .bg-accent-secondary.rounded-full.blur-3xl,
+  .bg-accent-secondary\/20.rounded-full.blur-3xl,
+  .bg-accent-secondary\/15.rounded-full.blur-3xl,
+  .bg-accent-secondary\/10.rounded-full.blur-3xl,
+  .bg-accent-secondary\/5.rounded-full.blur-3xl {
+    opacity: 0.4 !important;
+    filter: blur(40px) !important;
+    transform: translateZ(0) !important;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Enhance visibility of all gradient blobs */
+  .section .rounded-full.blur-3xl {
+    opacity: 0.35 !important;
+    filter: blur(35px) !important;
+    transform: translateZ(0) scale(0.9) !important;
+  }
+
+  /* Mobile touch effects for cards */
+  .card-hover {
+    transform: translateZ(0);
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .card-hover:active {
+    transform: translateZ(0) scale(0.98);
+    box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.2);
+  }
+  
+  .card-hover:active .touch-feedback {
+    background-color: rgba(var(--accent-rgb), 0.05);
+  }
+
+  /* Make active state work for touch devices */
+  .card:active {
+    box-shadow: 0 0 15px 2px rgba(14, 165, 233, 0.3);
+    border-color: rgba(14, 165, 233, 0.3);
+  }
+
+  /* Ensure active state triggers properly on iOS devices */
+  .card {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
 @keyframes moveGradient {
   0% {
     transform: translate(0, 0);
@@ -326,23 +441,6 @@ html.js .loaded body {
   background-color: currentColor;
   margin-left: 4px;
   animation: blink 1s step-end infinite;
-}
-
-/* Mobile touch effects for cards */
-@media (max-width: 768px) {
-  .card-hover {
-    transform: translateZ(0);
-    -webkit-tap-highlight-color: transparent;
-  }
-  
-  .card-hover:active {
-    transform: translateZ(0) scale(0.98);
-    box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.2);
-  }
-  
-  .card-hover:active .touch-feedback {
-    background-color: rgba(var(--accent-rgb), 0.05);
-  }
 }
 
 /* Card focus and hover states that work on both mobile and desktop */

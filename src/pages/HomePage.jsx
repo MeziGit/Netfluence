@@ -46,19 +46,49 @@ const HomePage = ({ isMobile = false }) => {
   
   // Static card for mobile (no animations)
   const StaticCard = ({ children, index }) => {
+    const [isActive, setIsActive] = useState(false);
+    
+    const handleTouchStart = () => {
+      if (isMobile) {
+        setIsActive(true);
+      }
+    };
+    
+    const handleTouchEnd = () => {
+      if (isMobile) {
+        // Keep the effect visible for a short time after touch
+        setTimeout(() => {
+          setIsActive(false);
+        }, 500);
+      }
+    };
+    
     return isMobile ? (
       <div 
-        className="card card-hover relative overflow-hidden" 
+        className={`card relative overflow-hidden border ${isActive ? 'shadow-glow border-accent/30' : 'border-dark-accent/50'}`}
         style={{ 
           willChange: 'auto', 
           transform: 'translateZ(0)',
-          transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+          transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease'
         }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onClick={handleTouchStart} // Also trigger on click for testing on desktop
       >
+        {/* Animated background gradient for mobile (activated on touch) */}
         <div 
-          className="touch-feedback absolute inset-0 bg-accent/0 z-0 pointer-events-none"
+          className={`absolute -inset-1 bg-gradient-to-r from-accent to-accent-tertiary rounded-lg blur-xl transition-opacity duration-200`}
           style={{ 
-            transition: 'background-color 0.3s ease',
+            opacity: isActive ? 0.2 : 0,
+            transition: 'opacity 0.2s ease'
+          }}
+        ></div>
+        
+        <div 
+          className="touch-feedback absolute inset-0 z-0 pointer-events-none"
+          style={{ 
+            backgroundColor: isActive ? `rgba(${14}, ${165}, ${233}, 0.05)` : 'transparent',
+            transition: 'background-color 0.2s ease',
             transform: 'translateZ(0)'
           }}
         />
@@ -67,7 +97,7 @@ const HomePage = ({ isMobile = false }) => {
     ) : (
       <motion.div 
         key={index} 
-        className="card card-hover reveal group relative overflow-hidden"
+        className="card hover:shadow-glow hover:border-accent/30 reveal group relative overflow-hidden"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -77,6 +107,9 @@ const HomePage = ({ isMobile = false }) => {
           transition: { duration: 0.3 }
         }}
       >
+        {/* Animated background gradient on hover - same as in ServicesPage */}
+        <div className="absolute -inset-1 bg-gradient-to-r from-accent to-accent-tertiary opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-lg"></div>
+        
         {children}
       </motion.div>
     );
@@ -376,14 +409,14 @@ const HomePage = ({ isMobile = false }) => {
               <StaticCard key={index} index={index}>
                 <div className="relative z-10 flex flex-col h-full">
                   <div 
-                    className="text-accent-secondary text-3xl mb-6 p-4 bg-accent-secondary/10 rounded-lg w-fit transition-all duration-300 group-hover:bg-accent-secondary/20 group-hover:scale-105" 
+                    className="text-accent-secondary text-3xl mb-6 p-4 bg-accent-secondary/10 rounded-lg w-fit" 
                     style={{ transform: 'translateZ(0)', transformOrigin: 'left' }}
                   >
                     {service.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-3 transition-colors duration-300 group-hover:text-accent-secondary">{service.title}</h3>
-                  <p className="text-white/70 mb-6 transition-colors duration-300 group-hover:text-white/90">{service.description}</p>
-                  <div className="h-0.5 w-0 bg-accent-secondary/30 mt-auto group-hover:w-full transition-all duration-500"></div>
+                  <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+                  <p className="text-white/70 mb-6">{service.description}</p>
+                  <div className="h-0.5 w-0 bg-accent-secondary/30 mt-auto opacity-0"></div>
                 </div>
               </StaticCard>
             ))}
@@ -462,7 +495,6 @@ const HomePage = ({ isMobile = false }) => {
                       style={{ transform: 'translateZ(0)' }}
                     >
                       {project.title}
-                      <span className="absolute -left-2 top-1/2 w-1 h-0 group-hover:h-full bg-accent opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-full" style={{ transform: 'translateY(-50%)', willChange: 'opacity, height' }}></span>
                     </h3>
                     
                     <p className="text-white/70 mb-6">{project.description}</p>
@@ -500,7 +532,6 @@ const HomePage = ({ isMobile = false }) => {
                       >
                         <span className="relative z-10">View Project</span>
                         <span className="inline-block ml-2 transform transition-transform duration-300 group-hover:translate-x-1 relative z-10">→</span>
-                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 group-hover:w-full opacity-50"></span>
                       </a>
                     ) : (
                       <div className="mt-auto flex items-center font-medium">
@@ -584,14 +615,14 @@ const HomePage = ({ isMobile = false }) => {
               <StaticCard key={index} index={index}>
                 <div className="relative z-10 flex flex-col h-full">
                   <div 
-                    className="text-accent-secondary text-3xl mb-6 p-4 bg-accent-secondary/10 rounded-lg w-fit transition-all duration-300 group-hover:bg-accent-secondary/20" 
+                    className="text-accent-secondary text-3xl mb-6 p-4 bg-accent-secondary/10 rounded-lg w-fit" 
                     style={{ transform: 'translateZ(0)' }}
                   >
                     {step.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-3 transition-colors duration-300 group-hover:text-accent-secondary">{step.title}</h3>
-                  <p className="text-white/70 mb-6 transition-colors duration-300 group-hover:text-white/90">{step.description}</p>
-                  <div className="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                  <p className="text-white/70 mb-6">{step.description}</p>
+                  <div className="mt-auto opacity-0">
                     <span className="text-accent-secondary/70 text-sm font-medium">Step {index + 1}</span>
                   </div>
                 </div>
@@ -685,7 +716,7 @@ const featuredProjects = [
   {
     title: "Victoria Fish",
     type: "Local Business Website",
-    description: "A custom website for a local fish market featuring their products, services, and online ordering capabilities.",
+    description: "A custom website for a nationally renowned Fish Market that has been open for over 50 years and are known for the expertise in smoked salmon.",
     tags: ["React", "Tailwind", "Node.js"],
     accentColor: "#0ea5e9",
     url: "https://victoriafish.ca/"

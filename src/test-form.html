@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Contact Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label, input, textarea {
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Contact Form</h1>
+    <p>Basic form using FormSubmit's exact instructions</p>
+    
+    <!-- Following FormSubmit's exact instructions -->
+    <form action="https://formsubmit.co/info@netfluence.ca" method="POST">
+        <label for="name">Name</label>
+        <input type="text" name="name" required>
+        
+        <label for="email">Email</label>
+        <input type="email" name="email" required>
+        
+        <label for="message">Message</label>
+        <textarea name="message" required></textarea>
+        
+        <button type="submit">Send Test</button>
+    </form>
+</body>
+</html> 

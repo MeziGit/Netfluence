@@ -201,6 +201,7 @@ const PortfolioPage = () => {
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true, margin: "-100px" }}
                 whileHover={{ y: -8 }}
+                className="relative"
               >
                 <div className="border-2 border-dark-accent/30 hover:border-accent/30 bg-dark-card transition-all duration-300 h-full">
                   <ProjectCard

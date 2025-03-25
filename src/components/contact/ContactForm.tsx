@@ -56,32 +56,7 @@ const ContactForm = () => {
     return Object.keys(errors).length === 0;
   };
   
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    
-    if (validateForm()) {
-      setIsSubmitting(true);
-      
-      // Simulate API call
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setFormSuccess(true);
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: '',
-          phone: '',
-          service: 'web',
-          budget: '',
-        });
-        
-        // Reset success message after 5 seconds
-        setTimeout(() => setFormSuccess(false), 5000);
-      }, 1500);
-    }
-  };
-  
+  // Form submission is now handled entirely by FormSubmit
   return (
     <div className="glass p-6 md:p-8 rounded-2xl relative overflow-hidden">
       {/* Background pattern */}
@@ -98,7 +73,22 @@ const ContactForm = () => {
         </div>
       ) : null}
       
-      <form onSubmit={handleSubmit} className="space-y-6">
+      {formErrors.submit && (
+        <div className="bg-red-500 bg-opacity-10 border border-red-500 text-red-500 rounded-lg p-4 mb-6 animate-fade-in">
+          <div className="flex items-center">
+            <i className="fas fa-exclamation-circle text-xl mr-2"></i>
+            <p>{formErrors.submit}</p>
+          </div>
+        </div>
+      )}
+      
+      <form action="https://formsubmit.co/info@netfluence.ca" method="POST" className="space-y-6">
+        {/* FormSubmit configuration fields */}
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value={window.location.href} />
+        <input type="hidden" name="_subject" value={formData.subject || "New contact form submission"} />
+        <input type="text" name="_honey" style={{ display: 'none' }} />
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Name input */}
           <div className="relative">
