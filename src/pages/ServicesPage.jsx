@@ -7,8 +7,60 @@ const ServicesPage = () => {
   return (
     <>
       <Helmet>
-        <title>Our Services | Netfluence</title>
-        <meta name="description" content="Explore our comprehensive range of web development, hosting, software development, and application development services." />
+        <title>Our Services | Netfluence - Web, App & Software Development</title>
+        <meta name="description" content="Explore our comprehensive range of web development, mobile app creation, software development, and digital marketing services at Netfluence. Customized solutions for businesses of all sizes." />
+        <link rel="canonical" href="https://netfluence.com/services" />
+        <meta name="keywords" content="web development services, mobile app development, custom software, SEO services, digital marketing, responsive design, e-commerce solutions" />
+        
+        {/* Schema.org structured data */}
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": [
+              {
+                "@type": "Service",
+                "position": 1,
+                "name": "Web Development",
+                "description": "Custom website development with responsive design and modern frameworks.",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "Netfluence"
+                }
+              },
+              {
+                "@type": "Service",
+                "position": 2,
+                "name": "Mobile App Development",
+                "description": "Native and cross-platform mobile applications for iOS and Android.",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "Netfluence"
+                }
+              },
+              {
+                "@type": "Service",
+                "position": 3,
+                "name": "Custom Software Development",
+                "description": "Tailored software solutions to meet specific business needs and challenges.",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "Netfluence"
+                }
+              },
+              {
+                "@type": "Service",
+                "position": 4,
+                "name": "Digital Marketing",
+                "description": "Comprehensive digital marketing strategies including SEO, content marketing, and social media.",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "Netfluence"
+                }
+              }
+            ]
+          }
+        `}</script>
       </Helmet>
 
       {/* Hero Section */}

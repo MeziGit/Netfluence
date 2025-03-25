@@ -29,7 +29,38 @@ const HomePage = () => {
     <>
       <Helmet>
         <title>Netfluence | Custom Web, App & Software Development</title>
-        <meta name="description" content="We create stunning, functional websites, mobile apps, and custom software solutions for businesses of all sizes." />
+        <meta name="description" content="We create stunning, functional websites, mobile apps, and custom software solutions for businesses of all sizes. Boost your online presence with our expert digital agency." />
+        <link rel="canonical" href="https://netfluence.com/" />
+        <meta name="keywords" content="web development, app development, custom software, digital agency, responsive design, SEO optimization" />
+        
+        {/* Schema.org structured data */}
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Netfluence",
+            "url": "https://netfluence.com",
+            "logo": "https://netfluence.com/images/logo.png",
+            "description": "We create stunning, functional websites, mobile apps, and custom software solutions for businesses of all sizes.",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Montreal",
+              "addressRegion": "QC",
+              "addressCountry": "CA"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+1-XXX-XXX-XXXX",
+              "contactType": "customer service"
+            },
+            "sameAs": [
+              "https://www.facebook.com/netfluence",
+              "https://www.twitter.com/netfluence",
+              "https://www.linkedin.com/company/netfluence",
+              "https://www.instagram.com/netfluence"
+            ]
+          }
+        `}</script>
       </Helmet>
       
       {/* Hero Section */}
@@ -559,10 +590,10 @@ const featuredProjects = [
   },
   {
     title: "Win",
-    type: "NHL Web Application",
+    type: "Sports Application",
     description: "A web application where users can connect, view live NHL scores, and predict game outcomes.",
     tags: ["React", "Node.js", "Tailwind", "MongoDB"],
-    accentColor: "#10b981",
+    accentColor: "#8b5cf6",
     url: null // Not live yet
   }
 ];

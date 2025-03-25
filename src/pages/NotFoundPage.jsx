@@ -7,8 +7,9 @@ const NotFoundPage = () => {
   return (
     <>
       <Helmet>
-        <title>Page Not Found | Netfluence - Web, App & Software Development</title>
-        <meta name="description" content="The page you are looking for could not be found." />
+        <title>Page Not Found | Netfluence</title>
+        <meta name="description" content="The page you're looking for could not be found. Return to the Netfluence homepage for digital solutions." />
+        <meta name="robots" content="noindex, follow" />
       </Helmet>
 
       <section className="min-h-[80vh] flex items-center justify-center relative overflow-hidden pt-20 pb-32">

@@ -13,7 +13,7 @@ const PortfolioPage = () => {
     {
       id: 1,
       title: "Victoria Fish",
-      type: "Business Website",
+      type: "Local Business Website",
       description: "Local business website with modern design and responsive layout.",
       tags: ["React", "Tailwind", "Node.js"],
       accentColor: "#0ea5e9",
@@ -76,8 +76,57 @@ const PortfolioPage = () => {
   return (
     <>
       <Helmet>
-        <title>Portfolio | Netfluence</title>
-        <meta name="description" content="Explore our creative portfolio of digital projects" />
+        <title>Our Portfolio | Netfluence - Showcase of Digital Excellence</title>
+        <meta name="description" content="Explore Netfluence's portfolio of successful web development, mobile app, and software projects. See how we've helped businesses transform their digital presence." />
+        <link rel="canonical" href="https://netfluence.com/portfolio" />
+        <meta name="keywords" content="web development portfolio, mobile app showcase, software projects, digital agency work, case studies, client projects" />
+        
+        {/* Schema.org structured data */}
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "Netfluence Portfolio",
+            "description": "Showcase of our best web, mobile app, and software development projects",
+            "publisher": {
+              "@type": "Organization",
+              "name": "Netfluence",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://netfluence.com/images/logo.png"
+              }
+            },
+            "mainEntity": {
+              "@type": "ItemList",
+              "itemListElement": [
+                {
+                  "@type": "CreativeWork",
+                  "position": 1,
+                  "name": "E-commerce Website",
+                  "description": "Custom e-commerce solution with advanced product filtering and secure checkout",
+                  "image": "https://netfluence.com/images/portfolio/ecommerce-project.jpg",
+                  "url": "https://netfluence.com/portfolio/ecommerce"
+                },
+                {
+                  "@type": "CreativeWork",
+                  "position": 2,
+                  "name": "Healthcare Mobile App",
+                  "description": "Patient management application for healthcare providers",
+                  "image": "https://netfluence.com/images/portfolio/healthcare-app.jpg",
+                  "url": "https://netfluence.com/portfolio/healthcare-app"
+                },
+                {
+                  "@type": "CreativeWork",
+                  "position": 3,
+                  "name": "Financial Dashboard",
+                  "description": "Real-time financial data visualization dashboard for investment firm",
+                  "image": "https://netfluence.com/images/portfolio/financial-dashboard.jpg",
+                  "url": "https://netfluence.com/portfolio/financial-dashboard"
+                }
+              ]
+            }
+          }
+        `}</script>
       </Helmet>
       
       {/* Hero Section */}

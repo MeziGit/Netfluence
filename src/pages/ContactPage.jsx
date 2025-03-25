@@ -63,8 +63,47 @@ const ContactPage = () => {
   return (
     <>
       <Helmet>
-        <title>Contact Us | Netfluence - Web, App & Software Development</title>
-        <meta name="description" content="Get in touch with Netfluence for your web, app, or software development project. We're here to bring your digital ideas to life." />
+        <title>Contact Us | Netfluence - Get in Touch for Digital Solutions</title>
+        <meta name="description" content="Contact Netfluence for custom web development, mobile apps, and software solutions. Reach our team for a free consultation and let's discuss your project needs." />
+        <link rel="canonical" href="https://netfluence.com/contact" />
+        <meta name="keywords" content="contact digital agency, web development consultation, app development contact, software development inquiry, Montreal digital agency" />
+        
+        {/* Schema.org structured data */}
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Netfluence",
+            "image": "https://netfluence.com/images/logo.png",
+            "url": "https://netfluence.com",
+            "telephone": "+1-XXX-XXX-XXXX",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "123 Digital Street",
+              "addressLocality": "Montreal",
+              "addressRegion": "Quebec",
+              "postalCode": "H2X 3Y7",
+              "addressCountry": "CA"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 45.5017,
+              "longitude": -73.5673
+            },
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "09:00",
+              "closes": "17:00"
+            }
+          }
+        `}</script>
       </Helmet>
       
       {/* Hero Section */}

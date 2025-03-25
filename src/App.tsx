@@ -81,10 +81,6 @@ const App = () => {
           
           <div className="border-t border-gray-800 mt-12 pt-8 text-sm text-gray-400 flex flex-col md:flex-row justify-between">
             <p>&copy; {new Date().getFullYear()} Netfluence. All rights reserved.</p>
-            <div className="space-x-6 mt-4 md:mt-0">
-              <a href="#" className="hover:text-accent">Privacy Policy</a>
-              <a href="#" className="hover:text-accent">Terms of Service</a>
-            </div>
           </div>
         </div>
       </footer>
