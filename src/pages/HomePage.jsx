@@ -147,7 +147,7 @@ const HomePage = ({ isMobile = false }) => {
               "https://www.facebook.com/netfluence",
               "https://www.twitter.com/netfluence",
               "https://www.linkedin.com/company/netfluence",
-              "https://www.instagram.com/netfluence"
+              "https://www.instagram.com/netfluenceinc/"
             ]
           }
         `}</script>

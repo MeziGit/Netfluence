@@ -152,7 +152,7 @@ const Navbar = () => {
             <a href="https://twitter.com/netfluence" className="text-gray-400 hover:text-accent transition-colors duration-300">
               <i className="fab fa-twitter text-2xl"></i>
             </a>
-            <a href="https://instagram.com/netfluence" className="text-gray-400 hover:text-accent transition-colors duration-300">
+            <a href="https://www.instagram.com/netfluenceinc/" className="text-gray-400 hover:text-accent transition-colors duration-300">
               <i className="fab fa-instagram text-2xl"></i>
             </a>
             <a href="https://linkedin.com/company/netfluence" className="text-gray-400 hover:text-accent transition-colors duration-300">
