@@ -7,6 +7,16 @@
   to = "/index.html"
   status = 200
 
+# Special redirect for form submissions
+[[redirects]]
+  from = "/success"
+  to = "/index.html"
+  status = 200
+
+# Ensure Netlify knows about the forms
+[build.processing.html]
+  pretty_urls = true
+
 [[headers]]
   for = "/*"
   [headers.values]

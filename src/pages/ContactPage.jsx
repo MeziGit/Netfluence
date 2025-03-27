@@ -27,13 +27,31 @@ const ContactPage = () => {
     });
   };
   
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key] || ""))
+      .join("&");
+  }
+  
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setFormStatus({ submitting: true, submitted: false, info: { error: false, msg: null } });
     
     try {
-      // Since we're using Netlify Forms, the form will be handled by Netlify
-      // We just need to handle the submission status
+      // Submit to Netlify using their API
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({
+          "form-name": "contact",
+          ...formData
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Form submission failed with status ${response.status}`);
+      }
+      
       setFormStatus({
         submitted: true,
         submitting: false,
@@ -50,6 +68,7 @@ const ContactPage = () => {
         budget: ''
       });
     } catch (error) {
+      console.error("Form submission error:", error);
       setFormStatus({
         submitted: false,
         submitting: false,
@@ -249,6 +268,7 @@ const ContactPage = () => {
                     method="POST"
                     data-netlify="true"
                     netlify-honeypot="bot-field"
+                    action="/success"
                     onSubmit={handleFormSubmit}
                   >
                     {/* Netlify Forms hidden fields */}
