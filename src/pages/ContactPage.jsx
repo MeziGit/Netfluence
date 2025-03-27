@@ -31,17 +31,16 @@ const ContactPage = () => {
     e.preventDefault();
     setFormStatus({ submitting: true, submitted: false, info: { error: false, msg: null } });
     
+    // The form will be handled by Netlify Forms
+    // This is just for UX feedback
     try {
-      // In real implementation, this would be an API call to send the form data
-      // For demo purposes, we'll simulate a successful submission after a delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
       setFormStatus({
         submitted: true,
         submitting: false,
         info: { error: false, msg: "Thank you for your message! We'll be in touch soon." }
       });
       
+      // Reset form after successful submission
       setFormData({
         name: '',
         email: '',
@@ -246,7 +245,21 @@ const ContactPage = () => {
                     </div>
                   )}
                   
-                  <form onSubmit={handleFormSubmit}>
+                  <form 
+                    name="contact"
+                    method="POST"
+                    data-netlify="true"
+                    netlify-honeypot="bot-field"
+                    onSubmit={handleFormSubmit}
+                  >
+                    {/* Hidden Netlify form fields */}
+                    <input type="hidden" name="form-name" value="contact" />
+                    <p className="hidden">
+                      <label>
+                        Don't fill this out if you're human: <input name="bot-field" />
+                      </label>
+                    </p>
+                    
                     <div className="grid sm:grid-cols-2 gap-6 mb-6">
                       {/* Name */}
                       <div>
