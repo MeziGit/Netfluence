@@ -31,16 +31,15 @@ const ContactPage = () => {
     e.preventDefault();
     setFormStatus({ submitting: true, submitted: false, info: { error: false, msg: null } });
     
-    // The form will be handled by Netlify Forms
-    // This is just for UX feedback
     try {
+      // Since we're using Netlify Forms, the form will be handled by Netlify
+      // We just need to handle the submission status
       setFormStatus({
         submitted: true,
         submitting: false,
         info: { error: false, msg: "Thank you for your message! We'll be in touch soon." }
       });
       
-      // Reset form after successful submission
       setFormData({
         name: '',
         email: '',
@@ -252,13 +251,9 @@ const ContactPage = () => {
                     netlify-honeypot="bot-field"
                     onSubmit={handleFormSubmit}
                   >
-                    {/* Hidden Netlify form fields */}
+                    {/* Netlify Forms hidden fields */}
                     <input type="hidden" name="form-name" value="contact" />
-                    <p className="hidden">
-                      <label>
-                        Don't fill this out if you're human: <input name="bot-field" />
-                      </label>
-                    </p>
+                    <input type="hidden" name="bot-field" />
                     
                     <div className="grid sm:grid-cols-2 gap-6 mb-6">
                       {/* Name */}

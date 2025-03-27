@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*?*
+
+# Crawl delay to be nice to search engines
+Crawl-delay: 10
+
+# Sitemap location
+Sitemap: https://netfluence.com/sitemap.xml 
