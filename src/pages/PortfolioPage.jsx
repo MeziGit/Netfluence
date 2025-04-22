@@ -39,8 +39,7 @@ const PortfolioPage = () => {
       tags: ["React", "TailwindCSS", "Node.js"],
       accentColor: "#10b981",
       category: "web",
-      url: "http://socialrebrandcollective.com/",
-      comingSoon: true
+      url: "https://socialrebrand.ca"
     },
     {
       id: 4,
@@ -50,7 +49,7 @@ const PortfolioPage = () => {
       tags: ["React", "Node.js", "Tailwind"],
       accentColor: "#0ea5e9",
       category: "web",
-      url: "https://northtouch.netlify.app/"
+      url: "https://northtouch.com"
     },
     {
       id: 5,

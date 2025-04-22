@@ -144,9 +144,7 @@ const HomePage = ({ isMobile = false }) => {
               "contactType": "customer service"
             },
             "sameAs": [
-              "https://www.facebook.com/netfluence",
-              "https://www.twitter.com/netfluence",
-              "https://www.linkedin.com/company/netfluence",
+              "https://www.linkedin.com/company/netfluenceinc/",
               "https://www.instagram.com/netfluenceinc/"
             ]
           }
@@ -722,12 +720,12 @@ const featuredProjects = [
     url: "https://victoriafish.ca/"
   },
   {
-    title: "Win",
-    type: "Sports Application",
-    description: "A web application where users can connect, view live NHL scores, and predict game outcomes.",
-    tags: ["React", "Node.js", "Tailwind", "MongoDB"],
-    accentColor: "#8b5cf6",
-    url: null // Not live yet
+    title: "Social Rebrand Collective",
+    type: "Marketing Agency",
+    description: "Marketing agency website showcasing services and client success stories.",
+    tags: ["React", "TailwindCSS", "Node.js"],
+    accentColor: "#10b981",
+    url: "https://socialrebrand.ca"
   }
 ];
 
