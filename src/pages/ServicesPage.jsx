@@ -7,10 +7,10 @@ const ServicesPage = () => {
   return (
     <>
       <Helmet>
-        <title>Our Services | Netfluence - Web, App & Software Development</title>
-        <meta name="description" content="Explore our comprehensive range of web development, mobile app creation, software development, and digital marketing services at Netfluence. Customized solutions for businesses of all sizes." />
+        <title>Web Development, Mobile Apps & Software Services | Netfluence</title>
+        <meta name="description" content="Professional web, app, and software development services for businesses of all sizes. Expert developers available as freelance or dedicated team to match your needs." />
         <link rel="canonical" href="https://netfluence.com/services" />
-        <meta name="keywords" content="web development services, mobile app development, custom software, SEO services, digital marketing, responsive design, e-commerce solutions" />
+        <meta name="keywords" content="web development, mobile app development, software development, custom websites, responsive design, web applications, ecommerce websites, freelance developer, hire developer, development services" />
         
         {/* Schema.org structured data */}
         <script type="application/ld+json">{`
@@ -22,40 +22,40 @@ const ServicesPage = () => {
                 "@type": "Service",
                 "position": 1,
                 "name": "Web Development",
-                "description": "Custom website development with responsive design and modern frameworks.",
+                "description": "Custom website development with responsive design and modern frameworks. Available as freelance or dedicated development team.",
                 "provider": {
-                  "@type": "Organization",
-                  "name": "Netfluence"
+                  "@type": "ProfessionalService",
+                  "name": "Netfluence Development Services"
                 }
               },
               {
                 "@type": "Service",
                 "position": 2,
                 "name": "Mobile App Development",
-                "description": "Native and cross-platform mobile applications for iOS and Android.",
+                "description": "Native and cross-platform mobile applications for iOS and Android. Professional development services for businesses of all sizes.",
                 "provider": {
-                  "@type": "Organization",
-                  "name": "Netfluence"
+                  "@type": "ProfessionalService",
+                  "name": "Netfluence Development Services"
                 }
               },
               {
                 "@type": "Service",
                 "position": 3,
-                "name": "Custom Software Development",
-                "description": "Tailored software solutions to meet specific business needs and challenges.",
+                "name": "Software Development",
+                "description": "Tailored software solutions to meet specific business needs and challenges. Expert developers available as freelance or dedicated team.",
                 "provider": {
-                  "@type": "Organization",
-                  "name": "Netfluence"
+                  "@type": "ProfessionalService",
+                  "name": "Netfluence Development Services"
                 }
               },
               {
                 "@type": "Service",
                 "position": 4,
                 "name": "Digital Marketing",
-                "description": "Comprehensive digital marketing strategies including SEO, content marketing, and social media.",
+                "description": "Comprehensive digital marketing strategies including SEO, content marketing, and social media. Professional services to boost your online presence.",
                 "provider": {
-                  "@type": "Organization",
-                  "name": "Netfluence"
+                  "@type": "ProfessionalService",
+                  "name": "Netfluence Development Services"
                 }
               }
             ]

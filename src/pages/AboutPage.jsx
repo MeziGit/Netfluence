@@ -10,37 +10,39 @@ const AboutPage = () => {
   return (
     <>
       <Helmet>
-        <title>About Us | Netfluence - Web, App & Software Development</title>
+        <title>About Our Development Team | Netfluence</title>
         <meta 
           name="description" 
-          content="Learn about Netfluence, our journey, our team of experts, and our dedication to creating exceptional digital solutions. Trusted by businesses across industries."
+          content="Meet our talented team of web, app and software developers. We deliver exceptional digital solutions with the flexibility of freelance and the reliability of an agency."
         />
         <link rel="canonical" href="https://netfluence.com/about" />
-        <meta name="keywords" content="digital agency team, web developers, app developers, software experts, Montreal tech company, custom solutions" />
+        <meta name="keywords" content="web developers, app developers, software engineers, development team, Montreal developers, expert programmers, website developers, mobile app developers" />
         
         {/* Schema.org structured data */}
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
             "@type": "AboutPage",
-            "name": "About Netfluence",
-            "description": "Learn about Netfluence, our journey, our team of experts, and our dedication to creating exceptional digital solutions.",
+            "name": "About Our Development Team",
+            "description": "Meet our talented team of web, app and software developers who deliver exceptional digital solutions.",
             "mainEntity": {
-              "@type": "Organization",
-              "name": "Netfluence",
+              "@type": "ProfessionalService",
+              "name": "Netfluence Development Services",
               "url": "https://netfluence.com",
               "foundingDate": "2020",
               "founders": [
                 {
                   "@type": "Person",
-                  "name": "Ryan Meziane"
+                  "name": "Ryan Meziane",
+                  "jobTitle": "Web Developer & Founder"
                 },
                 {
                   "@type": "Person",
-                  "name": "Kui Hua"
+                  "name": "Kui Hua",
+                  "jobTitle": "Software Engineer & Founder"
                 }
               ],
-              "description": "Netfluence is a digital agency specializing in web development, mobile apps, and custom software solutions."
+              "description": "Netfluence provides professional web development, mobile apps, and custom software solutions with the flexibility of freelance and the reliability of an agency."
             }
           }
         `}</script>

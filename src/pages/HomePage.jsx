@@ -118,20 +118,20 @@ const HomePage = ({ isMobile = false }) => {
   return (
     <>
       <Helmet>
-        <title>Netfluence | Custom Web, App & Software Development</title>
-        <meta name="description" content="We create stunning, functional websites, mobile apps, and custom software solutions for businesses of all sizes. Boost your online presence with our expert digital agency." />
+        <title>Web, App & Software Development Services | Netfluence</title>
+        <meta name="description" content="Professional web development, mobile apps, and custom software solutions. We deliver high-quality digital products as a freelance team or dedicated development partner." />
         <link rel="canonical" href="https://netfluence.com/" />
-        <meta name="keywords" content="web development, app development, custom software, digital agency, responsive design, SEO optimization" />
+        <meta name="keywords" content="web development, app development, mobile apps, software development, custom websites, responsive design, website builder, web designer, freelance developer, hire developer, development agency" />
         
         {/* Schema.org structured data */}
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "Netfluence",
+            "@type": "ProfessionalService",
+            "name": "Netfluence Development Services",
             "url": "https://netfluence.com",
             "logo": "https://netfluence.com/images/logo.png",
-            "description": "We create stunning, functional websites, mobile apps, and custom software solutions for businesses of all sizes.",
+            "description": "Professional web, app and software development services available as freelance or dedicated team solutions.",
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Montreal",
@@ -146,7 +146,45 @@ const HomePage = ({ isMobile = false }) => {
             "sameAs": [
               "https://www.linkedin.com/company/netfluenceinc/",
               "https://www.instagram.com/netfluenceinc/"
-            ]
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Development Services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Web Development",
+                    "description": "Custom website development with responsive design and modern frameworks"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Mobile App Development",
+                    "description": "Native and cross-platform mobile applications for iOS and Android"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Software Development",
+                    "description": "Custom software solutions tailored to your business needs"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Digital Marketing",
+                    "description": "SEO, content marketing and social media strategies"
+                  }
+                }
+              ]
+            }
           }
         `}</script>
       </Helmet>

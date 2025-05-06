@@ -80,17 +80,17 @@ const ContactPage = () => {
   return (
     <>
       <Helmet>
-        <title>Contact Us | Netfluence - Get in Touch for Digital Solutions</title>
-        <meta name="description" content="Contact Netfluence for custom web development, mobile apps, and software solutions. Reach our team for a free consultation and let's discuss your project needs." />
+        <title>Contact Us | Web & App Development Services | Netfluence</title>
+        <meta name="description" content="Get in touch for professional web development, mobile apps, and software solutions. Our development team provides both freelance flexibility and agency reliability." />
         <link rel="canonical" href="https://netfluence.com/contact" />
-        <meta name="keywords" content="contact digital agency, web development consultation, app development contact, software development inquiry, Montreal digital agency" />
+        <meta name="keywords" content="web development quote, app development services, software development company, hire web developer, development agency, website development cost, custom software development, contact developers" />
         
         {/* Schema.org structured data */}
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": "Netfluence",
+            "@type": "ProfessionalService",
+            "name": "Netfluence Development Services",
             "image": "https://netfluence.com/images/logo.png",
             "url": "https://netfluence.com",
             "telephone": "+1-XXX-XXX-XXXX",
@@ -118,7 +118,35 @@ const ContactPage = () => {
               ],
               "opens": "09:00",
               "closes": "17:00"
-            }
+            },
+            "priceRange": "$$$",
+            "description": "Professional web, app and software development services with both freelance flexibility and agency reliability.",
+            "makesOffer": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Web Development",
+                  "description": "Professional website development and design services"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Mobile App Development",
+                  "description": "Custom mobile app development for iOS and Android"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Software Development",
+                  "description": "Custom software solutions for businesses of all sizes"
+                }
+              }
+            ]
           }
         `}</script>
       </Helmet>

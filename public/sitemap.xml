@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://netfluence.com/</loc>
-    <lastmod>2024-03-24</lastmod>
+    <lastmod>2024-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://netfluence.com/images/hero-image.jpg</image:loc>
-      <image:title>Netfluence - Digital Agency</image:title>
+      <image:title>Netfluence - Web & App Development</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://netfluence.com/about</loc>
-    <lastmod>2024-03-24</lastmod>
+    <lastmod>2024-06-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
     <image:image>
       <image:loc>https://netfluence.com/images/team.jpg</image:loc>
-      <image:title>Netfluence Team</image:title>
+      <image:title>Netfluence Development Team</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://netfluence.com/services</loc>
-    <lastmod>2024-03-24</lastmod>
+    <lastmod>2024-06-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
     <image:image>
       <image:loc>https://netfluence.com/images/services.jpg</image:loc>
       <image:title>Our Services</image:title>
@@ -33,7 +36,7 @@
   </url>
   <url>
     <loc>https://netfluence.com/portfolio</loc>
-    <lastmod>2024-03-24</lastmod>
+    <lastmod>2024-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -43,9 +46,9 @@
   </url>
   <url>
     <loc>https://netfluence.com/contact</loc>
-    <lastmod>2024-03-24</lastmod>
+    <lastmod>2024-06-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <image:image>
       <image:loc>https://netfluence.com/images/contact.jpg</image:loc>
       <image:title>Contact Us</image:title>
@@ -53,12 +56,62 @@
   </url>
   <url>
     <loc>https://netfluence.com/blog</loc>
-    <lastmod>2024-03-24</lastmod>
+    <lastmod>2024-06-01</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
     <image:image>
       <image:loc>https://netfluence.com/images/blog.jpg</image:loc>
       <image:title>Our Blog</image:title>
     </image:image>
+  </url>
+  <!-- Service-specific URLs -->
+  <url>
+    <loc>https://netfluence.com/services/web-development</loc>
+    <lastmod>2024-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://netfluence.com/services/app-development</loc>
+    <lastmod>2024-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://netfluence.com/services/software-development</loc>
+    <lastmod>2024-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://netfluence.com/services/digital-marketing</loc>
+    <lastmod>2024-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Freelance-specific URLs -->
+  <url>
+    <loc>https://netfluence.com/services/freelance-web-development</loc>
+    <lastmod>2024-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://netfluence.com/services/freelance-app-development</loc>
+    <lastmod>2024-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://netfluence.com/services/freelance-software-development</loc>
+    <lastmod>2024-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://netfluence.com/services/freelance-digital-marketing</loc>
+    <lastmod>2024-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset> 
