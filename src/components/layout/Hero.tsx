@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -23,25 +23,21 @@ const Hero = () => {
     };
     
     checkMobile();
-    window.addEventListener('resize', checkMobile);
+    const debouncedResize = debounce(checkMobile, 250);
+    window.addEventListener('resize', debouncedResize);
 
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setScrollY(window.scrollY);
-          ticking = false;
-        });
-        ticking = true;
+    const handleScroll = debounce(() => {
+      if (!isMobile) {
+        setScrollY(window.scrollY);
       }
-    };
+    }, 10);
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('resize', debouncedResize);
     };
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -52,10 +48,24 @@ const Hero = () => {
   }, [typingIndex, typingTexts.length]);
 
   const parallaxStyle = {
-    transform: isMobile ? 'none' : `translateY(${scrollY * 0.2}px)`,
+    transform: isMobile ? 'none' : `translateY(${scrollY * 0.1}px)`,
+    willChange: isMobile ? 'auto' : 'transform'
   };
 
-  const handleScrollToServices = () => {
+  // Debounce function
+  function debounce(func: Function, wait: number) {
+    let timeout: ReturnType<typeof setTimeout>;
+    return function executedFunction(...args: any[]) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
+  const handleScrollToServices = useCallback(() => {
     const element = document.getElementById('services');
     if (element) {
       window.scrollTo({
@@ -63,23 +73,26 @@ const Hero = () => {
         behavior: 'smooth'
       });
     }
-  };
+  }, []);
   
-  // Toggle code view on mobile
-  const toggleFileHovered = () => {
+  const toggleFileHovered = useCallback(() => {
     if (isMobile) {
       setIsFileHovered(!isFileHovered);
     }
-  };
+  }, [isMobile, isFileHovered]);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background particles */}
       <div id="particles-js" className="absolute inset-0 z-0"></div>
       
-      {/* Animated gradients - hidden on very small screens */}
-      <div className="animated-gradient animated-gradient-1"></div>
-      <div className="animated-gradient animated-gradient-2"></div>
+      {/* Animated gradients - hidden on mobile */}
+      {!isMobile && (
+        <>
+          <div className="animated-gradient animated-gradient-1"></div>
+          <div className="animated-gradient animated-gradient-2"></div>
+        </>
+      )}
       
       {/* Content */}
       <div className="container mx-auto px-6 z-10 pt-24 lg:pt-0">
@@ -180,10 +193,10 @@ const Hero = () => {
                         {!isMobile && (
                           <>
                             <pre className="text-white/80 group-hover:opacity-0 transition-opacity duration-300 absolute inset-0 p-4">
-                              // ... existing desktop code ...
+                              {'// ... existing desktop code ...'}
                             </pre>
                             <pre className="text-white/80 group-hover:opacity-100 opacity-0 transition-opacity duration-300 absolute inset-0 p-4">
-                              // ... existing desktop hover code ...
+                              {'// ... existing desktop hover code ...'}
                             </pre>
                           </>
                         )}
