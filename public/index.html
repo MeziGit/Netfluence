@@ -7,37 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#121212" />
 
-  <!-- Safari-specific optimizations -->
-  <script>
-    // Detect Safari and disable animations
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    if (isSafari) {
-      document.documentElement.classList.add('safari');
-
-      // Disable all animations immediately
-      document.addEventListener('DOMContentLoaded', function () {
-        // Force repaint to apply styles immediately
-        document.body.style.display = 'none';
-        setTimeout(() => {
-          document.body.style.display = '';
-        }, 0);
-
-        // Remove particles container completely
-        setTimeout(() => {
-          const particles = document.getElementById('particles-js');
-          if (particles) {
-            particles.remove();
-          }
-
-          // Remove all animated elements
-          document.querySelectorAll('.animated-gradient, .typewriter, .button-effect, .button-3d').forEach(el => {
-            el.classList.remove('animated-gradient', 'typewriter', 'button-effect', 'button-3d');
-          });
-        }, 0);
-      });
-    }
-  </script>
-
   <!-- Preload critical assets -->
   <link rel="preload"
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap"
@@ -58,16 +27,6 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   </noscript>
-
-  <!-- Load particles.js only on non-Safari browsers -->
-  <script>
-    if (!/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
-      const script = document.createElement('script');
-      script.src = "https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js";
-      script.defer = true;
-      document.head.appendChild(script);
-    }
-  </script>
 
   <!-- Meta tags -->
   <meta name="description"
@@ -104,85 +63,6 @@
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-
-  <!-- Initialize particles.js after page load - only for non-Safari browsers -->
-  <script>
-    window.addEventListener('load', function () {
-      // Check if not Safari
-      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-      if (!isSafari && typeof particlesJS !== 'undefined') {
-        // Initialize particles with reduced complexity
-        particlesJS('particles-js', {
-          "particles": {
-            "number": {
-              "value": 30,
-              "density": {
-                "enable": true,
-                "value_area": 800
-              }
-            },
-            "color": {
-              "value": "#6366f1"
-            },
-            "shape": {
-              "type": "circle",
-              "stroke": {
-                "width": 0,
-                "color": "#000000"
-              }
-            },
-            "opacity": {
-              "value": 0.3,
-              "random": false,
-              "anim": {
-                "enable": false
-              }
-            },
-            "size": {
-              "value": 3,
-              "random": true,
-              "anim": {
-                "enable": false
-              }
-            },
-            "line_linked": {
-              "enable": true,
-              "distance": 150,
-              "color": "#6366f1",
-              "opacity": 0.2,
-              "width": 1
-            },
-            "move": {
-              "enable": true,
-              "speed": 1,
-              "direction": "none",
-              "random": false,
-              "straight": false,
-              "out_mode": "out",
-              "bounce": false,
-              "attract": {
-                "enable": false
-              }
-            }
-          },
-          "interactivity": {
-            "detect_on": "canvas",
-            "events": {
-              "onhover": {
-                "enable": false
-              },
-              "onclick": {
-                "enable": false
-              },
-              "resize": true
-            }
-          },
-          "retina_detect": false
-        });
-      }
-    });
-  </script>
 
   <!-- Structured data for rich search results -->
   <script type="application/ld+json">

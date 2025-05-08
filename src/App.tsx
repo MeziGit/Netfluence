@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "./components/layout/Navbar";
 import Hero from "./components/layout/Hero";
 import Services from "./components/services/Services";
@@ -7,32 +7,6 @@ import Testimonials from "./components/Testimonials";
 import Contact from "./components/contact/Contact";
 
 const App = () => {
-  useEffect(() => {
-    // Detect Safari and apply optimizations
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    if (isSafari) {
-      // Add class to body for Safari-specific CSS
-      document.body.classList.add("safari-browser");
-
-      // Disable smooth scrolling on Safari
-      document.documentElement.style.scrollBehavior = "auto";
-
-      // Remove all animation classes from DOM
-      const elementsToOptimize = document.querySelectorAll(
-        ".animated-gradient, .typewriter, .button-effect, .button-3d, .glass"
-      );
-      elementsToOptimize.forEach((el) => {
-        el.classList.add("safari-no-animation");
-      });
-
-      // Remove particles container if it exists
-      const particles = document.getElementById("particles-js");
-      if (particles) {
-        particles.style.display = "none";
-      }
-    }
-  }, []);
-
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <Navbar />
