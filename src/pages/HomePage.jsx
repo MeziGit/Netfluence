@@ -43,27 +43,7 @@ const HomePage = ({ isMobile = false }) => {
 
   // Static components for mobile or Safari (no animations)
   const StaticComponent = ({ children, className = "" }) => {
-    // For Safari, instead of completely disabling animations, simplify them
-    if (isSafari) {
-      return (
-        <motion.div
-          initial={{ opacity: 0.9 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2 }}
-          className={className}
-          style={{
-            transform: "translateZ(0)", // Force hardware acceleration
-            willChange: "opacity",
-            backfaceVisibility: "hidden",
-          }}
-        >
-          {children}
-        </motion.div>
-      );
-    }
-
-    // For mobile or standard implementation
-    return isMobile ? (
+    return isMobile || isSafari ? (
       <div
         className={className}
         style={{ willChange: "auto", transform: "translateZ(0)" }}
@@ -95,7 +75,7 @@ const HomePage = ({ isMobile = false }) => {
     return {};
   };
 
-  // Static card for mobile and Safari (with optimized animations)
+  // Static card for mobile (no animations)
   const StaticCard = ({ children, index }) => {
     const [isActive, setIsActive] = useState(false);
 
@@ -114,81 +94,43 @@ const HomePage = ({ isMobile = false }) => {
       }
     };
 
-    // Special handling for Safari
-    if (isSafari) {
-      return (
-        <motion.div
-          className="card border border-dark-accent/50 relative overflow-hidden"
-          initial={{ opacity: 0.9 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2 }}
-          style={{
-            transform: "translateZ(0)", // Force hardware acceleration
-            willChange: "opacity, transform",
-            backfaceVisibility: "hidden",
-          }}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          onClick={handleTouchStart}
-        >
-          {/* Simplified background for Safari */}
-          <div
-            className={`absolute -inset-1 rounded-lg transition-opacity bg-accent/5`}
-            style={{
-              opacity: isActive ? 0.2 : 0,
-              transition: "opacity 0.2s ease",
-              filter: "blur(10px)",
-            }}
-          ></div>
-
-          {children}
-        </motion.div>
-      );
-    }
-
-    // For mobile
-    if (isMobile) {
-      return (
+    return isMobile || isSafari ? (
+      <div
+        className={`card relative overflow-hidden border ${
+          isActive ? "shadow-glow border-accent/30" : "border-dark-accent/50"
+        }`}
+        style={{
+          willChange: "auto",
+          transform: "translateZ(0)",
+          transition:
+            "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease",
+        }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onClick={handleTouchStart} // Also trigger on click for testing on desktop
+      >
+        {/* Animated background gradient for mobile (activated on touch) */}
         <div
-          className={`card relative overflow-hidden border ${
-            isActive ? "shadow-glow border-accent/30" : "border-dark-accent/50"
-          }`}
+          className={`absolute -inset-1 bg-gradient-to-r from-accent to-accent-tertiary rounded-lg blur-xl transition-opacity duration-200`}
           style={{
-            willChange: "auto",
-            transform: "translateZ(0)",
-            transition:
-              "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease",
+            opacity: isActive ? 0.2 : 0,
+            transition: "opacity 0.2s ease",
           }}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          onClick={handleTouchStart} // Also trigger on click for testing on desktop
-        >
-          {/* Animated background gradient for mobile (activated on touch) */}
-          <div
-            className={`absolute -inset-1 bg-gradient-to-r from-accent to-accent-tertiary rounded-lg blur-xl transition-opacity duration-200`}
-            style={{
-              opacity: isActive ? 0.2 : 0,
-              transition: "opacity 0.2s ease",
-            }}
-          ></div>
+        ></div>
 
-          <div
-            className="touch-feedback absolute inset-0 z-0 pointer-events-none"
-            style={{
-              backgroundColor: isActive
-                ? `rgba(${14}, ${165}, ${233}, 0.05)`
-                : "transparent",
-              transition: "background-color 0.2s ease",
-              transform: "translateZ(0)",
-            }}
-          />
-          {children}
-        </div>
-      );
-    }
-
-    // Default for desktop
-    return (
+        <div
+          className="touch-feedback absolute inset-0 z-0 pointer-events-none"
+          style={{
+            backgroundColor: isActive
+              ? `rgba(${14}, ${165}, ${233}, 0.05)`
+              : "transparent",
+            transition: "background-color 0.2s ease",
+            transform: "translateZ(0)",
+          }}
+        />
+        {children}
+      </div>
+    ) : (
       <motion.div
         key={index}
         className="card hover:shadow-glow hover:border-accent/30 reveal group relative overflow-hidden"

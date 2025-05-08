@@ -528,31 +528,11 @@ html.js .loaded body {
   transition-delay: 0ms !important;
 }
 
-/* Enhanced Safari optimization for mouse performance */
-.safari .custom-cursor {
-  will-change: transform !important;
-  contain: strict;
-  transform: translate3d(0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  -webkit-transform-style: preserve-3d;
-  pointer-events: none;
-}
-
 /* Specifically optimize the blur effects for Safari */
 .safari-browser .blur-3xl,
 .safari .blur-3xl {
   filter: blur(10px) !important;
   opacity: 0.2 !important;
-  will-change: opacity !important;
-  transform: translateZ(0) !important;
-}
-
-/* Optimize framer-motion animations for Safari */
-.safari [data-framer-component-type],
-.safari-browser [data-framer-component-type] {
-  will-change: transform, opacity !important;
-  transform: translateZ(0) !important;
-  backface-visibility: hidden !important;
 }
 
 /* Optimize background blurs */
@@ -571,83 +551,5 @@ html.js .loaded body {
       filter: none !important;
       box-shadow: none !important;
     }
-
-    /* Force hardware acceleration for motion elements */
-    .animate-pulse,
-    .animate-spin,
-    .animate-ping {
-      transform: translateZ(0) !important;
-      will-change: transform, opacity !important;
-      backface-visibility: hidden !important;
-      perspective: 1000 !important;
-    }
-
-    /* Optimize the custom cursor for Safari */
-    #custom-cursor {
-      will-change: transform !important;
-      contain: layout style paint;
-      transform: translate3d(0, 0, 0) !important;
-      z-index: 9999;
-    }
   }
-}
-
-/* Force hardware acceleration for animations across all browsers */
-.animate-pulse,
-.animate-spin,
-.animate-ping,
-.motion-safe:not(.motion-reduce) * {
-  transform: translateZ(0);
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-}
-
-/* Disable complex animations on low-end devices by checking for RAM */
-@media (prefers-reduced-motion), (max-memory: medium) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* Basic custom cursor (only for non-Safari browsers) */
-#custom-cursor {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: white;
-  mix-blend-mode: difference;
-  pointer-events: none;
-  z-index: 9999;
-  margin-left: -10px; /* Half the width */
-  margin-top: -10px; /* Half the height */
-}
-
-/* Active state for links and buttons */
-#custom-cursor.cursor-active {
-  width: 40px;
-  height: 40px;
-  margin-left: -20px; /* Half the width */
-  margin-top: -20px; /* Half the height */
-  background-color: transparent;
-  border: 2px solid white;
-  transition: width 0.1s ease, height 0.1s ease, margin 0.1s ease,
-    background-color 0.1s ease;
-}
-
-/* Hide system cursor when custom cursor is enabled */
-.custom-cursor-enabled {
-  cursor: none;
-}
-
-/* Show cursor on specific elements for better UX */
-.custom-cursor-enabled a,
-.custom-cursor-enabled button,
-.custom-cursor-enabled input,
-.custom-cursor-enabled select,
-.custom-cursor-enabled textarea {
-  cursor: none;
 }

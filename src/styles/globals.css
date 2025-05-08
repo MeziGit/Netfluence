@@ -100,6 +100,17 @@ p {
   align-items: center;
 }
 
+/* Custom cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+}
+
 /* Button */
 .btn {
   position: relative;
