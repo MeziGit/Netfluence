@@ -10,6 +10,7 @@ const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isFileHovered, setIsFileHovered] = useState(false);
   const [isCodeEditorVisible, setIsCodeEditorVisible] = useState(false);
+  const [isSafari, setIsSafari] = useState(false);
 
   const typingTexts = [
     "Web Development",
@@ -21,6 +22,11 @@ const Hero = () => {
 
   useEffect(() => {
     setIsMounted(true);
+    // Detect Safari
+    const isSafariBrowser = /^((?!chrome|android).)*safari/i.test(
+      navigator.userAgent
+    );
+    setIsSafari(isSafariBrowser);
 
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -30,11 +36,17 @@ const Hero = () => {
     const debouncedResize = debounce(checkMobile, 250);
     window.addEventListener("resize", debouncedResize);
 
-    const handleScroll = debounce(() => {
-      if (!isMobile) {
-        setScrollY(window.scrollY);
-      }
-    }, 10);
+    // Optimize scroll handling for Safari
+    const handleScroll = debounce(
+      () => {
+        if (!isMobile) {
+          requestAnimationFrame(() => {
+            setScrollY(window.scrollY);
+          });
+        }
+      },
+      isSafariBrowser ? 16 : 10
+    ); // Use 60fps timing for Safari
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
@@ -58,9 +70,14 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, [typingIndex, typingTexts.length]);
 
+  // Optimize parallax for Safari
   const parallaxStyle = {
-    transform: isMobile ? "none" : `translateY(${scrollY * 0.1}px)`,
+    transform: isMobile ? "none" : `translate3d(0, ${scrollY * 0.1}px, 0)`,
     willChange: isMobile ? "auto" : "transform",
+    backfaceVisibility: "hidden" as const,
+    WebkitBackfaceVisibility: "hidden" as const,
+    perspective: 1000,
+    WebkitPerspective: 1000,
   };
 
   // Debounce function
@@ -96,12 +113,24 @@ const Hero = () => {
     <section
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden"
+      style={{
+        WebkitTransform: "translate3d(0,0,0)",
+        WebkitBackfaceVisibility: "hidden",
+        WebkitPerspective: 1000,
+      }}
     >
-      {/* Background particles */}
-      <div id="particles-js" className="absolute inset-0 z-0"></div>
+      {/* Background particles - reduce complexity for Safari */}
+      <div
+        id="particles-js"
+        className="absolute inset-0 z-0"
+        style={{
+          WebkitTransform: "translate3d(0,0,0)",
+          WebkitBackfaceVisibility: "hidden",
+        }}
+      ></div>
 
-      {/* Animated gradients - hidden on mobile */}
-      {!isMobile && (
+      {/* Animated gradients - hidden on mobile and Safari */}
+      {!isMobile && !isSafari && (
         <>
           <div className="animated-gradient animated-gradient-1"></div>
           <div className="animated-gradient animated-gradient-2"></div>
@@ -109,7 +138,13 @@ const Hero = () => {
       )}
 
       {/* Content */}
-      <div className="container mx-auto px-6 z-10 pt-24 lg:pt-0">
+      <div
+        className="container mx-auto px-6 z-10 pt-24 lg:pt-0"
+        style={{
+          WebkitTransform: "translate3d(0,0,0)",
+          WebkitBackfaceVisibility: "hidden",
+        }}
+      >
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           <div
             className={`w-full lg:w-7/12 ${
