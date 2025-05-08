@@ -488,33 +488,28 @@ html.js .loaded body {
 
 /* Safari-specific styles to disable all animations */
 @media not all and (min-resolution: 0.001dpcm) {
-  @supports (-webkit-appearance: none) {
-    * {
-      animation: none !important;
-      transition: none !important;
-      transform: none !important;
-      opacity: 1 !important;
-      filter: none !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
+  @supports (-webkit-appearance: none) and (stroke-color: transparent) {
+    /* Create a simpler variant for Safari */
+    .blur-3xl,
+    .blur-2xl,
+    .blur-xl {
+      filter: blur(20px) !important;
+      opacity: 0.3 !important;
       will-change: auto !important;
-      scroll-behavior: auto !important;
+      transform: translateZ(0) !important;
     }
 
-    .animated-gradient,
-    #particles-js,
-    .typewriter,
-    .button-effect,
-    .button-3d,
-    .glass::before {
+    /* Reduce the number of blurred elements */
+    .rounded-full.blur-3xl:nth-child(n + 3) {
       display: none !important;
     }
 
-    /* Add solid background instead of glass effect */
-    .glass {
-      background: rgba(17, 24, 39, 0.9) !important;
-      box-shadow: none !important;
-      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    /* Simplify animations for Safari */
+    .motion-safe .motion-reduce * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
     }
   }
 }
@@ -522,42 +517,48 @@ html.js .loaded body {
 /* Additional Safari override classes */
 .safari-browser *,
 .safari * {
-  animation: none !important;
-  transition: none !important;
-  transform: none !important;
-  will-change: auto !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  /* Use hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+  will-change: auto;
+
+  /* Simplify transitions and animations */
+  transition-duration: 0.2s !important;
+  transition-delay: 0ms !important;
 }
 
-.safari-browser .animated-gradient,
-.safari-browser .typewriter::after,
-.safari-browser #particles-js,
-.safari .animated-gradient,
-.safari .typewriter::after,
-.safari #particles-js {
-  display: none !important;
+/* Enhanced Safari optimization for mouse performance */
+.safari .custom-cursor {
+  will-change: transform !important;
+  contain: strict;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  pointer-events: none;
 }
 
-.safari-no-animation {
-  animation: none !important;
-  transition: none !important;
-  transform: none !important;
+/* Specifically optimize the blur effects for Safari */
+.safari-browser .blur-3xl,
+.safari .blur-3xl {
+  filter: blur(10px) !important;
+  opacity: 0.2 !important;
+  will-change: opacity !important;
+  transform: translateZ(0) !important;
 }
 
-/* Static content for Safari */
-.safari-browser .typewriter,
-.safari .typewriter {
-  border-right: none !important;
-  overflow: visible !important;
-  display: inline !important;
-  white-space: normal !important;
+/* Optimize framer-motion animations for Safari */
+.safari [data-framer-component-type],
+.safari-browser [data-framer-component-type] {
+  will-change: transform, opacity !important;
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
 }
 
-/* Simplified backgrounds for Safari */
+/* Optimize background blurs */
 .safari-browser .glass,
 .safari .glass {
-  background-color: rgba(17, 24, 39, 0.9) !important;
+  background-color: rgba(17, 24, 39, 0.8) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
@@ -570,5 +571,83 @@ html.js .loaded body {
       filter: none !important;
       box-shadow: none !important;
     }
+
+    /* Force hardware acceleration for motion elements */
+    .animate-pulse,
+    .animate-spin,
+    .animate-ping {
+      transform: translateZ(0) !important;
+      will-change: transform, opacity !important;
+      backface-visibility: hidden !important;
+      perspective: 1000 !important;
+    }
+
+    /* Optimize the custom cursor for Safari */
+    #custom-cursor {
+      will-change: transform !important;
+      contain: layout style paint;
+      transform: translate3d(0, 0, 0) !important;
+      z-index: 9999;
+    }
   }
+}
+
+/* Force hardware acceleration for animations across all browsers */
+.animate-pulse,
+.animate-spin,
+.animate-ping,
+.motion-safe:not(.motion-reduce) * {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Disable complex animations on low-end devices by checking for RAM */
+@media (prefers-reduced-motion), (max-memory: medium) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Basic custom cursor (only for non-Safari browsers) */
+#custom-cursor {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 9999;
+  margin-left: -10px; /* Half the width */
+  margin-top: -10px; /* Half the height */
+}
+
+/* Active state for links and buttons */
+#custom-cursor.cursor-active {
+  width: 40px;
+  height: 40px;
+  margin-left: -20px; /* Half the width */
+  margin-top: -20px; /* Half the height */
+  background-color: transparent;
+  border: 2px solid white;
+  transition: width 0.1s ease, height 0.1s ease, margin 0.1s ease,
+    background-color 0.1s ease;
+}
+
+/* Hide system cursor when custom cursor is enabled */
+.custom-cursor-enabled {
+  cursor: none;
+}
+
+/* Show cursor on specific elements for better UX */
+.custom-cursor-enabled a,
+.custom-cursor-enabled button,
+.custom-cursor-enabled input,
+.custom-cursor-enabled select,
+.custom-cursor-enabled textarea {
+  cursor: none;
 }

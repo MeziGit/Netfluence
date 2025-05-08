@@ -6,10 +6,21 @@ import { Link } from "react-router-dom";
 const HomePage = ({ isMobile = false }) => {
   const heroRef = useRef(null);
   const [selectedTestimonial, setSelectedTestimonial] = useState(0);
+  const [isSafari, setIsSafari] = useState(false);
+
+  // Check if browser is Safari
+  useEffect(() => {
+    const ua = navigator.userAgent.toLowerCase();
+    const isSafariBrowser =
+      ua.indexOf("safari") !== -1 &&
+      ua.indexOf("chrome") === -1 &&
+      ua.indexOf("android") === -1;
+    setIsSafari(isSafariBrowser);
+  }, []);
 
   // No IntersectionObserver or animations on mobile
   useEffect(() => {
-    if (isMobile) return;
+    if (isMobile || isSafari) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -28,10 +39,30 @@ const HomePage = ({ isMobile = false }) => {
     return () => {
       revealElements.forEach((el) => observer.unobserve(el));
     };
-  }, [isMobile]);
+  }, [isMobile, isSafari]);
 
-  // Static components for mobile (no animations)
+  // Static components for mobile or Safari (no animations)
   const StaticComponent = ({ children, className = "" }) => {
+    // For Safari, instead of completely disabling animations, simplify them
+    if (isSafari) {
+      return (
+        <motion.div
+          initial={{ opacity: 0.9 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
+          className={className}
+          style={{
+            transform: "translateZ(0)", // Force hardware acceleration
+            willChange: "opacity",
+            backfaceVisibility: "hidden",
+          }}
+        >
+          {children}
+        </motion.div>
+      );
+    }
+
+    // For mobile or standard implementation
     return isMobile ? (
       <div
         className={className}
@@ -52,18 +83,30 @@ const HomePage = ({ isMobile = false }) => {
     );
   };
 
-  // Static card for mobile (no animations)
+  // Simplified animation for Safari
+  const getSafariAnimationProps = () => {
+    if (isSafari) {
+      return {
+        initial: {},
+        animate: {},
+        transition: { duration: 0.1 },
+      };
+    }
+    return {};
+  };
+
+  // Static card for mobile and Safari (with optimized animations)
   const StaticCard = ({ children, index }) => {
     const [isActive, setIsActive] = useState(false);
 
     const handleTouchStart = () => {
-      if (isMobile) {
+      if (isMobile || isSafari) {
         setIsActive(true);
       }
     };
 
     const handleTouchEnd = () => {
-      if (isMobile) {
+      if (isMobile || isSafari) {
         // Keep the effect visible for a short time after touch
         setTimeout(() => {
           setIsActive(false);
@@ -71,43 +114,81 @@ const HomePage = ({ isMobile = false }) => {
       }
     };
 
-    return isMobile ? (
-      <div
-        className={`card relative overflow-hidden border ${
-          isActive ? "shadow-glow border-accent/30" : "border-dark-accent/50"
-        }`}
-        style={{
-          willChange: "auto",
-          transform: "translateZ(0)",
-          transition:
-            "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease",
-        }}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-        onClick={handleTouchStart} // Also trigger on click for testing on desktop
-      >
-        {/* Animated background gradient for mobile (activated on touch) */}
-        <div
-          className={`absolute -inset-1 bg-gradient-to-r from-accent to-accent-tertiary rounded-lg blur-xl transition-opacity duration-200`}
+    // Special handling for Safari
+    if (isSafari) {
+      return (
+        <motion.div
+          className="card border border-dark-accent/50 relative overflow-hidden"
+          initial={{ opacity: 0.9 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
           style={{
-            opacity: isActive ? 0.2 : 0,
-            transition: "opacity 0.2s ease",
+            transform: "translateZ(0)", // Force hardware acceleration
+            willChange: "opacity, transform",
+            backfaceVisibility: "hidden",
           }}
-        ></div>
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onClick={handleTouchStart}
+        >
+          {/* Simplified background for Safari */}
+          <div
+            className={`absolute -inset-1 rounded-lg transition-opacity bg-accent/5`}
+            style={{
+              opacity: isActive ? 0.2 : 0,
+              transition: "opacity 0.2s ease",
+              filter: "blur(10px)",
+            }}
+          ></div>
 
+          {children}
+        </motion.div>
+      );
+    }
+
+    // For mobile
+    if (isMobile) {
+      return (
         <div
-          className="touch-feedback absolute inset-0 z-0 pointer-events-none"
+          className={`card relative overflow-hidden border ${
+            isActive ? "shadow-glow border-accent/30" : "border-dark-accent/50"
+          }`}
           style={{
-            backgroundColor: isActive
-              ? `rgba(${14}, ${165}, ${233}, 0.05)`
-              : "transparent",
-            transition: "background-color 0.2s ease",
+            willChange: "auto",
             transform: "translateZ(0)",
+            transition:
+              "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease",
           }}
-        />
-        {children}
-      </div>
-    ) : (
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onClick={handleTouchStart} // Also trigger on click for testing on desktop
+        >
+          {/* Animated background gradient for mobile (activated on touch) */}
+          <div
+            className={`absolute -inset-1 bg-gradient-to-r from-accent to-accent-tertiary rounded-lg blur-xl transition-opacity duration-200`}
+            style={{
+              opacity: isActive ? 0.2 : 0,
+              transition: "opacity 0.2s ease",
+            }}
+          ></div>
+
+          <div
+            className="touch-feedback absolute inset-0 z-0 pointer-events-none"
+            style={{
+              backgroundColor: isActive
+                ? `rgba(${14}, ${165}, ${233}, 0.05)`
+                : "transparent",
+              transition: "background-color 0.2s ease",
+              transform: "translateZ(0)",
+            }}
+          />
+          {children}
+        </div>
+      );
+    }
+
+    // Default for desktop
+    return (
       <motion.div
         key={index}
         className="card hover:shadow-glow hover:border-accent/30 reveal group relative overflow-hidden"
@@ -266,12 +347,12 @@ const HomePage = ({ isMobile = false }) => {
                 <h1 className="mb-6 leading-tight text-4xl md:text-4xl lg:text-5xl font-bold">
                   <span className="block reveal visible">
                     <motion.span
-                      initial={isMobile ? false : { y: "100%" }}
-                      animate={isMobile ? { y: 0 } : { y: 0 }}
+                      initial={isMobile || isSafari ? false : { y: "100%" }}
+                      animate={isMobile || isSafari ? { y: 0 } : { y: 0 }}
                       transition={{
-                        duration: isMobile ? 0.4 : 0.8,
+                        duration: isMobile || isSafari ? 0.1 : 0.8,
                         ease: [0.4, 0, 0.2, 1],
-                        delay: isMobile ? 0 : 0.1,
+                        delay: isMobile || isSafari ? 0 : 0.1,
                       }}
                     >
                       Crafting Digital
@@ -279,12 +360,12 @@ const HomePage = ({ isMobile = false }) => {
                   </span>
                   <span className="block reveal visible">
                     <motion.span
-                      initial={isMobile ? false : { y: "100%" }}
-                      animate={isMobile ? { y: 0 } : { y: 0 }}
+                      initial={isMobile || isSafari ? false : { y: "100%" }}
+                      animate={isMobile || isSafari ? { y: 0 } : { y: 0 }}
                       transition={{
-                        duration: isMobile ? 0.4 : 0.8,
+                        duration: isMobile || isSafari ? 0.1 : 0.8,
                         ease: [0.4, 0, 0.2, 1],
-                        delay: isMobile ? 0 : 0.2,
+                        delay: isMobile || isSafari ? 0 : 0.2,
                       }}
                       className="text-accent"
                     >
@@ -293,12 +374,12 @@ const HomePage = ({ isMobile = false }) => {
                   </span>
                   <span className="block reveal visible">
                     <motion.span
-                      initial={isMobile ? false : { y: "100%" }}
-                      animate={isMobile ? { y: 0 } : { y: 0 }}
+                      initial={isMobile || isSafari ? false : { y: "100%" }}
+                      animate={isMobile || isSafari ? { y: 0 } : { y: 0 }}
                       transition={{
-                        duration: isMobile ? 0.4 : 0.8,
+                        duration: isMobile || isSafari ? 0.1 : 0.8,
                         ease: [0.4, 0, 0.2, 1],
-                        delay: isMobile ? 0 : 0.3,
+                        delay: isMobile || isSafari ? 0 : 0.3,
                       }}
                     >
                       That Stand Out
@@ -307,9 +388,16 @@ const HomePage = ({ isMobile = false }) => {
                 </h1>
 
                 <motion.p
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={
+                    isMobile || isSafari
+                      ? { opacity: 1, y: 0 }
+                      : { opacity: 0, y: 20 }
+                  }
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
+                  transition={{
+                    duration: isMobile || isSafari ? 0.1 : 0.8,
+                    delay: isMobile || isSafari ? 0 : 0.6,
+                  }}
                   className="text-lg max-w-lg text-white/80"
                 >
                   Transform your business with customized web and app
@@ -334,12 +422,23 @@ const HomePage = ({ isMobile = false }) => {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={
+                isMobile || isSafari
+                  ? { opacity: 1, scale: 1 }
+                  : { opacity: 0, scale: 0.9 }
+              }
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
+              transition={{
+                duration: isMobile || isSafari ? 0.1 : 1,
+                delay: isMobile || isSafari ? 0 : 0.2,
+              }}
               className="reveal visible"
             >
-              <div className="code-window group hover:shadow-glow transition-all duration-300">
+              <div
+                className={`code-window group transition-all duration-300 ${
+                  isSafari ? "" : "hover:shadow-glow"
+                }`}
+              >
                 <div className="code-header">
                   <div className="flex">
                     <div className="code-dot bg-red-500"></div>
