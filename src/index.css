@@ -127,11 +127,11 @@
   }
 
   h1 {
-    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold;
+    @apply text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold;
   }
 
   h2 {
-    @apply text-2xl sm:text-3xl md:text-4xl font-bold;
+    @apply text-2xl sm:text-3xl md:text-3xl font-bold;
   }
 
   h3 {
@@ -202,7 +202,7 @@ html.js .loaded body {
   }
 
   .btn-primary {
-    @apply btn bg-accent hover:bg-accent-dark text-white ring-accent;
+    @apply btn bg-[#0ea5e9] hover:bg-[#0284c7] text-white ring-[#0ea5e9];
   }
 
   .btn-secondary {
