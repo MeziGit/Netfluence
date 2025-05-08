@@ -141,7 +141,7 @@ const App = () => {
         </main>
         <Footer />
       </div>
-      {!isMobile && (
+      {!isMobile && !isSafari && (
         <>
           <div
             id="custom-cursor"
