@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -14,19 +14,19 @@
   --color-muted: #1f2937;
   --color-text: #f9fafb;
   --color-text-muted: rgba(249, 250, 251, 0.7);
-  
+
   /* RGB values for opacity adjustments */
   --accent-rgb: 14, 165, 233;
   --accent-secondary-rgb: 16, 185, 129;
   --accent-tertiary-rgb: 139, 92, 246;
-  
+
   /* Animation easing */
   --easing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Completely disable all animations on mobile devices */
 .mobile-device *,
-.mobile-device *::before, 
+.mobile-device *::before,
 .mobile-device *::after {
   animation-duration: 0.01ms !important;
   animation-iteration-count: 1 !important;
@@ -56,7 +56,7 @@
     -webkit-backface-visibility: hidden !important;
     backface-visibility: hidden !important;
   }
-  
+
   /* Disable all gradient backgrounds */
   .bg-gradient-to-br,
   .bg-gradient-to-r,
@@ -64,20 +64,20 @@
   .bg-gradient-to-bl {
     background: #111827 !important; /* Replace with dark background */
   }
-  
+
   /* Convert glass effects to simple backgrounds */
   .glass {
     background: rgba(17, 24, 39, 0.8) !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
-  
+
   /* Simplify card hover effects */
   .card-hover:hover {
     transform: none !important;
     box-shadow: none !important;
   }
-  
+
   /* Prevent excessive repainting by disabling complex animations */
   .animate-float,
   .animate-float-delay,
@@ -87,14 +87,14 @@
   .animate-gradient {
     animation: none !important;
   }
-  
+
   /* Force hardware acceleration for scrolling */
   body {
     -webkit-overflow-scrolling: touch;
     transform: translateZ(0);
     backface-visibility: hidden;
   }
-  
+
   /* Reduce text animations */
   .typewriter,
   .reveal-text,
@@ -110,17 +110,22 @@
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
-  
+
   body {
     @apply bg-dark-bg text-white;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     overflow-x: hidden;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Poppins", sans-serif;
   }
-  
+
   h1 {
     @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold;
   }
@@ -137,14 +142,15 @@
   code {
     @apply font-mono text-accent-secondary bg-dark-card/50 px-1.5 py-0.5 rounded text-sm;
   }
-  
+
   /* Enhance focus styles for better accessibility */
   :focus-visible {
     @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-dark-bg;
   }
 
   /* Improve touch targets on mobile */
-  button, a {
+  button,
+  a {
     @apply touch-manipulation;
   }
 }
@@ -172,7 +178,12 @@
   left: 15%;
   right: 15%;
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   z-index: 2;
 }
 
@@ -254,7 +265,7 @@ html.js .loaded body {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
-  
+
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -268,13 +279,13 @@ html.js .loaded body {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
   }
-  
+
   /* Make the logo text slightly larger for better visibility */
   header .text-2xl {
     font-size: 1.5rem;
     letter-spacing: 0.01em;
   }
-  
+
   /* Ensure mobile menu button has a sufficient touch target */
   header button {
     min-height: 48px;
@@ -297,7 +308,7 @@ html.js .loaded body {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
-  
+
   .bg-accent-tertiary.rounded-full.blur-3xl,
   .bg-accent-tertiary\/20.rounded-full.blur-3xl,
   .bg-accent-tertiary\/15.rounded-full.blur-3xl,
@@ -310,7 +321,7 @@ html.js .loaded body {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
-  
+
   .bg-accent-secondary.rounded-full.blur-3xl,
   .bg-accent-secondary\/20.rounded-full.blur-3xl,
   .bg-accent-secondary\/15.rounded-full.blur-3xl,
@@ -323,7 +334,7 @@ html.js .loaded body {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
-  
+
   /* Enhance visibility of all gradient blobs */
   .section .rounded-full.blur-3xl {
     opacity: 0.35 !important;
@@ -336,12 +347,12 @@ html.js .loaded body {
     transform: translateZ(0);
     -webkit-tap-highlight-color: transparent;
   }
-  
+
   .card-hover:active {
     transform: translateZ(0) scale(0.98);
     box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.2);
   }
-  
+
   .card-hover:active .touch-feedback {
     background-color: rgba(var(--accent-rgb), 0.05);
   }
@@ -372,28 +383,52 @@ html.js .loaded body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes borderPulse {
-  0%, 100% { border-color: rgba(14, 165, 233, 0.3); }
-  50% { border-color: rgba(14, 165, 233, 0.9); }
+  0%,
+  100% {
+    border-color: rgba(14, 165, 233, 0.3);
+  }
+  50% {
+    border-color: rgba(14, 165, 233, 0.9);
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 /* Interactive elements */
@@ -402,7 +437,7 @@ html.js .loaded body {
 }
 
 .hover-underline::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 2px;
@@ -426,10 +461,12 @@ html.js .loaded body {
 }
 
 .shimmer-bg {
-  background: linear-gradient(90deg, 
-    rgba(255,255,255,0) 0%, 
-    rgba(255,255,255,0.1) 50%, 
-    rgba(255,255,255,0) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
   background-size: 200% 100%;
   animation: shimmer 3s infinite;
 }
@@ -447,4 +484,91 @@ html.js .loaded body {
 .card-hover:focus-within {
   box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.25);
   outline: none;
-} 
+}
+
+/* Safari-specific styles to disable all animations */
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    * {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      will-change: auto !important;
+      scroll-behavior: auto !important;
+    }
+
+    .animated-gradient,
+    #particles-js,
+    .typewriter,
+    .button-effect,
+    .button-3d,
+    .glass::before {
+      display: none !important;
+    }
+
+    /* Add solid background instead of glass effect */
+    .glass {
+      background: rgba(17, 24, 39, 0.9) !important;
+      box-shadow: none !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+  }
+}
+
+/* Additional Safari override classes */
+.safari-browser *,
+.safari * {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  will-change: auto !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.safari-browser .animated-gradient,
+.safari-browser .typewriter::after,
+.safari-browser #particles-js,
+.safari .animated-gradient,
+.safari .typewriter::after,
+.safari #particles-js {
+  display: none !important;
+}
+
+.safari-no-animation {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+/* Static content for Safari */
+.safari-browser .typewriter,
+.safari .typewriter {
+  border-right: none !important;
+  overflow: visible !important;
+  display: inline !important;
+  white-space: normal !important;
+}
+
+/* Simplified backgrounds for Safari */
+.safari-browser .glass,
+.safari .glass {
+  background-color: rgba(17, 24, 39, 0.9) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Remove all hover effects on Safari */
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    *:hover {
+      transform: none !important;
+      filter: none !important;
+      box-shadow: none !important;
+    }
+  }
+}
