@@ -70,7 +70,10 @@
   <!-- Initialize particles.js after page load -->
   <script>
     window.addEventListener('load', function () {
-      if (typeof particlesJS !== 'undefined') {
+      // Check if not Safari
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+      if (!isSafari && typeof particlesJS !== 'undefined') {
         // Initialize particles with reduced complexity
         particlesJS('particles-js', {
           "particles": {
