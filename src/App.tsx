@@ -88,7 +88,7 @@ const App = () => {
       <ScrollToTop />
       <div className="app-container">
         <Header />
-        <main>
+        <main id="main-content" className="transition-all duration-300">
           <Suspense fallback={<PageLoader />}>
             {isMobile || isSafari ? (
               // Regular routing without animations on mobile or Safari
