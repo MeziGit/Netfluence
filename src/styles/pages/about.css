@@ -1,0 +1,218 @@
+/* About page only. Tokens come from site.css; shared blocks from components.css. */
+
+/* ---------- Story ---------- */
+
+/* The hero already ends in generous space; don't double it */
+.nf-about-story {
+  padding-top: var(--nf-s-6);
+}
+
+.nf-about-story__body {
+  margin-top: var(--nf-s-5);
+}
+
+.nf-about-story__body p {
+  max-width: 56ch;
+  color: var(--nf-text-2);
+}
+
+.nf-about-story__body p + p {
+  margin-top: var(--nf-s-5);
+}
+
+.nf-about-story .nf-about-story__lead {
+  font-size: var(--nf-text-xl);
+  line-height: 1.42;
+  letter-spacing: -0.012em;
+  color: var(--nf-text);
+}
+
+.nf-about-story__body .nf-link {
+  margin-top: var(--nf-s-5);
+}
+
+.nf-about-story__photo {
+  margin: var(--nf-s-8) 0 0;
+}
+
+/* Same treatment as the founder portraits: grayscale, 12px container radius */
+.nf-about-story__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: 38% 50%;
+  border-radius: var(--nf-r-md);
+  filter: grayscale(1) contrast(1.05);
+  background: var(--nf-surface-2);
+}
+
+.nf-about-story__photo figcaption {
+  margin-top: var(--nf-s-3);
+  font-size: var(--nf-text-sm);
+  line-height: 1.4;
+  color: var(--nf-text-3);
+}
+
+@media (min-width: 768px) {
+  .nf-about-story {
+    padding-top: var(--nf-s-7);
+  }
+
+  .nf-about-story__photo img {
+    aspect-ratio: 16 / 9;
+    object-position: 45% 60%;
+  }
+}
+
+/* Heading and photo share the left columns; the story reads down the right */
+@media (min-width: 1024px) {
+  .nf-about-story__head {
+    grid-column: 1 / span 5;
+    grid-row: 1;
+  }
+
+  .nf-about-story__photo {
+    grid-column: 1 / span 5;
+    grid-row: 2;
+    margin-top: var(--nf-s-7);
+  }
+
+  .nf-about-story__body {
+    grid-column: 7 / -1;
+    grid-row: 1 / span 2;
+    margin-top: 0;
+  }
+
+  .nf-about-story__photo img {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* ---------- Founders ---------- */
+
+.nf-about-team {
+  background: var(--nf-surface);
+}
+
+.nf-about-team__people {
+  display: grid;
+  gap: var(--nf-s-8);
+  margin: var(--nf-s-8) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nf-founder img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--nf-r-md);
+  filter: grayscale(1) contrast(1.05);
+  background: var(--nf-surface-2);
+}
+
+.nf-founder h3 {
+  margin-top: var(--nf-s-5);
+  font-size: var(--nf-text-xl);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.nf-founder .nf-founder__role {
+  margin-top: var(--nf-s-1);
+  font-size: var(--nf-text-sm);
+  color: var(--nf-text-3);
+}
+
+.nf-founder .nf-founder__bio {
+  margin-top: var(--nf-s-4);
+  max-width: 44ch;
+  color: var(--nf-text-2);
+}
+
+@media (min-width: 768px) {
+  .nf-about-team__intro {
+    grid-column: 1 / span 7;
+  }
+
+  /* Same 12 columns and gap as the page, so the portraits land on page columns */
+  .nf-about-team__people {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--nf-gap);
+  }
+
+  .nf-founder--ryan {
+    grid-column: 1 / span 6;
+  }
+
+  .nf-founder--kui {
+    grid-column: 7 / span 6;
+  }
+}
+
+/* Offset the second portrait so the pair reads as two people, not a card row */
+@media (min-width: 1024px) {
+  .nf-founder--ryan {
+    grid-column: 1 / span 5;
+  }
+
+  .nf-founder--kui {
+    grid-column: 8 / span 5;
+    margin-top: var(--nf-s-10);
+  }
+}
+
+/* ---------- How we work ---------- */
+
+.nf-about-work__list {
+  margin: var(--nf-s-7) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nf-about-work__list li {
+  display: grid;
+  gap: var(--nf-s-2) var(--nf-gap);
+  padding-block: var(--nf-s-6);
+  border-top: 1px solid var(--nf-line);
+}
+
+.nf-about-work__list li:last-child {
+  border-bottom: 1px solid var(--nf-line);
+}
+
+.nf-about-work__list h3 {
+  font-size: var(--nf-text-lg);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.nf-about-work__list p {
+  max-width: 50ch;
+  color: var(--nf-text-2);
+}
+
+@media (min-width: 1024px) {
+  .nf-about-work__intro {
+    grid-column: 1 / span 4;
+    align-self: start;
+    position: sticky;
+    top: calc(72px + var(--nf-s-6));
+  }
+
+  .nf-about-work__list {
+    grid-column: 6 / -1;
+    margin-top: 0;
+  }
+
+  .nf-about-work__list li {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    padding-block: var(--nf-s-7);
+  }
+}

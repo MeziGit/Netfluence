@@ -1,0 +1,435 @@
+/*
+  Netfluence site foundations. Decisions and sources live in DESIGN.md.
+  Brand #38B6FF is sampled from the blue in the logo.
+*/
+
+:root {
+  color-scheme: dark;
+
+  /* Brand ramp (OKLCH-even steps, 400 = logo blue) */
+  --nf-brand-50: #eff8ff;
+  --nf-brand-200: #b7e1ff;
+  --nf-brand-300: #85cdff;
+  --nf-brand-400: #38b6ff;
+  --nf-brand-500: #0091d4;
+  --nf-brand-900: #002f4f;
+  --nf-brand-950: #001b32;
+
+  /* Neutrals, tinted toward the brand hue */
+  --nf-n-50: #f2f8fc;
+  --nf-n-200: #d5dce0;
+  --nf-n-300: #bec5ca;
+  --nf-n-400: #9ea6ab;
+  --nf-n-500: #81898e;
+  --nf-n-700: #51585c;
+
+  /* Roles */
+  --nf-bg: #111417;
+  --nf-surface: #181c20;
+  --nf-surface-2: #1f2428;
+  --nf-line: rgb(214 226 234 / 0.09);
+  --nf-line-strong: rgb(214 226 234 / 0.16);
+  --nf-text: var(--nf-n-50);
+  --nf-text-2: var(--nf-n-400);
+  --nf-text-3: var(--nf-n-500);
+  --nf-brand: var(--nf-brand-400);
+  --nf-on-brand: #0b1014;
+
+  /* Type */
+  --nf-font: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --nf-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --nf-text-xs: 0.75rem;
+  --nf-text-sm: 0.875rem;
+  --nf-text-base: 1.0625rem;
+  --nf-text-lg: 1.25rem;
+  --nf-text-xl: clamp(1.375rem, 1.2rem + 0.6vw, 1.625rem);
+  --nf-text-2xl: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  --nf-text-display: clamp(2.5rem, 1.6rem + 3.6vw, 4.25rem);
+
+  /* Space */
+  --nf-s-1: 0.25rem;
+  --nf-s-2: 0.5rem;
+  --nf-s-3: 0.75rem;
+  --nf-s-4: 1rem;
+  --nf-s-5: 1.5rem;
+  --nf-s-6: 2rem;
+  --nf-s-7: 3rem;
+  --nf-s-8: 4rem;
+  --nf-s-9: 6rem;
+  --nf-s-10: 8rem;
+
+  /* Layout */
+  --nf-max: 1200px;
+  --nf-gutter: 1.25rem;
+  --nf-gap: 1rem;
+
+  /* Radius: controls 8, containers 12 */
+  --nf-r-sm: 8px;
+  --nf-r-md: 12px;
+
+  /* Depth: on dark, elevation is mostly a lighter surface + a lit top edge */
+  --nf-highlight: inset 0 1px 0 rgb(255 255 255 / 0.06);
+  --nf-shadow-high: 0 2px 2px rgb(2 8 14 / 0.2), 0 8px 8px rgb(2 8 14 / 0.2),
+    0 24px 24px rgb(2 8 14 / 0.22), 0 48px 64px rgb(2 8 14 / 0.3);
+
+  /* Motion */
+  --nf-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --nf-gutter: 2.5rem;
+    --nf-gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --nf-gutter: 3rem;
+  }
+}
+
+/* ---------- Shared primitives ---------- */
+
+.nf-wrap {
+  width: 100%;
+  max-width: calc(var(--nf-max) + var(--nf-gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--nf-gutter);
+}
+
+.nf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nf-s-2);
+  min-height: 48px;
+  padding: 0 var(--nf-s-5);
+  border-radius: var(--nf-r-sm);
+  font: 600 var(--nf-text-base) / 1 var(--nf-font);
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 160ms var(--nf-ease-out),
+    border-color 160ms var(--nf-ease-out), color 160ms var(--nf-ease-out),
+    transform 120ms var(--nf-ease-out);
+}
+
+.nf-btn:active {
+  transform: scale(0.97);
+}
+
+.nf-btn--primary {
+  background: var(--nf-brand);
+  color: var(--nf-on-brand);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25);
+}
+
+.nf-btn--primary:hover {
+  background: var(--nf-brand-300);
+}
+
+.nf-btn--ghost {
+  color: var(--nf-text);
+  box-shadow: inset 0 0 0 1px var(--nf-line-strong);
+}
+
+.nf-btn--ghost:hover {
+  background: rgb(255 255 255 / 0.05);
+  box-shadow: inset 0 0 0 1px rgb(214 226 234 / 0.28);
+}
+
+.nf-btn--sm {
+  min-height: 44px;
+  padding: 0 var(--nf-s-4);
+  font-size: var(--nf-text-sm);
+}
+
+.nf-btn:focus-visible,
+.nf-link:focus-visible,
+.nf-header a:focus-visible,
+.nf-header button:focus-visible,
+.nf-footer a:focus-visible {
+  outline: 2px solid var(--nf-brand);
+  outline-offset: 3px;
+  box-shadow: none;
+  --tw-ring-shadow: 0 0 #0000;
+}
+
+/* Typeset wordmark */
+.nf-wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font: 600 1.25rem / 1 var(--nf-font);
+  letter-spacing: -0.035em;
+  color: var(--nf-text);
+  text-decoration: none;
+}
+
+/* ---------- Header ---------- */
+
+.nf-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  transition: background-color 200ms var(--nf-ease-out),
+    box-shadow 200ms var(--nf-ease-out);
+}
+
+.nf-header.is-scrolled,
+.nf-header.is-open {
+  background: rgb(17 20 23 / 0.86);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  backdrop-filter: saturate(140%) blur(14px);
+  box-shadow: 0 1px 0 var(--nf-line);
+}
+
+.nf-header__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.nf-header__nav {
+  display: none;
+  align-items: center;
+  gap: var(--nf-s-6);
+}
+
+.nf-header__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  font: 500 0.9375rem / 1 var(--nf-font);
+  color: var(--nf-text-2);
+  text-decoration: none;
+  transition: color 120ms var(--nf-ease-out);
+}
+
+.nf-header__link:hover,
+.nf-header__link.is-active {
+  color: var(--nf-text);
+}
+
+.nf-header__link.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 2px;
+  background: var(--nf-brand);
+}
+
+.nf-header__toggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  color: var(--nf-text);
+}
+
+.nf-header__toggle-lines {
+  display: grid;
+  gap: 5px;
+  width: 20px;
+}
+
+.nf-header__toggle-lines > i {
+  display: block;
+  height: 2px;
+  background: currentColor;
+  transform-origin: center;
+  transition: transform 200ms var(--nf-ease-out), opacity 120ms linear;
+}
+
+.nf-header.is-open .nf-header__toggle-lines > i:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nf-header.is-open .nf-header__toggle-lines > i:nth-child(2) {
+  opacity: 0;
+}
+
+.nf-header.is-open .nf-header__toggle-lines > i:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nf-header__panel {
+  border-top: 1px solid var(--nf-line);
+  padding-block: var(--nf-s-5) var(--nf-s-7);
+}
+
+.nf-header__panel nav {
+  display: grid;
+}
+
+.nf-header__panel a:not(.nf-btn) {
+  display: block;
+  padding: var(--nf-s-3) 0;
+  font: 500 1.75rem / 1.2 var(--nf-font);
+  letter-spacing: -0.02em;
+  color: var(--nf-text-2);
+  text-decoration: none;
+}
+
+.nf-header__panel a.is-active {
+  color: var(--nf-text);
+}
+
+.nf-header__panel .nf-btn {
+  margin-top: var(--nf-s-6);
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .nf-header__nav {
+    display: flex;
+  }
+
+  .nf-header__toggle,
+  .nf-header__panel {
+    display: none;
+  }
+}
+
+/* Floating contact shortcut on phones */
+.nf-fab {
+  position: fixed;
+  right: var(--nf-s-4);
+  bottom: var(--nf-s-4);
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: var(--nf-brand);
+  color: var(--nf-on-brand);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.3), var(--nf-shadow-high);
+}
+
+.nf-fab:active {
+  transform: scale(0.95);
+}
+
+@media (min-width: 768px) {
+  .nf-fab {
+    display: none;
+  }
+}
+
+/* ---------- Footer ---------- */
+
+.nf-footer {
+  background: var(--nf-bg);
+  border-top: 1px solid var(--nf-line);
+  padding-block: var(--nf-s-8) var(--nf-s-6);
+  font-family: var(--nf-font);
+  color: var(--nf-text-2);
+}
+
+.nf-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--nf-s-7) var(--nf-gap);
+}
+
+.nf-footer__brand {
+  grid-column: 1 / -1;
+}
+
+.nf-footer__brand .nf-wordmark {
+  margin-bottom: var(--nf-s-3);
+}
+
+.nf-footer__brand p {
+  max-width: 32ch;
+  font-size: var(--nf-text-base);
+  line-height: 1.55;
+}
+
+.nf-footer h2 {
+  margin: 0 0 var(--nf-s-3);
+  font: 500 var(--nf-text-sm) / 1.3 var(--nf-font);
+  color: var(--nf-text-3);
+}
+
+.nf-footer ul {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nf-footer a:not(.nf-wordmark) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--nf-text-2);
+  text-decoration: none;
+  transition: color 120ms var(--nf-ease-out);
+}
+
+/* Plain text rows (the city) line up with the 44px link rows */
+.nf-footer li > span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.nf-footer a:not(.nf-wordmark):hover {
+  color: var(--nf-text);
+}
+
+.nf-footer address {
+  font-style: normal;
+}
+
+.nf-footer__base {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--nf-s-3);
+  margin-top: var(--nf-s-8);
+  padding-top: var(--nf-s-5);
+  border-top: 1px solid var(--nf-line);
+  font-size: var(--nf-text-sm);
+  color: var(--nf-text-3);
+}
+
+@media (min-width: 768px) {
+  .nf-footer__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .nf-footer__col {
+    grid-column: span 4;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nf-footer__brand {
+    grid-column: span 6;
+  }
+
+  .nf-footer__col {
+    grid-column: span 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-header,
+  .nf-header *,
+  .nf-btn,
+  .nf-fab {
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -40,9 +40,9 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Poppins', 'sans-serif'],
-        mono: ['Fira Code', 'monospace'],
+        sans: ['Instrument Sans', 'system-ui', 'sans-serif'],
+        display: ['Instrument Sans', 'system-ui', 'sans-serif'],
+        mono: ['Geist Mono', 'ui-monospace', 'monospace'],
       },
       boxShadow: {
         glow: '0 0 15px 2px rgba(14, 165, 233, 0.3)',

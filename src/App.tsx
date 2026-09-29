@@ -1,11 +1,9 @@
 import { lazy, Suspense, useContext, useEffect, useState } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import { Routes, Route } from "react-router-dom";
 import { ThemeContext } from "./context/ThemeContext";
 import Header from "./components/Header";
 import Footer from "./components/layout/Footer";
 import ScrollToTop from "./components/utils/ScrollToTop";
-import CustomCursor from "./components/ui/CustomCursor";
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -25,8 +23,6 @@ const PageLoader = () => (
 // Main App Component
 const App = () => {
   const { isDarkMode } = useContext(ThemeContext);
-  const location = useLocation();
-  const [isMobile, setIsMobile] = useState(false);
   const [isSafari, setIsSafari] = useState(false);
 
   // Check if browser is Safari
@@ -50,37 +46,21 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    // Check if device is mobile
+    // Add mobile class to body to disable animations via CSS
     const checkMobile = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-
-      // Add mobile class to body to disable animations via CSS
-      if (mobile) {
-        document.body.classList.add("mobile-device");
-      } else {
-        document.body.classList.remove("mobile-device");
-      }
+      document.body.classList.toggle("mobile-device", window.innerWidth < 768);
     };
 
     checkMobile();
     window.addEventListener("resize", checkMobile);
-
-    // Disable scroll animations globally on mobile
-    if (!isMobile) {
-      // Only load locomotive scroll on desktop
-      const linkElement = document.createElement("link");
-      linkElement.rel = "stylesheet";
-      linkElement.href =
-        "https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css";
-      document.head.appendChild(linkElement);
-    }
 
     return () => {
       window.removeEventListener("resize", checkMobile);
     };
   }, []);
 
+  // One route tree for every device: pages are pre-rendered, and swapping trees after
+  // detecting the device would remount the page and replay its load animation.
   return (
     <div
       className={`${isDarkMode ? "dark" : "light"} ${isSafari ? "safari" : ""}`}
@@ -90,66 +70,18 @@ const App = () => {
         <Header />
         <main id="main-content" className="transition-all duration-300">
           <Suspense fallback={<PageLoader />}>
-            {isMobile || isSafari ? (
-              // Regular routing without animations on mobile or Safari
-              <Routes>
-                <Route path="/" element={<HomePage isMobile={isMobile} />} />
-                <Route
-                  path="/services"
-                  element={<ServicesPage isMobile={isMobile} />}
-                />
-                <Route
-                  path="/portfolio"
-                  element={<PortfolioPage isMobile={isMobile} />}
-                />
-                <Route
-                  path="/about"
-                  element={<AboutPage isMobile={isMobile} />}
-                />
-                <Route
-                  path="/contact"
-                  element={<ContactPage isMobile={isMobile} />}
-                />
-                <Route path="*" element={<NotFoundPage />} />
-              </Routes>
-            ) : (
-              // Animated transitions only on desktop Chrome/Firefox
-              <AnimatePresence mode="wait">
-                <Routes location={location} key={location.pathname}>
-                  <Route path="/" element={<HomePage isMobile={isMobile} />} />
-                  <Route
-                    path="/services"
-                    element={<ServicesPage isMobile={isMobile} />}
-                  />
-                  <Route
-                    path="/portfolio"
-                    element={<PortfolioPage isMobile={isMobile} />}
-                  />
-                  <Route
-                    path="/about"
-                    element={<AboutPage isMobile={isMobile} />}
-                  />
-                  <Route
-                    path="/contact"
-                    element={<ContactPage isMobile={isMobile} />}
-                  />
-                  <Route path="*" element={<NotFoundPage />} />
-                </Routes>
-              </AnimatePresence>
-            )}
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/portfolio" element={<PortfolioPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
           </Suspense>
         </main>
         <Footer />
       </div>
-      {!isMobile && !isSafari && (
-        <>
-          <div
-            id="custom-cursor"
-            className="custom-cursor hidden md:block"
-          ></div>
-          <CustomCursor />
-        </>
-      )}
     </div>
   );
 };
