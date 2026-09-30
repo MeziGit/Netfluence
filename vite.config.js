@@ -1,23 +1,18 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-export default defineConfig(({ isSsrBuild }) => ({
+export default defineConfig({
   plugins: [react()],
   build: {
-    // scripts/prerender.js reads the manifest to link each page's CSS and JS chunks.
-    manifest: !isSsrBuild,
     minify: "esbuild",
     rollupOptions: {
-      // The server build leaves node_modules external, so these chunks don't apply to it.
-      output: isSsrBuild
-        ? {}
-        : {
-            manualChunks: {
-              "react-vendor": ["react", "react-dom"],
-              "framer-motion": ["framer-motion"],
-              "react-router": ["react-router-dom"],
-            },
-          },
+      output: {
+        manualChunks: {
+          "react-vendor": ["react", "react-dom"],
+          "framer-motion": ["framer-motion"],
+          "react-router": ["react-router-dom"],
+        },
+      },
     },
     chunkSizeWarningLimit: 1000,
     cssCodeSplit: true,
@@ -37,4 +32,4 @@ export default defineConfig(({ isSsrBuild }) => ({
       src: "/src",
     },
   },
-}));
+});

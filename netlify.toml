@@ -2,33 +2,15 @@
   command = "npm run build"
   publish = "dist"
 
-# Each route has its own HTML file from scripts/prerender.js. Anything else falls
-# through to Netlify's 404 handling, which serves dist/404.html with a real 404 status.
 [[redirects]]
-  from = "/services"
-  to = "/services.html"
+  from = "/*"
+  to = "/index.html"
   status = 200
 
-[[redirects]]
-  from = "/portfolio"
-  to = "/portfolio.html"
-  status = 200
-
-[[redirects]]
-  from = "/about"
-  to = "/about.html"
-  status = 200
-
-[[redirects]]
-  from = "/contact"
-  to = "/contact.html"
-  status = 200
-
-# Special redirect for form submissions. The app has no /success route, so it has always
-# shown the not-found page here; serving that page's HTML keeps hydration consistent.
+# Special redirect for form submissions
 [[redirects]]
   from = "/success"
-  to = "/404.html"
+  to = "/index.html"
   status = 200
 
 # Ensure Netlify knows about the forms
@@ -42,7 +24,7 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "same-origin"
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://www.clarity.ms;"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline'; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://www.clarity.ms;"
 
 [[headers]]
   for = "/*.js"

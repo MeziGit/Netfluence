@@ -8,11 +8,8 @@ import "./index.css";
 
 // Add global styles for tailwind components
 import "./styles/globals.css";
-import "./styles/site.css";
-import "./styles/components.css";
 
-// Keep this provider tree identical to entry-server.jsx.
-const app = (
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <HelmetProvider>
       <ThemeProvider>
@@ -23,12 +20,3 @@ const app = (
     </HelmetProvider>
   </React.StrictMode>
 );
-
-// Production pages arrive pre-rendered (scripts/prerender.js), so React attaches to that
-// HTML instead of rebuilding it. The dev server sends an empty root.
-const root = document.getElementById("root") as HTMLElement;
-if (root.hasChildNodes()) {
-  ReactDOM.hydrateRoot(root, app);
-} else {
-  ReactDOM.createRoot(root).render(app);
-}
